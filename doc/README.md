@@ -48,7 +48,7 @@ steem.config.set('chain_id','782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd4
 ```
 ### set
 ```
-steem.config.set('address_prefix','STM');
+steem.config.set('address_prefix','BEO');
 ```
 ### get
 ```

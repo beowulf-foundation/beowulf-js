@@ -33,7 +33,7 @@ Types.asset = {
         let b_copy = b.copy(b.offset, b.offset + 7)
         let symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
         b.skip(7);
-        // "1.000 STEEM" always written with full precision
+        // "1.000 BWF" always written with full precision
         let amount_string = fromImpliedDecimal(amount, precision)
         return amount_string + " " + symbol
     },
@@ -59,7 +59,7 @@ Types.asset = {
         return object
     },
     toObject(object, debug = {}){
-        if (debug.use_default && object === undefined) { return "0.000 STEEM"; }
+        if (debug.use_default && object === undefined) { return "0.000 BWF"; }
         return object
     }
 }

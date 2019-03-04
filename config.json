@@ -5,6 +5,6 @@
   "url": "",
   "dev_uri": "https://api.steemitdev.com",
   "stage_uri": "https://api.steemitstage.com",
-  "address_prefix": "STM",
+  "address_prefix": "BEO",
   "chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
 }

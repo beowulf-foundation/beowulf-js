@@ -1,10 +1,10 @@
 {
   "transport": "http",
   "websocket": "wss://gtg.steem.house:8090",
-  "uri": "https://api.steemit.com",
+  "uri": "http://35.240.213.84:8376",
   "url": "",
-  "dev_uri": "https://api.steemitdev.com",
-  "stage_uri": "https://api.steemitstage.com",
+  "dev_uri": "http://35.240.213.84:8376",
+  "stage_uri": "http://35.240.213.84:8376",
   "address_prefix": "BEO",
   "chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
 }

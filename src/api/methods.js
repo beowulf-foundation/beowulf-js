@@ -181,7 +181,7 @@ export default [
       "params": ["key"]
     },
     {
-      "api": "database_api",
+      "api": "condenser_api",
       "method": "get_accounts",
       "params": ["names"]
     },

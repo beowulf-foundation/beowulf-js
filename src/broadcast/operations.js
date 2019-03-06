@@ -29,6 +29,7 @@ module.exports = [
       "from",
       "to",
       "amount",
+      "fee",
       "memo"
     ]
   },

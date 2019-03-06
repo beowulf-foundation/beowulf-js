@@ -178,6 +178,7 @@ let transfer = new Serializer(
     from: string,
     to: string,
     amount: asset,
+    fee: asset,
     memo: string
 }
 );

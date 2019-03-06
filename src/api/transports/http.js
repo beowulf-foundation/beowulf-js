@@ -27,6 +27,7 @@ class RPCError extends Error {
  */
 export function jsonRpc(uri, {method, id, params, fetchMethod=fetch}) {
   const payload = {id, jsonrpc: '2.0', method, params};
+
   return fetchMethod(uri, {
     body: JSON.stringify(payload),
     method: 'post',

@@ -1,27 +1,27 @@
 module.exports = [
-  {
-    "roles": ["posting", "active", "owner"],
-    "operation": "vote",
-    "params": [
-      "voter",
-      "author",
-      "permlink",
-      "weight"
-    ]
-  },
-  {
-    "roles": ["posting", "active", "owner"],
-    "operation": "comment",
-    "params": [
-      "parent_author",
-      "parent_permlink",
-      "author",
-      "permlink",
-      "title",
-      "body",
-      "json_metadata"
-    ]
-  },
+  // {
+  //   "roles": ["posting", "active", "owner"],
+  //   "operation": "vote",
+  //   "params": [
+  //     "voter",
+  //     "author",
+  //     "permlink",
+  //     "weight"
+  //   ]
+  // },
+  // {
+  //   "roles": ["posting", "active", "owner"],
+  //   "operation": "comment",
+  //   "params": [
+  //     "parent_author",
+  //     "parent_permlink",
+  //     "author",
+  //     "permlink",
+  //     "title",
+  //     "body",
+  //     "json_metadata"
+  //   ]
+  // },
   {
     "roles": ["active", "owner"],
     "operation": "transfer",

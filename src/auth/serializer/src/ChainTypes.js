@@ -9,9 +9,9 @@ ChainTypes.reserved_spaces = {
 };
 
 ChainTypes.operations= {
-    vote: 0,
-    comment: 1,
-    transfer: 2,
+    transfer: 0,
+    vote: 1,
+    comment: 2,
     transfer_to_vesting: 3,
     withdraw_vesting: 4,
     limit_order_create: 5,

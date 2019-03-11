@@ -713,8 +713,8 @@ let comment_benefactor_reward = new Serializer(
 );
 
 operation.st_operations = [
-    vote,    
-    comment,    
+    // vote,    
+    // comment,    
     transfer,    
     transfer_to_vesting,    
     withdraw_vesting,    

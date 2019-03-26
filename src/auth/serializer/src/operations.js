@@ -102,8 +102,8 @@ let signed_transaction = new Serializer(
     ref_block_prefix: uint32,
     expiration: time_point_sec,
     operations: array(operation),
-    extensions: set(future_extensions),
     created_time: uint64,
+    extensions: set(future_extensions),
     signatures: array(bytes(65))
 }
 );
@@ -778,7 +778,8 @@ let transaction = new Serializer(
     ref_block_prefix: uint32,
     expiration: time_point_sec,
     operations: array(operation),
-    extensions: set(future_extensions)
+    extensions: set(future_extensions),
+    created_time: uint64,
 }
 );
 

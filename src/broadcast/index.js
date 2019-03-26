@@ -59,6 +59,7 @@ steemBroadcast._prepareTransaction = function steemBroadcast$_prepareTransaction
         return Object.assign({
           ref_block_num: refBlockNum,
           ref_block_prefix: new Buffer(headBlockId, 'hex').readUInt32LE(4),
+          created_time: +(new Date()),
           expiration: new Date(
             chainDate.getTime() +
             600 * 1000

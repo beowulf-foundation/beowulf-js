@@ -103,6 +103,7 @@ let signed_transaction = new Serializer(
     expiration: time_point_sec,
     operations: array(operation),
     extensions: set(future_extensions),
+    created_time: uint64,
     signatures: array(bytes(65))
 }
 );

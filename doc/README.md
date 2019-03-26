@@ -30,7 +30,7 @@ $ npm install steem --save
 
 # Browser 
 ```html 
-<script src="./steem.min.js"></script>
+<script src="./beowulf.min.js"></script>
 <script>
 steem.api.getAccounts(['ned', 'dan'], function(err, response){
     console.log(err, response);

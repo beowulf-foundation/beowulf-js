@@ -18,7 +18,7 @@ ChainTypes.operations= {
     limit_order_cancel: 6,
     feed_publish: 7,
     convert: 8,
-    account_create: 9,
+    account_create: 5,
     account_update: 10,
     witness_update: 11,
     account_witness_vote: 12,

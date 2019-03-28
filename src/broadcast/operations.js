@@ -104,8 +104,8 @@ module.exports = [
       "new_account_name",
       "owner",
       "active",
-      "posting",
-      "memo_key",
+      // "posting",
+      // "memo_key",
       "json_metadata"
     ]
   },

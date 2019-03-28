@@ -254,8 +254,8 @@ let account_create = new Serializer(
     new_account_name: string,
     owner: authority,
     active: authority,
-    posting: authority,
-    memo_key: public_key,
+    // posting: authority,
+    // memo_key: public_key,
     json_metadata: string
 }
 );
@@ -719,8 +719,8 @@ operation.st_operations = [
     transfer,    
     transfer_to_vesting,    
     withdraw_vesting,    
-    limit_order_create,    
-    limit_order_cancel,    
+    // limit_order_create,    
+    // limit_order_cancel,    
     feed_publish,    
     convert,    
     account_create,    

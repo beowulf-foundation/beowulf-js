@@ -50,46 +50,73 @@ beowulfWallet.generateWallet = function({
           reject(err);
           return;
         }
-        
-        // let crypto = encryptWallet(privKeys, password);
+
+        let wallet = encryptWallet(privKeys, password);
         resolve({
-          result: result,
-          // crypto,
+          result,
+          wallet
         });
       }
     );
   });
 
+  // let promise = new Promise((resolve, reject) => {
+  //   let wallet = encryptWallet(privKeys, password);
+  //   resolve({
+  //     wallet
+  //   });
+  // });
+
   return promise;
 };
 
+beowulfWallet.decryptWallet = decryptWallet;
+
 function encryptWallet(wallet, password) {
   let plainWallet = JSON.stringify(wallet);
-  let rp = {};
   let p = {
     adata: '',
-    iter: '1000',
-    mode: 'cbc',
+    iter: 1000,
+    mode: 'ccm',
     ts: 64, // authentication tag
     ks: 256 // 256
   };
 
-  let encryptedWallet = sjcl
-    .encrypt(password, plainWallet, p, rp)
-    .replace(/,/g, ',\n');
+  let encryptedWallet = sjcl.encrypt(password, plainWallet, p, {});
+
+  encryptedWallet = JSON.parse(encryptedWallet);
 
   return {
-    ciphertext: encryptedWallet,
-    cipherparams: { iv: rp.iv, ts: p.ts },
-    cipher: 'aes-256-cbc',
+    ciphertext: encryptedWallet.ct,
+    cipherparams: { iv: encryptedWallet.iv, ts: encryptedWallet.ts },
+    cipher: 'aes-256-ccm',
     kdf: 'pbkdf2',
     kdfparams: {
-      salt: rp.salt,
-      iter: p.inter
+      salt: encryptedWallet.salt,
+      iter: encryptedWallet.iter
     }
   };
 }
 
-function decryptWallet(encryptedWallet, password) {}
+function decryptWallet(encryptedWallet, password) {
+  let cipherText = {
+    ct: encryptedWallet.ciphertext,
+    iv: encryptedWallet.cipherparams.iv,
+    ts: encryptedWallet.cipherparams.ts,
+    v: 1,
+    iter: encryptedWallet.kdfparams.iter,
+    salt: encryptedWallet.kdfparams.salt,
+    ks: 256,
+    mode: 'ccm',
+    cipher: 'aes',
+    adata: '',
+  };
+
+  cipherText = JSON.stringify(cipherText);
+  let decrypted = sjcl.decrypt(password, cipherText);
+  decrypted = JSON.parse(decrypted);
+
+  return decrypted;
+}
 
 exports = module.exports = beowulfWallet;

@@ -187,19 +187,6 @@ module.exports = [
     ]
   },
   {
-    "roles": ["posting", "active", "owner"],
-    "operation": "comment_options",
-    "params": [
-      "author",
-      "permlink",
-      "max_accepted_payout",
-      "percent_steem_dollars",
-      "allow_votes",
-      "allow_curation_rewards",
-      "extensions"
-    ]
-  },
-  {
     "roles": ["active", "owner"],
     "operation": "set_withdraw_vesting_route",
     "params": [
@@ -275,22 +262,6 @@ module.exports = [
   },
   {
     "roles": ["active", "owner"],
-    "operation": "escrow_transfer",
-    "params": [
-      "from",
-      "to",
-      "agent",
-      "escrow_id",
-      "sbd_amount",
-      "steem_amount",
-      "fee",
-      "ratification_deadline",
-      "escrow_expiration",
-      "json_meta"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
     "operation": "escrow_dispute",
     "params": [
       "from",
@@ -298,20 +269,6 @@ module.exports = [
       "agent",
       "who",
       "escrow_id"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "escrow_release",
-    "params": [
-      "from",
-      "to",
-      "agent",
-      "who",
-      "receiver",
-      "escrow_id",
-      "sbd_amount",
-      "steem_amount"
     ]
   },
   {
@@ -395,16 +352,6 @@ module.exports = [
       "account",
       "current_reset_account",
       "reset_account"
-    ]
-  },
-  {
-    "roles": ["posting", "active", "owner"],
-    "operation": "claim_reward_balance",
-    "params": [
-      "account",
-      "reward_steem",
-      "reward_sbd",
-      "reward_vests"
     ]
   },
   {

@@ -350,7 +350,7 @@ let comment_options = new Serializer(
     author: string,
     permlink: string,
     max_accepted_payout: asset,
-    percent_steem_dollars: uint16,
+    percent_beowulf_dollars: uint16,
     allow_votes: bool,
     allow_curation_rewards: bool,
     extensions: set(static_variant([
@@ -426,21 +426,6 @@ let change_recovery_account = new Serializer(
 }
 );
 
-let escrow_transfer = new Serializer( 
-    "escrow_transfer", {
-    from: string,
-    to: string,
-    sbd_amount: asset,
-    steem_amount: asset,
-    escrow_id: uint32,
-    agent: string,
-    fee: asset,
-    json_meta: string,
-    ratification_deadline: time_point_sec,
-    escrow_expiration: time_point_sec
-}
-);
-
 let escrow_dispute = new Serializer( 
     "escrow_dispute", {
     from: string,
@@ -448,19 +433,6 @@ let escrow_dispute = new Serializer(
     agent: string,
     who: string,
     escrow_id: uint32
-}
-);
-
-let escrow_release = new Serializer( 
-    "escrow_release", {
-    from: string,
-    to: string,
-    agent: string,
-    who: string,
-    receiver: string,
-    escrow_id: uint32,
-    sbd_amount: asset,
-    steem_amount: asset
 }
 );
 
@@ -568,15 +540,6 @@ let set_reset_account = new Serializer(
 }
 );
 
-let claim_reward_balance = new Serializer( 
-    "claim_reward_balance", {
-    account: string,
-    reward_steem: asset,
-    reward_sbd: asset,
-    reward_vests: asset
-}
-);
-
 let delegate_vesting_shares = new Serializer( 
     "delegate_vesting_shares", {
     delegator: string,
@@ -606,16 +569,6 @@ let fill_convert_request = new Serializer(
     requestid: uint32,
     amount_in: asset,
     amount_out: asset
-}
-);
-
-let author_reward = new Serializer( 
-    "author_reward", {
-    author: string,
-    permlink: string,
-    sbd_payout: asset,
-    steem_payout: asset,
-    vesting_payout: asset
 }
 );
 
@@ -733,17 +686,15 @@ operation.st_operations = [
     report_over_production,    
     delete_comment,    
     custom_json,    
-    comment_options,    
+    // comment_options,    
     set_withdraw_vesting_route,    
     limit_order_create2,    
     claim_account,    
     create_claimed_account,    
     request_account_recovery,    
     recover_account,    
-    change_recovery_account,    
-    escrow_transfer,    
-    escrow_dispute,    
-    escrow_release,    
+    change_recovery_account,     
+    escrow_dispute,       
     pow2,    
     escrow_approve,    
     transfer_to_savings,    
@@ -752,12 +703,10 @@ operation.st_operations = [
     custom_binary,    
     decline_voting_rights,    
     reset_account,    
-    set_reset_account,    
-    claim_reward_balance,    
+    set_reset_account,      
     delegate_vesting_shares,    
     account_create_with_delegation,    
     fill_convert_request,    
-    author_reward,    
     curation_reward,    
     comment_reward,    
     liquidity_reward,    

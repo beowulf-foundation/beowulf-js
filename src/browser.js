@@ -5,7 +5,7 @@ const config = require("./config");
 const formatter = require("./formatter")(api);
 const utils = require("./utils");
 
-const steem = {
+const beowulf = {
   api,
   auth,
   broadcast,
@@ -15,11 +15,11 @@ const steem = {
 };
 
 if (typeof window !== "undefined") {
-  window.steem = steem;
+  window.beowulf = beowulf;
 }
 
 if (typeof global !== "undefined") {
-  global.steem = steem;
+  global.beowulf = beowulf;
 }
 
-exports = module.exports = steem;
+exports = module.exports = beowulf;

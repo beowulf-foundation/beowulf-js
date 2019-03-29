@@ -931,7 +931,7 @@ console.log(reputation);
 
 ### Vest To Steem
 ```
-var steemPower = steem.formatter.vestToSteem(vestingShares, totalVestingShares, totalVestingFundSteem);
+var steemPower = steem.formatter.vestToBeowulf(vestingShares, totalVestingShares, totalVestingFundBeowulf);
 console.log(steemPower);
 ```
 

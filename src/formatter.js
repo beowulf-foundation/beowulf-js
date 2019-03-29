@@ -1,19 +1,19 @@
 import get from "lodash/get";
 import { key_utils } from "./auth/ecc";
 
-module.exports = steemAPI => {
+module.exports = beowulfAPI => {
   function numberWithCommas(x) {
     return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  function vestingSteem(account, gprops) {
+  function vestingBeowulf(account, gprops) {
     const vests = parseFloat(account.vesting_shares.split(" ")[0]);
     const total_vests = parseFloat(gprops.total_vesting_shares.split(" ")[0]);
-    const total_vest_steem = parseFloat(
+    const total_vest_beowulf = parseFloat(
       gprops.total_vesting_fund_steem.split(" ")[0]
     );
-    const vesting_steemf = total_vest_steem * (vests / total_vests);
-    return vesting_steemf;
+    const vesting_beowulf = total_vest_beowulf * (vests / total_vests);
+    return vesting_beowulf;
   }
 
   function processOrders(open_orders, assetPrecision) {
@@ -26,7 +26,7 @@ module.exports = steemAPI => {
           return o;
         }, 0) / assetPrecision;
 
-    const steemOrders = !open_orders
+    const beowulfOrders = !open_orders
       ? 0
       : open_orders.reduce((o, order) => {
           if (order.sell_price.base.indexOf("BWF") !== -1) {
@@ -35,7 +35,7 @@ module.exports = steemAPI => {
           return o;
         }, 0) / assetPrecision;
 
-    return { steemOrders, sbdOrders };
+    return { beowulfOrders, sbdOrders };
   }
 
   function calculateSaving(savings_withdraws) {
@@ -51,41 +51,41 @@ module.exports = steemAPI => {
     return { savings_pending, savings_sbd_pending };
   }
 
-  function pricePerSteem(feed_price) {
-    let price_per_steem = undefined;
+  function pricePerBeowulf(feed_price) {
+    let price_per_beowulf = undefined;
     const { base, quote } = feed_price;
     if (/ W$/.test(base) && / BWF$/.test(quote)) {
-      price_per_steem = parseFloat(base.split(" ")[0]) / parseFloat(quote.split(" ")[0]);
+      price_per_beowulf = parseFloat(base.split(" ")[0]) / parseFloat(quote.split(" ")[0]);
     }
-    return price_per_steem;
+    return price_per_beowulf;
   }
 
   function estimateAccountValue(
     account,
-    { gprops, feed_price, open_orders, savings_withdraws, vesting_steem } = {}
+    { gprops, feed_price, open_orders, savings_withdraws, vesting_beowulf } = {}
   ) {
     const promises = [];
     const username = account.name;
     const assetPrecision = 1000;
     let orders, savings;
 
-    if (!vesting_steem || !feed_price) {
+    if (!vesting_beowulf || !feed_price) {
       if (!gprops || !feed_price) {
         promises.push(
-          steemAPI.getStateAsync(`/@{username}`).then(data => {
+          beowulfAPI.getStateAsync(`/@{username}`).then(data => {
             gprops = data.props;
             feed_price = data.feed_price;
-            vesting_steem = vestingSteem(account, gprops);
+            vesting_beowulf = vestingBeowulf(account, gprops);
           })
         );
       } else {
-        vesting_steem = vestingSteem(account, gprops);
+        vesting_beowulf = vestingBeowulf(account, gprops);
       }
     }
 
     if (!open_orders) {
       promises.push(
-        steemAPI.getOpenOrdersAsync(username).then(open_orders => {
+        beowulfAPI.getOpenOrdersAsync(username).then(open_orders => {
           orders = processOrders(open_orders, assetPrecision);
         })
       );
@@ -95,7 +95,7 @@ module.exports = steemAPI => {
 
     if (!savings_withdraws) {
       promises.push(
-        steemAPI
+        beowulfAPI
           .getSavingsWithdrawFromAsync(username)
           .then(savings_withdraws => {
             savings = calculateSaving(savings_withdraws);
@@ -106,12 +106,12 @@ module.exports = steemAPI => {
     }
 
     return Promise.all(promises).then(() => {
-      let price_per_steem = pricePerSteem(feed_price);
+      let price_per_beowulf = pricePerBeowulf(feed_price);
 
       const savings_balance = account.savings_balance;
       const savings_sbd_balance = account.savings_sbd_balance;
-      const balance_steem = parseFloat(account.balance.split(" ")[0]);
-      const saving_balance_steem = parseFloat(savings_balance.split(" ")[0]);
+      const balance_beowulf = parseFloat(account.balance.split(" ")[0]);
+      const saving_balance_beowulf = parseFloat(savings_balance.split(" ")[0]);
       const sbd_balance = parseFloat(account.sbd_balance);
       const sbd_balance_savings = parseFloat(savings_sbd_balance.split(" ")[0]);
 
@@ -137,14 +137,14 @@ module.exports = steemAPI => {
         orders.sbdOrders +
         conversionValue;
 
-      const total_steem =
-        vesting_steem +
-        balance_steem +
-        saving_balance_steem +
+      const total_beowulf =
+        vesting_beowulf +
+        balance_beowulf +
+        saving_balance_beowulf +
         savings.savings_pending +
-        orders.steemOrders;
+        orders.beowulfOrders;
 
-      return (total_steem * price_per_steem + total_sbd).toFixed(2);
+      return (total_beowulf * price_per_beowulf + total_sbd).toFixed(2);
     });
   }
 
@@ -174,13 +174,13 @@ module.exports = steemAPI => {
       return out;
     },
 
-    vestToSteem: function(
+    vestToBeowulf: function(
       vestingShares,
       totalVestingShares,
-      totalVestingFundSteem
+      totalVestingFundBeowulf
     ) {
       return (
-        parseFloat(totalVestingFundSteem) *
+        parseFloat(totalVestingFundBeowulf) *
         (parseFloat(vestingShares) / parseFloat(totalVestingShares))
       );
     },
@@ -198,9 +198,9 @@ module.exports = steemAPI => {
       return amount.toFixed(3) + " " + asset;
     },
     numberWithCommas,
-    vestingSteem,
+    vestingBeowulf,
     estimateAccountValue,
     createSuggestedPassword,
-    pricePerSteem
+    pricePerBeowulf
   };
 };

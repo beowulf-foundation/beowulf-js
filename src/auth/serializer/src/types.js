@@ -53,6 +53,8 @@ Types.asset = {
         b.append(symbol.toUpperCase(), 'binary')
         for(let i = 0; i < 7 - symbol.length; i++)
             b.writeUint8(0)
+        for(let i = 0; i < 8 - symbol.length; i++)
+            b.writeUint8(0)
         return
     },
     fromObject(object){

@@ -53,7 +53,43 @@ Types.asset = {
         b.append(symbol.toUpperCase(), 'binary')
         for(let i = 0; i < 7 - symbol.length; i++)
             b.writeUint8(0)
+        b.append(symbol.toUpperCase(), 'binary')
         for(let i = 0; i < 8 - symbol.length; i++)
+            b.writeUint8(0)
+        return
+    },
+    fromObject(object){
+        return object
+    },
+    toObject(object, debug = {}){
+        if (debug.use_default && object === undefined) { return "0.000 BWF"; }
+        return object
+    }
+}
+
+Types.asset_symbol = {
+    fromByteBuffer(b){
+        let decimals = b.readUint32()
+        let name = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
+        b.skip(8);
+        var asset_symbol = {decimals: decimals, name: name};
+        return JSON.stringify(asset_symbol)
+    },
+    appendByteBuffer(b, object){
+        object = object.trim()
+        if( ! /^[0-9]+\.?[0-9]* [A-Za-z0-9]+$/.test(object))
+            throw new Error("Expecting amount like '99.000 SYMBOL', instead got '" + object + "'")
+
+        var obj = JSON.parse(object)
+        let decimals = obj["decimals"]
+        let name = obj["name"]
+
+        if(name.length > 8)
+            throw new Error("Symbols are not longer than 8 characters " + name + "-"+ name.length)
+
+        b.writeUint32(decimals)
+        b.append(name.toUpperCase(), 'binary')
+        for(let i = 0; i < 8 - name.length; i++)
             b.writeUint8(0)
         return
     },

@@ -446,5 +446,34 @@ module.exports = [
       "request_id",
       "memo"
     ]
+  },
+
+  //SMT TOKEN
+  {
+    "roles": ["owner"],
+    "operation": "smt_create",
+    "params": [
+      "control_account",
+      "symbol",
+      "smt_creation_fee",
+      "precision",
+      "extensions"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "smt_setup",
+    "params": [
+      "control_account",
+      "symbol",
+      "decimal_places",
+      "max_supply",
+      "extensions"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "asset_symbol",
+    "params": ["decimals", "name"]
   }
 ];

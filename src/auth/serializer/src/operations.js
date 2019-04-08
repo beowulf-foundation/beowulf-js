@@ -102,8 +102,8 @@ let signed_transaction = new Serializer(
     ref_block_prefix: uint32,
     expiration: time_point_sec,
     operations: array(operation),
-    created_time: uint64,
     extensions: set(future_extensions),
+    created_time: uint64,
     signatures: array(bytes(65))
 }
 );
@@ -224,6 +224,13 @@ let price = new Serializer(
 }
 );
 
+let asset_symbol = new Serializer( 
+    "asset_symbol", {
+    decimals: uint32,
+    name: string
+}
+);
+
 let feed_publish = new Serializer( 
     "feed_publish", {
     publisher: string,
@@ -253,7 +260,7 @@ let account_create = new Serializer(
     creator: string,
     new_account_name: string,
     owner: authority,
-    active: authority,
+    // active: authority,
     // posting: authority,
     // memo_key: public_key,
     json_metadata: string
@@ -269,6 +276,26 @@ let account_update = new Serializer(
     memo_key: public_key,
     json_metadata: string
 }
+);
+
+let smt_create = new Serializer( 
+    "smt_create",{
+    control_account: string,
+    symbol: asset_symbol,
+    smt_creation_fee: asset,
+    precision: uint8,
+    extensions: set(future_extensions)
+    }
+);
+
+let smt_setup = new Serializer( 
+    "smt_setup",{
+    control_account: string,
+    symbol: asset_symbol,
+    decimal_places: uint8,
+    max_supply: uint64,
+    extensions: set(future_extensions)
+    }
 );
 
 let chain_properties = new Serializer( 
@@ -667,58 +694,80 @@ let comment_benefactor_reward = new Serializer(
 );
 
 operation.st_operations = [
-    // vote,    
-    // comment,    
-    transfer,    
-    transfer_to_vesting,    
-    withdraw_vesting,    
-    // limit_order_create,    
-    // limit_order_cancel,    
-    feed_publish,    
-    convert,    
-    account_create,    
-    account_update,    
-    witness_update,    
-    account_witness_vote,    
-    account_witness_proxy,    
-    pow,    
-    custom,    
-    report_over_production,    
-    delete_comment,    
-    custom_json,    
-    // comment_options,    
-    set_withdraw_vesting_route,    
-    limit_order_create2,    
-    claim_account,    
-    create_claimed_account,    
-    request_account_recovery,    
-    recover_account,    
-    change_recovery_account,     
-    escrow_dispute,       
-    pow2,    
-    escrow_approve,    
-    transfer_to_savings,    
-    transfer_from_savings,    
-    cancel_transfer_from_savings,    
-    custom_binary,    
-    decline_voting_rights,    
-    reset_account,    
-    set_reset_account,      
-    delegate_vesting_shares,    
-    account_create_with_delegation,    
-    fill_convert_request,    
-    curation_reward,    
-    comment_reward,    
-    liquidity_reward,    
-    interest,    
-    fill_vesting_withdraw,    
-    fill_order,    
-    shutdown_witness,    
-    fill_transfer_from_savings,    
-    hardfork,    
-    comment_payout_update,    
-    return_vesting_delegation,    
-    comment_benefactor_reward
+    // // vote,    
+    // // comment,    
+    // transfer,    
+    // transfer_to_vesting,    
+    // withdraw_vesting,    
+    // // limit_order_create,    
+    // // limit_order_cancel,    
+    // feed_publish,    
+    // convert,    
+    // account_create,    
+    // account_update,    
+    // witness_update,    
+    // account_witness_vote,    
+    // account_witness_proxy,    
+    // pow,    
+    // custom,    
+    // report_over_production,    
+    // delete_comment,    
+    // custom_json,    
+    // // comment_options,    
+    // set_withdraw_vesting_route,    
+    // limit_order_create2,    
+    // claim_account,    
+    // create_claimed_account,    
+    // request_account_recovery,    
+    // recover_account,    
+    // change_recovery_account,     
+    // escrow_dispute,       
+    // pow2,    
+    // escrow_approve,    
+    // transfer_to_savings,    
+    // transfer_from_savings,    
+    // cancel_transfer_from_savings,    
+    // custom_binary,    
+    // decline_voting_rights,    
+    // reset_account,    
+    // set_reset_account,      
+    // delegate_vesting_shares,    
+    // account_create_with_delegation,    
+    // fill_convert_request,    
+    // curation_reward,    
+    // comment_reward,    
+    // liquidity_reward,    
+    // interest,    
+    // fill_vesting_withdraw,    
+    // fill_order,    
+    // shutdown_witness,    
+    // fill_transfer_from_savings,    
+    // hardfork,    
+    // comment_payout_update,    
+    // return_vesting_delegation,    
+    // comment_benefactor_reward
+    transfer,
+    transfer_to_vesting,
+    withdraw_vesting,
+    feed_publish,
+    convert,
+    account_create,
+    account_update,
+    supernode_update,
+    account_supernode_vote,
+    report_over_production,
+    set_withdraw_vesting_route,
+    supernode_set_properties,
+    smt_setup,
+    smt_create,
+    convert_to_wd,
+    fill_convert_request,
+    liquidity_reward,
+    fill_vesting_withdraw,
+    shutdown_supernode,
+    hardfork,
+    producer_reward,
+    clear_null_account_balance
 ];
 
 let transaction = new Serializer( 

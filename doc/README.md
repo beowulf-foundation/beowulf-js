@@ -25,40 +25,40 @@
 
 # Install
 ```
-$ npm install steem --save
+$ npm install beowulfjs --save
 ```
 
 # Browser 
 ```html 
 <script src="./beowulf.min.js"></script>
 <script>
-steem.api.getAccounts(['ned', 'dan'], function(err, response){
+beowulfjs.api.getAccounts(['ned', 'dan'], function(err, response){
     console.log(err, response);
 });
 </script>
 ```
 
 ## Config
-Default config should work with steem. however you can change it to work with golos
+Default config should work with beowulfjs. however you can change it to work with golos
 as 
 ```js
-steem.api.setOptions({ url: 'wss://ws.golos.io' }); // assuming websocket is work at ws.golos.io
-steem.config.set('address_prefix','GLS');
-steem.config.set('chain_id','782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12');
+beowulfjs.api.setOptions({ url: 'wss://ws.golos.io' }); // assuming websocket is work at ws.golos.io
+beowulfjs.config.set('address_prefix','GLS');
+beowulfjs.config.set('chain_id','782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12');
 ```
 ### set
 ```
-steem.config.set('address_prefix','BEO');
+beowulfjs.config.set('address_prefix','BEO');
 ```
 ### get
 ```
-steem.config.get('chain_id');
+beowulfjs.config.get('chain_id');
 ```
 
 ## JSON-RPC
 Here is how to activate JSON-RPC transport:
 ```js
-steem.api.setOptions({ url: 'https://api.steemit.com' });
+beowulfjs.api.setOptions({ url: 'https://api.beowulfjsit.com' });
 ```
 
 # API
@@ -67,25 +67,25 @@ steem.api.setOptions({ url: 'https://api.steemit.com' });
 
 ### Set Subscribe Callback
 ```
-steem.api.setSubscribeCallback(callback, clearFilter, function(err, result) {
+beowulfjs.api.setSubscribeCallback(callback, clearFilter, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Set Pending Transaction Callback
 ```
-steem.api.setPendingTransactionCallback(cb, function(err, result) {
+beowulfjs.api.setPendingTransactionCallback(cb, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Set Block Applied Callback
 ```
-steem.api.setBlockAppliedCallback(cb, function(err, result) {
+beowulfjs.api.setBlockAppliedCallback(cb, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Cancel All Subscriptions
 ```
-steem.api.cancelAllSubscriptions(function(err, result) {
+beowulfjs.api.cancelAllSubscriptions(function(err, result) {
   console.log(err, result);
 });
 ```
@@ -94,73 +94,73 @@ steem.api.cancelAllSubscriptions(function(err, result) {
 
 ### Get Trending Tags
 ```
-steem.api.getTrendingTags(afterTag, limit, function(err, result) {
+beowulfjs.api.getTrendingTags(afterTag, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Trending
 ```
-steem.api.getDiscussionsByTrending(query, function(err, result) {
+beowulfjs.api.getDiscussionsByTrending(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Created
 ```
-steem.api.getDiscussionsByCreated(query, function(err, result) {
+beowulfjs.api.getDiscussionsByCreated(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Active
 ```
-steem.api.getDiscussionsByActive(query, function(err, result) {
+beowulfjs.api.getDiscussionsByActive(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Cashout
 ```
-steem.api.getDiscussionsByCashout(query, function(err, result) {
+beowulfjs.api.getDiscussionsByCashout(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Payout
 ```
-steem.api.getDiscussionsByPayout(query, function(err, result) {
+beowulfjs.api.getDiscussionsByPayout(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Votes
 ```
-steem.api.getDiscussionsByVotes(query, function(err, result) {
+beowulfjs.api.getDiscussionsByVotes(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Children
 ```
-steem.api.getDiscussionsByChildren(query, function(err, result) {
+beowulfjs.api.getDiscussionsByChildren(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Hot
 ```
-steem.api.getDiscussionsByHot(query, function(err, result) {
+beowulfjs.api.getDiscussionsByHot(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Feed
 ```
-steem.api.getDiscussionsByFeed(query, function(err, result) {
+beowulfjs.api.getDiscussionsByFeed(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Blog
 ```
-steem.api.getDiscussionsByBlog(query, function(err, result) {
+beowulfjs.api.getDiscussionsByBlog(query, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Comments
 ```
-steem.api.getDiscussionsByComments(query, function(err, result) {
+beowulfjs.api.getDiscussionsByComments(query, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -169,43 +169,43 @@ steem.api.getDiscussionsByComments(query, function(err, result) {
 
 ### Get Block Header
 ```
-steem.api.getBlockHeader(blockNum, function(err, result) {
+beowulfjs.api.getBlockHeader(blockNum, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Block
 ```
-steem.api.getBlock(blockNum, function(err, result) {
+beowulfjs.api.getBlock(blockNum, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get State
 ```
-steem.api.getState(path, function(err, result) {
+beowulfjs.api.getState(path, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Trending Categories
 ```
-steem.api.getTrendingCategories(after, limit, function(err, result) {
+beowulfjs.api.getTrendingCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Best Categories
 ```
-steem.api.getBestCategories(after, limit, function(err, result) {
+beowulfjs.api.getBestCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Active Categories
 ```
-steem.api.getActiveCategories(after, limit, function(err, result) {
+beowulfjs.api.getActiveCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Recent Categories
 ```
-steem.api.getRecentCategories(after, limit, function(err, result) {
+beowulfjs.api.getRecentCategories(after, limit, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -214,55 +214,55 @@ steem.api.getRecentCategories(after, limit, function(err, result) {
 
 ### Get Config
 ```
-steem.api.getConfig(function(err, result) {
+beowulfjs.api.getConfig(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Dynamic Global Properties
 ```
-steem.api.getDynamicGlobalProperties(function(err, result) {
+beowulfjs.api.getDynamicGlobalProperties(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Chain Properties
 ```
-steem.api.getChainProperties(function(err, result) {
+beowulfjs.api.getChainProperties(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Feed History
 ```
-steem.api.getFeedHistory(function(err, result) {
+beowulfjs.api.getFeedHistory(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Current Median History Price
 ```
-steem.api.getCurrentMedianHistoryPrice(function(err, result) {
+beowulfjs.api.getCurrentMedianHistoryPrice(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Hardfork Version
 ```
-steem.api.getHardforkVersion(function(err, result) {
+beowulfjs.api.getHardforkVersion(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Next Scheduled Hardfork
 ```
-steem.api.getNextScheduledHardfork(function(err, result) {
+beowulfjs.api.getNextScheduledHardfork(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Reward Fund
 ```
-steem.api.getRewardFund(name, function(err, result) {
+beowulfjs.api.getRewardFund(name, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Vesting Delegations
 ```
-steem.api.getVestingDelegations(account, from, limit, function(err, result) {
+beowulfjs.api.getVestingDelegations(account, from, limit, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -271,7 +271,7 @@ steem.api.getVestingDelegations(account, from, limit, function(err, result) {
 
 ### Get Key References
 ```
-steem.api.getKeyReferences(key, function(err, result) {
+beowulfjs.api.getKeyReferences(key, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -280,55 +280,55 @@ steem.api.getKeyReferences(key, function(err, result) {
 
 ### Get Accounts
 ```
-steem.api.getAccounts(names, function(err, result) {
+beowulfjs.api.getAccounts(names, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Account References
 ```
-steem.api.getAccountReferences(accountId, function(err, result) {
+beowulfjs.api.getAccountReferences(accountId, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Lookup Account Names
 ```
-steem.api.lookupAccountNames(accountNames, function(err, result) {
+beowulfjs.api.lookupAccountNames(accountNames, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Lookup Accounts
 ```
-steem.api.lookupAccounts(lowerBoundName, limit, function(err, result) {
+beowulfjs.api.lookupAccounts(lowerBoundName, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Account Count
 ```
-steem.api.getAccountCount(function(err, result) {
+beowulfjs.api.getAccountCount(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Conversion Requests
 ```
-steem.api.getConversionRequests(accountName, function(err, result) {
+beowulfjs.api.getConversionRequests(accountName, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Account History
 ```
-steem.api.getAccountHistory(account, from, limit, function(err, result) {
+beowulfjs.api.getAccountHistory(account, from, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Owner History
 ```
-steem.api.getOwnerHistory(account, function(err, result) {
+beowulfjs.api.getOwnerHistory(account, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Recovery Request
 ```
-steem.api.getRecoveryRequest(account, function(err, result) {
+beowulfjs.api.getRecoveryRequest(account, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -337,19 +337,19 @@ steem.api.getRecoveryRequest(account, function(err, result) {
 
 ### Get Order Book
 ```
-steem.api.getOrderBook(limit, function(err, result) {
+beowulfjs.api.getOrderBook(limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Open Orders
 ```
-steem.api.getOpenOrders(owner, function(err, result) {
+beowulfjs.api.getOpenOrders(owner, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Liquidity Queue
 ```
-steem.api.getLiquidityQueue(startAccount, limit, function(err, result) {
+beowulfjs.api.getLiquidityQueue(startAccount, limit, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -358,37 +358,37 @@ steem.api.getLiquidityQueue(startAccount, limit, function(err, result) {
 
 ### Get Transaction Hex
 ```
-steem.api.getTransactionHex(trx, function(err, result) {
+beowulfjs.api.getTransactionHex(trx, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Transaction
 ```
-steem.api.getTransaction(trxId, function(err, result) {
+beowulfjs.api.getTransaction(trxId, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Required Signatures
 ```
-steem.api.getRequiredSignatures(trx, availableKeys, function(err, result) {
+beowulfjs.api.getRequiredSignatures(trx, availableKeys, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Potential Signatures
 ```
-steem.api.getPotentialSignatures(trx, function(err, result) {
+beowulfjs.api.getPotentialSignatures(trx, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Verify Authority
 ```
-steem.api.verifyAuthority(trx, function(err, result) {
+beowulfjs.api.verifyAuthority(trx, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Verify Account Authority
 ```
-steem.api.verifyAccountAuthority(nameOrId, signers, function(err, result) {
+beowulfjs.api.verifyAccountAuthority(nameOrId, signers, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -397,13 +397,13 @@ steem.api.verifyAccountAuthority(nameOrId, signers, function(err, result) {
 
 ### Get Active Votes
 ```
-steem.api.getActiveVotes(author, permlink, function(err, result) {
+beowulfjs.api.getActiveVotes(author, permlink, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Account Votes
 ```
-steem.api.getAccountVotes(voter, function(err, result) {
+beowulfjs.api.getAccountVotes(voter, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -413,25 +413,25 @@ steem.api.getAccountVotes(voter, function(err, result) {
 
 ### Get Content
 ```
-steem.api.getContent(author, permlink, function(err, result) {
+beowulfjs.api.getContent(author, permlink, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Content Replies
 ```
-steem.api.getContentReplies(author, permlink, function(err, result) {
+beowulfjs.api.getContentReplies(author, permlink, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Discussions By Author Before Date
 ```
-steem.api.getDiscussionsByAuthorBeforeDate(author, startPermlink, beforeDate, limit, function(err, result) {
+beowulfjs.api.getDiscussionsByAuthorBeforeDate(author, startPermlink, beforeDate, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Replies By Last Update
 ```
-steem.api.getRepliesByLastUpdate(startAuthor, startPermlink, limit, function(err, result) {
+beowulfjs.api.getRepliesByLastUpdate(startAuthor, startPermlink, limit, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -441,43 +441,43 @@ steem.api.getRepliesByLastUpdate(startAuthor, startPermlink, limit, function(err
 
 ### Get Witnesses
 ```
-steem.api.getWitnesses(witnessIds, function(err, result) {
+beowulfjs.api.getWitnesses(witnessIds, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Witness By Account
 ```
-steem.api.getWitnessByAccount(accountName, function(err, result) {
+beowulfjs.api.getWitnessByAccount(accountName, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Witnesses By Vote
 ```
-steem.api.getWitnessesByVote(from, limit, function(err, result) {
+beowulfjs.api.getWitnessesByVote(from, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Lookup Witness Accounts
 ```
-steem.api.lookupWitnessAccounts(lowerBoundName, limit, function(err, result) {
+beowulfjs.api.lookupWitnessAccounts(lowerBoundName, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Witness Count
 ```
-steem.api.getWitnessCount(function(err, result) {
+beowulfjs.api.getWitnessCount(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Active Witnesses
 ```
-steem.api.getActiveWitnesses(function(err, result) {
+beowulfjs.api.getActiveWitnesses(function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Miner Queue
 ```
-steem.api.getMinerQueue(function(err, result) {
+beowulfjs.api.getMinerQueue(function(err, result) {
   console.log(err, result);
 });
 ```
@@ -489,14 +489,14 @@ steem.api.getMinerQueue(function(err, result) {
 /!\ It's **not safe** to use this method with your username and password. This method always return `true` and is only used in intern with empty values to enable broadcast.
 
 ```
-steem.api.login('', '', function(err, result) {
+beowulfjs.api.login('', '', function(err, result) {
   console.log(err, result);
 });
 ```
 
 ### Get Api By Name
 ```
-steem.api.getApiByName(apiName, function(err, result) {
+beowulfjs.api.getApiByName(apiName, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -505,19 +505,19 @@ steem.api.getApiByName(apiName, function(err, result) {
 
 ### Get Followers
 ```
-steem.api.getFollowers(following, startFollower, followType, limit, function(err, result) {
+beowulfjs.api.getFollowers(following, startFollower, followType, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Following
 ```
-steem.api.getFollowing(follower, startFollowing, followType, limit, function(err, result) {
+beowulfjs.api.getFollowing(follower, startFollowing, followType, limit, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Get Follow Count
 ```
-steem.api.getFollowCount(account, function(err, result) {
+beowulfjs.api.getFollowCount(account, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -526,13 +526,13 @@ steem.api.getFollowCount(account, function(err, result) {
 
 ### Broadcast Transaction Synchronous
 ```
-steem.api.broadcastTransactionSynchronous(trx, function(err, result) {
+beowulfjs.api.broadcastTransactionSynchronous(trx, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Broadcast Block
 ```
-steem.api.broadcastBlock(b, function(err, result) {
+beowulfjs.api.broadcastBlock(b, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -541,301 +541,301 @@ steem.api.broadcastBlock(b, function(err, result) {
 
 ### Account Create
 ```
-steem.broadcast.accountCreate(wif, fee, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
+beowulfjs.broadcast.accountCreate(wif, fee, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Account Create With Delegation
 ```
-steem.broadcast.accountCreateWithDelegation(wif, fee, delegation, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, extensions, function(err, result) {
+beowulfjs.broadcast.accountCreateWithDelegation(wif, fee, delegation, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Delegate Vesting Shares
 ```
-steem.broadcast.delegateVestingShares(wif, delegator, delegatee, vesting_shares, function(err, result) {
+beowulfjs.broadcast.delegateVestingShares(wif, delegator, delegatee, vesting_shares, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Account Update
 ```
-steem.broadcast.accountUpdate(wif, account, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
+beowulfjs.broadcast.accountUpdate(wif, account, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Account Witness Proxy
 ```
-steem.broadcast.accountWitnessProxy(wif, account, proxy, function(err, result) {
+beowulfjs.broadcast.accountWitnessProxy(wif, account, proxy, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Account Witness Vote
 ```
-steem.broadcast.accountWitnessVote(wif, account, witness, approve, function(err, result) {
+beowulfjs.broadcast.accountWitnessVote(wif, account, witness, approve, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Challenge Authority
 ```
-steem.broadcast.challengeAuthority(wif, challenger, challenged, requireOwner, function(err, result) {
+beowulfjs.broadcast.challengeAuthority(wif, challenger, challenged, requireOwner, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Change Recovery Account
 ```
-steem.broadcast.changeRecoveryAccount(wif, accountToRecover, newRecoveryAccount, extensions, function(err, result) {
+beowulfjs.broadcast.changeRecoveryAccount(wif, accountToRecover, newRecoveryAccount, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Comment
 ```
-steem.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function(err, result) {
+beowulfjs.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Comment Options
 ```
-steem.broadcast.commentOptions(wif, author, permlink, maxAcceptedPayout, percentSteemDollars, allowVotes, allowCurationRewards, extensions, function(err, result) {
+beowulfjs.broadcast.commentOptions(wif, author, permlink, maxAcceptedPayout, percentSteemDollars, allowVotes, allowCurationRewards, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Comment Payout
 ```
-steem.broadcast.commentPayout(wif, author, permlink, payout, function(err, result) {
+beowulfjs.broadcast.commentPayout(wif, author, permlink, payout, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Comment Reward
 ```
-steem.broadcast.commentReward(wif, author, permlink, sbdPayout, vestingPayout, function(err, result) {
+beowulfjs.broadcast.commentReward(wif, author, permlink, sbdPayout, vestingPayout, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Convert
 ```
-steem.broadcast.convert(wif, owner, requestid, amount, function(err, result) {
+beowulfjs.broadcast.convert(wif, owner, requestid, amount, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Curate Reward
 ```
-steem.broadcast.curateReward(wif, curator, reward, commentAuthor, commentPermlink, function(err, result) {
+beowulfjs.broadcast.curateReward(wif, curator, reward, commentAuthor, commentPermlink, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Custom
 ```
-steem.broadcast.custom(wif, requiredAuths, id, data, function(err, result) {
+beowulfjs.broadcast.custom(wif, requiredAuths, id, data, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Custom Binary
 ```
-steem.broadcast.customBinary(wif, id, data, function(err, result) {
+beowulfjs.broadcast.customBinary(wif, id, data, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Custom Json
 ```
-steem.broadcast.customJson(wif, requiredAuths, requiredPostingAuths, id, json, function(err, result) {
+beowulfjs.broadcast.customJson(wif, requiredAuths, requiredPostingAuths, id, json, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Delete Comment
 ```
-steem.broadcast.deleteComment(wif, author, permlink, function(err, result) {
+beowulfjs.broadcast.deleteComment(wif, author, permlink, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Escrow Dispute
 ```
-steem.broadcast.escrowDispute(wif, from, to, agent, who, escrowId, function(err, result) {
+beowulfjs.broadcast.escrowDispute(wif, from, to, agent, who, escrowId, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Escrow Release
 ```
-steem.broadcast.escrowRelease(wif, from, to, agent, who, receiver, escrowId, sbdAmount, steemAmount, function(err, result) {
+beowulfjs.broadcast.escrowRelease(wif, from, to, agent, who, receiver, escrowId, sbdAmount, beowulfjsAmount, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Escrow Transfer
 ```
-steem.broadcast.escrowTransfer(wif, from, to, agent, escrowId, sbdAmount, steemAmount, fee, ratificationDeadline, escrowExpiration, jsonMeta, function(err, result) {
+beowulfjs.broadcast.escrowTransfer(wif, from, to, agent, escrowId, sbdAmount, beowulfjsAmount, fee, ratificationDeadline, escrowExpiration, jsonMeta, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Feed Publish
 ```
-steem.broadcast.feedPublish(wif, publisher, exchangeRate, function(err, result) {
+beowulfjs.broadcast.feedPublish(wif, publisher, exchangeRate, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Pow2
 ```
-steem.broadcast.pow2(wif, work, newOwnerKey, props, function(err, result) {
+beowulfjs.broadcast.pow2(wif, work, newOwnerKey, props, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Convert Request
 ```
-steem.broadcast.fillConvertRequest(wif, owner, requestid, amountIn, amountOut, function(err, result) {
+beowulfjs.broadcast.fillConvertRequest(wif, owner, requestid, amountIn, amountOut, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Order
 ```
-steem.broadcast.fillOrder(wif, currentOwner, currentOrderid, currentPays, openOwner, openOrderid, openPays, function(err, result) {
+beowulfjs.broadcast.fillOrder(wif, currentOwner, currentOrderid, currentPays, openOwner, openOrderid, openPays, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Vesting Withdraw
 ```
-steem.broadcast.fillVestingWithdraw(wif, fromAccount, toAccount, withdrawn, deposited, function(err, result) {
+beowulfjs.broadcast.fillVestingWithdraw(wif, fromAccount, toAccount, withdrawn, deposited, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Interest
 ```
-steem.broadcast.interest(wif, owner, interest, function(err, result) {
+beowulfjs.broadcast.interest(wif, owner, interest, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Limit Order Cancel
 ```
-steem.broadcast.limitOrderCancel(wif, owner, orderid, function(err, result) {
+beowulfjs.broadcast.limitOrderCancel(wif, owner, orderid, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Limit Order Create
 ```
-steem.broadcast.limitOrderCreate(wif, owner, orderid, amountToSell, minToReceive, fillOrKill, expiration, function(err, result) {
+beowulfjs.broadcast.limitOrderCreate(wif, owner, orderid, amountToSell, minToReceive, fillOrKill, expiration, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Limit Order Create2
 ```
-steem.broadcast.limitOrderCreate2(wif, owner, orderid, amountToSell, exchangeRate, fillOrKill, expiration, function(err, result) {
+beowulfjs.broadcast.limitOrderCreate2(wif, owner, orderid, amountToSell, exchangeRate, fillOrKill, expiration, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Liquidity Reward
 ```
-steem.broadcast.liquidityReward(wif, owner, payout, function(err, result) {
+beowulfjs.broadcast.liquidityReward(wif, owner, payout, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Pow
 ```
-steem.broadcast.pow(wif, worker, input, signature, work, function(err, result) {
+beowulfjs.broadcast.pow(wif, worker, input, signature, work, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Prove Authority
 ```
-steem.broadcast.proveAuthority(wif, challenged, requireOwner, function(err, result) {
+beowulfjs.broadcast.proveAuthority(wif, challenged, requireOwner, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Recover Account
 ```
-steem.broadcast.recoverAccount(wif, accountToRecover, newOwnerAuthority, recentOwnerAuthority, extensions, function(err, result) {
+beowulfjs.broadcast.recoverAccount(wif, accountToRecover, newOwnerAuthority, recentOwnerAuthority, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Report Over Production
 ```
-steem.broadcast.reportOverProduction(wif, reporter, firstBlock, secondBlock, function(err, result) {
+beowulfjs.broadcast.reportOverProduction(wif, reporter, firstBlock, secondBlock, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Request Account Recovery
 ```
-steem.broadcast.requestAccountRecovery(wif, recoveryAccount, accountToRecover, newOwnerAuthority, extensions, function(err, result) {
+beowulfjs.broadcast.requestAccountRecovery(wif, recoveryAccount, accountToRecover, newOwnerAuthority, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Escrow Approve
 ```
-steem.broadcast.escrowApprove(wif, from, to, agent, who, escrowId, approve, function(err, result) {
+beowulfjs.broadcast.escrowApprove(wif, from, to, agent, who, escrowId, approve, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Set Withdraw Vesting Route
 ```
-steem.broadcast.setWithdrawVestingRoute(wif, fromAccount, toAccount, percent, autoVest, function(err, result) {
+beowulfjs.broadcast.setWithdrawVestingRoute(wif, fromAccount, toAccount, percent, autoVest, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Transfer
 ```
-steem.broadcast.transfer(wif, from, to, amount, memo, function(err, result) {
+beowulfjs.broadcast.transfer(wif, from, to, amount, memo, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Transfer To Vesting
 ```
-steem.broadcast.transferToVesting(wif, from, to, amount, function(err, result) {
+beowulfjs.broadcast.transferToVesting(wif, from, to, amount, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Vote
 ```
-steem.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
+beowulfjs.broadcast.vote(wif, voter, author, permlink, weight, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Withdraw Vesting
 ```
-steem.broadcast.withdrawVesting(wif, account, vestingShares, function(err, result) {
+beowulfjs.broadcast.withdrawVesting(wif, account, vestingShares, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Witness Update
 ```
-steem.broadcast.witnessUpdate(wif, owner, url, blockSigningKey, props, fee, function(err, result) {
+beowulfjs.broadcast.witnessUpdate(wif, owner, url, blockSigningKey, props, fee, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Vesting Withdraw
 ```
-steem.broadcast.fillVestingWithdraw(wif, fromAccount, toAccount, withdrawn, deposited, function(err, result) {
+beowulfjs.broadcast.fillVestingWithdraw(wif, fromAccount, toAccount, withdrawn, deposited, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Order
 ```
-steem.broadcast.fillOrder(wif, currentOwner, currentOrderid, currentPays, openOwner, openOrderid, openPays, function(err, result) {
+beowulfjs.broadcast.fillOrder(wif, currentOwner, currentOrderid, currentPays, openOwner, openOrderid, openPays, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Fill Transfer From Savings
 ```
-steem.broadcast.fillTransferFromSavings(wif, from, to, amount, requestId, memo, function(err, result) {
+beowulfjs.broadcast.fillTransferFromSavings(wif, from, to, amount, requestId, memo, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Comment Payout
 ```
-steem.broadcast.commentPayout(wif, author, permlink, payout, function(err, result) {
+beowulfjs.broadcast.commentPayout(wif, author, permlink, payout, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Transfer To Savings
 ```
-steem.broadcast.transferToSavings(wif, from, to, amount, memo, function(err, result) {
+beowulfjs.broadcast.transferToSavings(wif, from, to, amount, memo, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Transfer From Savings
 ```
-steem.broadcast.transferFromSavings(wif, from, requestId, to, amount, memo, function(err, result) {
+beowulfjs.broadcast.transferFromSavings(wif, from, requestId, to, amount, memo, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Cancel Transfer From Savings
 ```
-steem.broadcast.cancelTransferFromSavings(wif, from, requestId, function(err, result) {
+beowulfjs.broadcast.cancelTransferFromSavings(wif, from, requestId, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -843,7 +843,7 @@ steem.broadcast.cancelTransferFromSavings(wif, from, requestId, function(err, re
 ### Multisig
 You can use multisignature to broadcast an operation.
 ```
-steem.broadcast.send({
+beowulfjs.broadcast.send({
   extensions: [],
   operations: [
     ['vote', {
@@ -861,49 +861,49 @@ steem.broadcast.send({
 
 ### Verify
 ```
-steem.auth.verify(name, password, auths);
+beowulfjs.auth.verify(name, password, auths);
 ```
 
 ### Generate Keys
 ```
-steem.auth.generateKeys(name, password, roles);
+beowulfjs.auth.generateKeys(name, password, roles);
 ```
 
 ### Get Private Keys
 ```
-steem.auth.getPrivateKeys(name, password, roles);
+beowulfjs.auth.getPrivateKeys(name, password, roles);
 ```
 
 ### Is Wif
 ```
-steem.auth.isWif(privWif);
+beowulfjs.auth.isWif(privWif);
 ```
 
 ### To Wif
 ```
-steem.auth.toWif(name, password, role);
+beowulfjs.auth.toWif(name, password, role);
 ```
 
 ### Wif Is Valid
 ```
-steem.auth.wifIsValid(privWif, pubWif);
+beowulfjs.auth.wifIsValid(privWif, pubWif);
 ```
 
 ### Wif To Public
 ```
-steem.auth.wifToPublic(privWif);
+beowulfjs.auth.wifToPublic(privWif);
 ```
 
 ### Sign Transaction
 ```
-steem.auth.signTransaction(trx, keys);
+beowulfjs.auth.signTransaction(trx, keys);
 ```
 
 # Formatter
 
 ### Create Suggested Password
 ```
-var password = steem.formatter.createSuggestedPassword();
+var password = beowulfjs.formatter.createSuggestedPassword();
 console.log(password);
 // => 'GAz3GYFvvQvgm7t2fQmwMDuXEzDqTzn9'
 ```
@@ -912,38 +912,38 @@ console.log(password);
 ```
 var parentAuthor = 'ned';
 var parentPermlink = 'a-selfie';
-var commentPermlink = steem.formatter.commentPermlink(parentAuthor, parentPermlink);
+var commentPermlink = beowulfjs.formatter.commentPermlink(parentAuthor, parentPermlink);
 console.log(commentPermlink);
 // => 're-ned-a-selfie-20170621t080403765z'
 ```
 
 ### Estimate Account Value
 ```
-var steemPower = steem.formatter.estimateAccountValue(account);
+var beowulfjsPower = beowulfjs.formatter.estimateAccountValue(account);
 ```
 
 ### Reputation
 ```
-var reputation = steem.formatter.reputation(3512485230915);
+var reputation = beowulfjs.formatter.reputation(3512485230915);
 console.log(reputation);
 // => 56
 ```
 
 ### Vest To Steem
 ```
-var steemPower = steem.formatter.vestToBeowulf(vestingShares, totalVestingShares, totalVestingFundBeowulf);
-console.log(steemPower);
+var beowulfjsPower = beowulfjs.formatter.vestToBeowulf(vestingShares, totalVestingShares, totalVestingFundBeowulf);
+console.log(beowulfjsPower);
 ```
 
 # Utils
 
 ### Validate Username
 ```
-var isValidUsername = steem.utils.validateAccountName('test1234');
+var isValidUsername = beowulfjs.utils.validateAccountName('test1234');
 console.log(isValidUsername);
 // => 'null'
 
-var isValidUsername = steem.utils.validateAccountName('a1');
+var isValidUsername = beowulfjs.utils.validateAccountName('a1');
 console.log(isValidUsername);
 // => 'Account name should be longer.'
 ```

@@ -3,6 +3,7 @@ import beowulfAuth from '../auth';
 import beowulfBroadcast from '../broadcast';
 import newDebug from 'debug';
 import keygen from './keygen';
+import hash from '../auth/ecc/src/hash';
 const debug = newDebug('beowulf:wallet');
 import sjcl from 'sjcl';
 

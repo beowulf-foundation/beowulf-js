@@ -471,9 +471,9 @@ module.exports = [
       "extensions"
     ]
   },
-  {
-    "roles": ["owner"],
-    "operation": "asset_symbol",
-    "params": ["decimals", "name"]
-  }
+  // {
+  //   "roles": ["owner"],
+  //   "operation": "asset_symbol",
+  //   "params": ["decimals", "name"]
+  // }
 ];

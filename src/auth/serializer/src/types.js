@@ -76,13 +76,8 @@ Types.asset_symbol = {
         return JSON.stringify(asset_symbol)
     },
     appendByteBuffer(b, object){
-        object = object.trim()
-        if( ! /^[0-9]+\.?[0-9]* [A-Za-z0-9]+$/.test(object))
-            throw new Error("Expecting amount like '99.000 SYMBOL', instead got '" + object + "'")
-
-        var obj = JSON.parse(object)
-        let decimals = obj["decimals"]
-        let name = obj["name"]
+        let decimals = object["decimals"]
+        let name = object["name"]
 
         if(name.length > 8)
             throw new Error("Symbols are not longer than 8 characters " + name + "-"+ name.length)

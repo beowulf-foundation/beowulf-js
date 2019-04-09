@@ -53,7 +53,8 @@ const {
   public_key,
   time_point_sec,
   optional,
-  asset
+  asset,
+  asset_symbol
 } = types;
 
 const future_extensions = types.void;
@@ -203,10 +204,10 @@ let price = new Serializer('price', {
   quote: asset
 });
 
-let asset_symbol = new Serializer('asset_symbol', {
-  decimals: uint32,
-  name: string
-});
+// let asset_symbol = new Serializer('asset_symbol', {
+//   decimals: unit8,
+//   name: string
+// });
 
 let feed_publish = new Serializer('feed_publish', {
   publisher: string,

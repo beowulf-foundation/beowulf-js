@@ -14,7 +14,8 @@ var {
     public_key, address,
     time_point_sec,
     optional,
-    asset
+    asset,
+    asset_symbol
 } = types
 
 var { price, transfer } = ops

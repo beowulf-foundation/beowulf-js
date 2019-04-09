@@ -6,7 +6,6 @@ import keygen from './keygen';
 import { Aes, hash } from '../auth/ecc';
 
 const debug = newDebug('beowulf:wallet');
-import sjcl from 'sjcl';
 
 const beowulfWallet = {};
 

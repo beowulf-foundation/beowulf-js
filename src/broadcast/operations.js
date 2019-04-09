@@ -103,7 +103,7 @@ module.exports = [
       "creator",
       "new_account_name",
       "owner",
-      "active",
+      // "active",
       // "posting",
       // "memo_key",
       "json_metadata"

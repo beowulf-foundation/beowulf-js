@@ -1,11 +1,11 @@
 {
-  "name": "@steemit/steem-js",
+  "name": "@beowulf/beowulf-js",
   "version": "0.7.4",
   "description": "Steem.js the JavaScript API for Steem blockchain",
   "main": "lib/index.js",
   "scripts": {
     "test": "eslint --quiet src test; mocha -t 40000 --require babel-polyfill --require babel-register",
-    "test-auth": "npm test -- --grep 'steem.auth'",
+    "test-auth": "npm test -- --grep 'beowulf.auth'",
     "build": "npm run build-node",
     "build-browser": "rm -rf dist && NODE_ENV=production node ./node_modules/webpack/bin/webpack.js && gzip -k -f ./dist/*.js && du -h ./dist/*",
     "build-node": "mkdir -p ./lib && cp -r ./src/* ./lib/ && babel ./src --out-dir ./lib",
@@ -17,22 +17,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/steemit/steem-js.git"
+    "url": "git+https://github.com/beowulf/beowulf-js.git"
   },
   "keywords": [
-    "steem",
-    "steemit",
+    "beowulf",
+    "beowulf",
     "blockchain",
-    "steemjs"
+    "beowulfjs"
   ],
   "author": "Fabien (https://github.com/bonustrack)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/steemit/steem-js/issues"
+    "url": "https://github.com/beowulf/beowulf-js/issues"
   },
-  "homepage": "https://github.com/steemit/steem-js#readme",
+  "homepage": "https://github.com/beowulf/beowulf-js#readme",
   "dependencies": {
-    "@steemit/rpc-auth": "^1.1.1",
+    "@beowulf/rpc-auth": "^1.1.1",
     "bigi": "^1.4.2",
     "bluebird": "^3.4.6",
     "browserify-aes": "^1.0.6",
@@ -49,7 +49,6 @@
     "lodash": "^4.16.4",
     "retry": "^0.12.0",
     "secure-random": "^1.1.1",
-    "sjcl": "^1.0.8",
     "ws": "^3.3.2"
   },
   "devDependencies": {

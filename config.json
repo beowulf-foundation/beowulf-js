@@ -1,6 +1,6 @@
 {
   "transport": "http",
-  "websocket": "ws://35.240.213.84:8376",
+  "websocket": "https://testnet-bw.beowulfchain.com/rpc",
   "uri": "https://testnet-bw.beowulfchain.com/rpc",
   "url": "",
   "dev_uri": "https://testnet-bw.beowulfchain.com/rpc",

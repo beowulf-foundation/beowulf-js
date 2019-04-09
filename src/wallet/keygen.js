@@ -55,4 +55,4 @@ function getKey(strength) {
   }
 }
 
-exports = module.exports = { getKey };
+exports = module.exports = { getKey, keyGen };

@@ -3,7 +3,8 @@ import beowulfAuth from '../auth';
 import beowulfBroadcast from '../broadcast';
 import newDebug from 'debug';
 import keygen from './keygen';
-import hash from '../auth/ecc/src/hash';
+import { Aes, hash } from '../auth/ecc';
+
 const debug = newDebug('beowulf:wallet');
 import sjcl from 'sjcl';
 
@@ -25,17 +26,6 @@ beowulfWallet.generateWallet = function({
     key_auths: [[privKeys.ownerPubkey, 1]]
   };
 
-  let active = {
-    weight_threshold: 1,
-    account_auths: [],
-    key_auths: [[privKeys.activePubkey, 1]]
-  };
-  let posting = {
-    weight_threshold: 1,
-    account_auths: [],
-    key_auths: [[privKeys.postingPubkey, 1]]
-  };
-
   let jsonMetadata = '';
   let promise = new Promise((resolve, reject) => {
     beowulfBroadcast.accountCreate(
@@ -44,7 +34,6 @@ beowulfWallet.generateWallet = function({
       creator,
       account,
       owner,
-      active,
       jsonMetadata,
       function(err, result) {
         if (err) {
@@ -52,72 +41,64 @@ beowulfWallet.generateWallet = function({
           return;
         }
 
-        let wallet = encryptWallet(privKeys, password);
+        let encryptedPrivKeys = encryptPrivKeys(privKeys, password);
         resolve({
           result,
-          wallet
+          privKeys,
+          encryptedPrivKeys,
         });
       }
     );
   });
 
   // let promise = new Promise((resolve, reject) => {
-  //   let wallet = encryptWallet(privKeys, password);
+  //   let encryptedPrivKeys = encryptPrivKeys(privKeys, password);
+  //   let decrypted = decryptPrivKeys(encryptedPrivKeys, password);
   //   resolve({
-  //     wallet
+  //     encryptedPrivKeys,
+  //     decrypted
   //   });
   // });
 
   return promise;
 };
 
-beowulfWallet.decryptWallet = decryptWallet;
+beowulfWallet.decryptPrivKeys = decryptPrivKeys;
 
-function encryptWallet(wallet, password) {
-  let plainWallet = JSON.stringify(wallet);
-  let p = {
-    adata: '',
-    iter: 1000,
-    mode: 'ccm',
-    ts: 64, // authentication tag
-    ks: 256 // 256
+function encryptPrivKeys(privKeys, password) {
+  let salt = keygen.keyGen(16, true, true, true, true, false);
+  let hashedPassword = hash.sha512(password + salt);
+  let iv = hashedPassword.slice(32).toString('hex').substr(0, 16);
+  let newPassword = hashedPassword.slice(0, 32);
+
+  let plainKeys = {
+    checksum: hashedPassword,
+    keys: privKeys
   };
 
-  let encryptedWallet = sjcl.encrypt(password, plainWallet, p, {});
-
-  encryptedWallet = JSON.parse(encryptedWallet);
+  let strPlainKeys = JSON.stringify(plainKeys);
+  let encryptedKeys = Aes.cryptoJsEncrypt(strPlainKeys, newPassword, iv);
 
   return {
-    ciphertext: encryptedWallet.ct,
-    cipherparams: { iv: encryptedWallet.iv, ts: encryptedWallet.ts },
-    cipher: 'aes-256-ccm',
-    kdf: 'pbkdf2',
-    kdfparams: {
-      salt: encryptedWallet.salt,
-      iter: encryptedWallet.iter
-    }
+    cipher_keys: encryptedKeys.toString('hex'),
+    cipher_type: 'aes-256-cbc',
+    salt: salt
   };
 }
 
-function decryptWallet(encryptedWallet, password) {
-  let cipherText = {
-    ct: encryptedWallet.ciphertext,
-    iv: encryptedWallet.cipherparams.iv,
-    ts: encryptedWallet.cipherparams.ts,
-    v: 1,
-    iter: encryptedWallet.kdfparams.iter,
-    salt: encryptedWallet.kdfparams.salt,
-    ks: 256,
-    mode: 'ccm',
-    cipher: 'aes',
-    adata: '',
-  };
+function decryptPrivKeys(encryptedWallet, password) {
+  let encryptedKeys = encryptedWallet.cipher_keys;
+  encryptedKeys = Buffer.from(encryptedKeys, 'hex');
 
-  cipherText = JSON.stringify(cipherText);
-  let decrypted = sjcl.decrypt(password, cipherText);
-  decrypted = JSON.parse(decrypted);
+  let salt = encryptedWallet.salt;
+  let hashedPassword = hash.sha512(password + salt);
 
-  return decrypted;
+  let iv = hashedPassword.slice(32).toString('hex').substr(0, 16);
+  let newPassword = hashedPassword.slice(0, 32);
+  let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);
+  let plainKeys = JSON.parse(strPlainKeys);
+
+  return plainKeys.keys;
 }
 
 exports = module.exports = beowulfWallet;

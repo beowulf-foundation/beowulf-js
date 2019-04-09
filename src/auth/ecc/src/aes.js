@@ -104,7 +104,7 @@ function crypt(private_key, public_key, nonce, message, checksum) {
     @arg {string|Buffer} ciphertext - binary format
     @return {Buffer}
 */
-function cryptoJsDecrypt(message, key, iv) {
+export function cryptoJsDecrypt(message, key, iv) {
     assert(message, "Missing cipher text")
     message = toBinaryBuffer(message)
     const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv)
@@ -117,7 +117,7 @@ function cryptoJsDecrypt(message, key, iv) {
     @arg {string|Buffer} plaintext - binary format
     @return {Buffer} binary
 */
-function cryptoJsEncrypt(message, key, iv) {
+export function cryptoJsEncrypt(message, key, iv) {
     assert(message, "Missing plain text")
     message = toBinaryBuffer(message)
     const cipher = crypto.createCipheriv('aes-256-cbc', key, iv)

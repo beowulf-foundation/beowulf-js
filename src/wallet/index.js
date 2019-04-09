@@ -1,70 +1,46 @@
-import Promise from 'bluebird';
 import beowulfAuth from '../auth';
 import beowulfBroadcast from '../broadcast';
-import newDebug from 'debug';
 import keygen from './keygen';
 import { Aes, hash } from '../auth/ecc';
 
-const debug = newDebug('beowulf:wallet');
-
 const beowulfWallet = {};
 
-beowulfWallet.generateWallet = function({
+beowulfWallet.generateWallet = function(account) {
+  let keygenPassw = keygen.getKey('ci_key');
+  let wallet = beowulfAuth.getPrivateKeys(account, keygenPassw);
+
+  return wallet;
+}
+
+beowulfWallet.submitWallet = function({
+  ownerPubkey,
   account,
-  password,
   creator,
   creatorWif,
   fee = '0.10000 W'
-}) {
-  let keygenPassw = keygen.getKey('ci_key');
-  let privKeys = beowulfAuth.getPrivateKeys(account, keygenPassw);
-
+}, cb) {
+  let jsonMetadata = '';
   let owner = {
     weight_threshold: 1,
     account_auths: [],
-    key_auths: [[privKeys.ownerPubkey, 1]]
+    key_auths: [[ownerPubkey, 1]]
   };
 
-  let jsonMetadata = '';
-  let promise = new Promise((resolve, reject) => {
-    beowulfBroadcast.accountCreate(
-      creatorWif,
-      fee,
-      creator,
-      account,
-      owner,
-      jsonMetadata,
-      function(err, result) {
-        if (err) {
-          reject(err);
-          return;
-        }
+  beowulfBroadcast.accountCreate(
+    creatorWif,
+    fee,
+    creator,
+    account,
+    owner,
+    jsonMetadata,
+    cb
+  );
+}
 
-        let encryptedPrivKeys = encryptPrivKeys(privKeys, password);
-        resolve({
-          result,
-          privKeys,
-          encryptedPrivKeys,
-        });
-      }
-    );
-  });
+beowulfWallet.decryptWallet = decryptWallet;
+beowulfWallet.encryptWallet = encryptWallet;
 
-  // let promise = new Promise((resolve, reject) => {
-  //   let encryptedPrivKeys = encryptPrivKeys(privKeys, password);
-  //   let decrypted = decryptPrivKeys(encryptedPrivKeys, password);
-  //   resolve({
-  //     encryptedPrivKeys,
-  //     decrypted
-  //   });
-  // });
-
-  return promise;
-};
-
-beowulfWallet.decryptPrivKeys = decryptPrivKeys;
-
-function encryptPrivKeys(privKeys, password) {
+function encryptWallet(wallet, password) {
   let salt = keygen.keyGen(16, true, true, true, true, false);
   let hashedPassword = hash.sha512(password + salt);
   let iv = hashedPassword.slice(32).toString('hex').substr(0, 16);
@@ -72,7 +48,7 @@ function encryptPrivKeys(privKeys, password) {
 
   let plainKeys = {
     checksum: hashedPassword,
-    keys: privKeys
+    keys: wallet
   };
 
   let strPlainKeys = JSON.stringify(plainKeys);
@@ -85,7 +61,7 @@ function encryptPrivKeys(privKeys, password) {
   };
 }
 
-function decryptPrivKeys(encryptedWallet, password) {
+function decryptWallet(encryptedWallet, password) {
   let encryptedKeys = encryptedWallet.cipher_keys;
   encryptedKeys = Buffer.from(encryptedKeys, 'hex');
 

@@ -49,6 +49,14 @@ Types.asset = {
         b.writeInt64(v.to_long(amount.replace(".", "")))
         let dot = amount.indexOf(".") // 0.000
         let precision = dot === -1 ? 0 : amount.length - dot - 1
+        var native_asset = ['BWF', 'W']
+        if (native_asset.indexOf(symbol)===-1){
+            b.writeUint32(precision)
+            b.append(symbol.toUpperCase(), 'binary')
+            for(let i = 0; i < 8 - symbol.length; i++)
+            b.writeUint8(0)
+            return
+        }
         b.writeUint8(precision)
         b.append(symbol.toUpperCase(), 'binary')
         for(let i = 0; i < 7 - symbol.length; i++)

@@ -8,8 +8,7 @@
     "test-auth": "npm test -- --grep 'beowulf.auth'",
     "build": "npm run build-node",
     "build-browser": "rm -rf dist && NODE_ENV=production node ./node_modules/webpack/bin/webpack.js && gzip -k -f ./dist/*.js && du -h ./dist/*",
-    "build-node": "mkdir -p ./lib && cp -r ./src/* ./lib/ && babel ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "build-node": "mkdir -p ./lib && cp -r ./src/* ./lib/ && babel ./src --out-dir ./lib"
   },
   "browser": {
     "ws": false,
@@ -32,7 +31,7 @@
   },
   "homepage": "https://github.com/beowulf/beowulf-js#readme",
   "dependencies": {
-    "@beowulf/rpc-auth": "^1.1.1",
+    "@steemit/rpc-auth": "^1.1.1",
     "bigi": "^1.4.2",
     "bluebird": "^3.4.6",
     "browserify-aes": "^1.0.6",

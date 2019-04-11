@@ -5,8 +5,10 @@ import { Aes, hash } from '../auth/ecc';
 
 const beowulfWallet = {};
 
-beowulfWallet.generateWallet = function(account) {
+beowulfWallet.generateWallet = function() {
   let keygenPassw = keygen.getKey('ci_key');
+  account = keygen.getKey('ci_key');
+
   let wallet = beowulfAuth.getPrivateKeys(account, keygenPassw);
 
   return wallet;

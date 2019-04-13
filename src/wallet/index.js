@@ -79,7 +79,7 @@ function decryptWallet(encryptedWallet, password) {
   let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);
   let plainKeys = JSON.parse(strPlainKeys);
 
-  return { wallet: plainKeys.keys, account: encryptedWallet.account };
+  return plainKeys.keys;
 }
 
 exports = module.exports = beowulfWallet;

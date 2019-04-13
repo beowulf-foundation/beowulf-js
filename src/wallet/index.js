@@ -12,15 +12,12 @@ beowulfWallet.generateWallet = function() {
   let wallet = beowulfAuth.getPrivateKeys(account, keygenPassw);
 
   return wallet;
-}
+};
 
-beowulfWallet.submitWallet = function({
-  ownerPubkey,
-  account,
-  creator,
-  creatorWif,
-  fee = '0.10000 W'
-}, cb) {
+beowulfWallet.submitWallet = function(
+  { ownerPubkey, account, creator, creatorWif, fee = '0.10000 W' },
+  cb
+) {
   let jsonMetadata = '';
   let owner = {
     weight_threshold: 1,
@@ -37,15 +34,18 @@ beowulfWallet.submitWallet = function({
     jsonMetadata,
     cb
   );
-}
+};
 
 beowulfWallet.decryptWallet = decryptWallet;
 beowulfWallet.encryptWallet = encryptWallet;
 
-function encryptWallet(wallet, password) {
+function encryptWallet(account, wallet, password) {
   let salt = keygen.keyGen(16, true, true, true, true, false);
   let hashedPassword = hash.sha512(password + salt);
-  let iv = hashedPassword.slice(32).toString('hex').substr(0, 16);
+  let iv = hashedPassword
+    .slice(32)
+    .toString('hex')
+    .substr(0, 16);
   let newPassword = hashedPassword.slice(0, 32);
 
   let plainKeys = {
@@ -59,7 +59,8 @@ function encryptWallet(wallet, password) {
   return {
     cipher_keys: encryptedKeys.toString('hex'),
     cipher_type: 'aes-256-cbc',
-    salt: salt
+    salt: salt,
+    account
   };
 }
 
@@ -70,12 +71,15 @@ function decryptWallet(encryptedWallet, password) {
   let salt = encryptedWallet.salt;
   let hashedPassword = hash.sha512(password + salt);
 
-  let iv = hashedPassword.slice(32).toString('hex').substr(0, 16);
+  let iv = hashedPassword
+    .slice(32)
+    .toString('hex')
+    .substr(0, 16);
   let newPassword = hashedPassword.slice(0, 32);
   let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);
   let plainKeys = JSON.parse(strPlainKeys);
 
-  return plainKeys.keys;
+  return { wallet: plainKeys.keys, account: encryptedWallet.account };
 }
 
 exports = module.exports = beowulfWallet;

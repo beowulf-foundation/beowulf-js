@@ -39,7 +39,7 @@ beowulfWallet.submitWallet = function(
 beowulfWallet.decryptWallet = decryptWallet;
 beowulfWallet.encryptWallet = encryptWallet;
 
-function encryptWallet(account, wallet, password) {
+function encryptWallet({ account, wallet, network }, password) {
   let salt = keygen.keyGen(16, true, true, true, true, false);
   let hashedPassword = hash.sha512(password + salt);
   let iv = hashedPassword
@@ -60,7 +60,8 @@ function encryptWallet(account, wallet, password) {
     cipher_keys: encryptedKeys.toString('hex'),
     cipher_type: 'aes-256-cbc',
     salt: salt,
-    account
+    name: account,
+    network, // mainnet | testnet | devnet
   };
 }
 
@@ -79,7 +80,11 @@ function decryptWallet(encryptedWallet, password) {
   let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);
   let plainKeys = JSON.parse(strPlainKeys);
 
-  return plainKeys.keys;
+  return {
+    wallet: plainKeys.keys,
+    network: encryptedWallet.network, // mainnet | testnet | devnet
+    name: encryptedWallet.name,
+  };
 }
 
 exports = module.exports = beowulfWallet;

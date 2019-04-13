@@ -7,7 +7,7 @@ const beowulfWallet = {};
 
 beowulfWallet.generateWallet = function() {
   let keygenPassw = keygen.getKey('ci_key');
-  account = keygen.getKey('ci_key');
+  let account = keygen.getKey('ci_key');
 
   let wallet = beowulfAuth.getPrivateKeys(account, keygenPassw);
 

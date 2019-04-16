@@ -83,7 +83,7 @@ function decryptWallet(encryptedWallet, password) {
   return {
     wallet: plainKeys.keys,
     network: encryptedWallet.network, // mainnet | testnet | devnet
-    name: encryptedWallet.name,
+    account: encryptedWallet.name,
   };
 }
 

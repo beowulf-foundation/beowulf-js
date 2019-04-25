@@ -42,9 +42,7 @@ beowulfWallet.encryptWallet = encryptWallet;
 function encryptWallet({ account, wallet }, password) {
   let salt = keygen.keyGen(16, true, true, true, true, false);
   let hashedPassword = hash.sha512(password + salt);
-  let iv = hashedPassword
-    .slice(32, 49)
-    .toString('hex');
+  let iv = hashedPassword.slice(32, 48);
   let newPassword = hashedPassword.slice(0, 32);
 
   let plainKeys = {
@@ -70,10 +68,7 @@ function decryptWallet(encryptedWallet, password) {
 
   let salt = encryptedWallet.salt;
   let hashedPassword = hash.sha512(password + salt);
-
-  let iv = hashedPassword
-    .slice(32, 49)
-    .toString('hex');
+  let iv = hashedPassword.slice(32, 48);
 
   let newPassword = hashedPassword.slice(0, 32);
   let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);

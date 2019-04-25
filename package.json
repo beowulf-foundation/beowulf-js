@@ -1,6 +1,6 @@
 {
   "name": "@phanmn/beowulf-js",
-  "version": "0.7.4",
+  "version": "0.0.2",
   "description": "Beowulf the JavaScript API for Beowulf blockchain",
   "main": "lib/index.js",
   "scripts": {

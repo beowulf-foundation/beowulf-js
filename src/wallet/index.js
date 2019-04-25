@@ -39,17 +39,16 @@ beowulfWallet.submitWallet = function(
 beowulfWallet.decryptWallet = decryptWallet;
 beowulfWallet.encryptWallet = encryptWallet;
 
-function encryptWallet({ account, wallet, network }, password) {
+function encryptWallet({ account, wallet }, password) {
   let salt = keygen.keyGen(16, true, true, true, true, false);
   let hashedPassword = hash.sha512(password + salt);
   let iv = hashedPassword
-    .slice(32)
-    .toString('hex')
-    .substr(0, 16);
+    .slice(32, 49)
+    .toString('hex');
   let newPassword = hashedPassword.slice(0, 32);
 
   let plainKeys = {
-    checksum: hashedPassword,
+    checksum: hashedPassword.toString('hex'),
     keys: wallet
   };
 
@@ -61,7 +60,7 @@ function encryptWallet({ account, wallet, network }, password) {
     cipher_type: 'aes-256-cbc',
     salt: salt,
     name: account,
-    network, // mainnet | testnet | devnet
+    // network, // mainnet | testnet | devnet
   };
 }
 
@@ -73,16 +72,16 @@ function decryptWallet(encryptedWallet, password) {
   let hashedPassword = hash.sha512(password + salt);
 
   let iv = hashedPassword
-    .slice(32)
-    .toString('hex')
-    .substr(0, 16);
+    .slice(32, 49)
+    .toString('hex');
+
   let newPassword = hashedPassword.slice(0, 32);
   let strPlainKeys = Aes.cryptoJsDecrypt(encryptedKeys, newPassword, iv);
   let plainKeys = JSON.parse(strPlainKeys);
 
   return {
     wallet: plainKeys.keys,
-    network: encryptedWallet.network, // mainnet | testnet | devnet
+    // network: encryptedWallet.network, // mainnet | testnet | devnet
     account: encryptedWallet.name,
   };
 }

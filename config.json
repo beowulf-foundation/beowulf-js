@@ -6,5 +6,5 @@
   "dev_uri": "https://testnet-bw.beowulfchain.com/rpc",
   "stage_uri": "https://testnet-bw.beowulfchain.com/rpc",
   "address_prefix": "BEO",
-  "chain_id": "89c36da9bfecc0e7c8e7349d05845d7892f82055fa3a85affeff37f3792a2a60"
+  "chain_id": "430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7"
 }

@@ -1,27 +1,4 @@
 module.exports = [
-  // {
-  //   "roles": ["posting", "active", "owner"],
-  //   "operation": "vote",
-  //   "params": [
-  //     "voter",
-  //     "author",
-  //     "permlink",
-  //     "weight"
-  //   ]
-  // },
-  // {
-  //   "roles": ["posting", "active", "owner"],
-  //   "operation": "comment",
-  //   "params": [
-  //     "parent_author",
-  //     "parent_permlink",
-  //     "author",
-  //     "permlink",
-  //     "title",
-  //     "body",
-  //     "json_metadata"
-  //   ]
-  // },
   {
     "roles": ["active", "owner"],
     "operation": "transfer",
@@ -48,51 +25,6 @@ module.exports = [
     "params": [
       "account",
       "vesting_shares"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "limit_order_create",
-    "params": [
-      "owner",
-      "orderid",
-      "amount_to_sell",
-      "min_to_receive",
-      "fill_or_kill",
-      "expiration"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "limit_order_cancel",
-    "params": [
-      "owner",
-      "orderid"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "price",
-    "params": [
-      "base",
-      "quote"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "feed_publish",
-    "params": [
-      "publisher",
-      "exchange_rate"
-    ]
-  },
-  {
-    "roles": ["active", "owner"],
-    "operation": "convert",
-    "params": [
-      "owner",
-      "requestid",
-      "amount"
     ]
   },
   {
@@ -163,14 +95,6 @@ module.exports = [
       "required_auths",
       "id",
       "data"
-    ]
-  },
-  {
-    "roles": ["posting", "active", "owner"],
-    "operation": "delete_comment",
-    "params": [
-      "author",
-      "permlink"
     ]
   },
   {
@@ -387,15 +311,6 @@ module.exports = [
     ]
   },
   {
-    "roles": ["posting", "active", "owner"],
-    "operation": "comment_reward",
-    "params": [
-      "author",
-      "permlink",
-      "payout"
-    ]
-  },
-  {
     "roles": ["active", "owner"],
     "operation": "liquidity_reward",
     "params": [
@@ -444,8 +359,6 @@ module.exports = [
       "memo"
     ]
   },
-
-  //SMT TOKEN
   {
     "roles": ["owner"],
     "operation": "smt_create",
@@ -457,20 +370,4 @@ module.exports = [
       "extensions"
     ]
   },
-  {
-    "roles": ["owner"],
-    "operation": "smt_setup",
-    "params": [
-      "control_account",
-      "symbol",
-      "decimal_places",
-      "max_supply",
-      "extensions"
-    ]
-  },
-  // {
-  //   "roles": ["owner"],
-  //   "operation": "asset_symbol",
-  //   "params": ["decimals", "name"]
-  // }
 ];

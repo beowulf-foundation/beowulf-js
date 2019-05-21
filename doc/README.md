@@ -39,12 +39,12 @@ beowulfjs.api.getAccounts(['ned', 'dan'], function(err, response){
 ```
 
 ## Config
-Default config should work with beowulfjs. however you can change it to work with golos
+Default config should work with beowulfjs. however you can change it to work with kryptono
 as 
 ```js
-beowulfjs.api.setOptions({ url: 'wss://ws.golos.io' }); // assuming websocket is work at ws.golos.io
-beowulfjs.config.set('address_prefix','GLS');
-beowulfjs.config.set('chain_id','782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12');
+beowulfjs.api.setOptions({ url: 'wss://ws.kryptono.io' }); // assuming websocket is work at ws.kryptono.io
+beowulfjs.config.set('address_prefix','BEO');
+beowulfjs.config.set('chain_id','430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7');
 ```
 ### set
 ```
@@ -58,7 +58,7 @@ beowulfjs.config.get('chain_id');
 ## JSON-RPC
 Here is how to activate JSON-RPC transport:
 ```js
-beowulfjs.api.setOptions({ url: 'https://api.beowulfjsit.com' });
+beowulfjs.api.setOptions({ url: 'https://testnet-bw.beowulfchain.com/rpc' });
 ```
 
 # API
@@ -584,30 +584,6 @@ beowulfjs.broadcast.challengeAuthority(wif, challenger, challenged, requireOwner
 ### Change Recovery Account
 ```
 beowulfjs.broadcast.changeRecoveryAccount(wif, accountToRecover, newRecoveryAccount, extensions, function(err, result) {
-  console.log(err, result);
-});
-```
-### Comment
-```
-beowulfjs.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function(err, result) {
-  console.log(err, result);
-});
-```
-### Comment Options
-```
-beowulfjs.broadcast.commentOptions(wif, author, permlink, maxAcceptedPayout, percentSteemDollars, allowVotes, allowCurationRewards, extensions, function(err, result) {
-  console.log(err, result);
-});
-```
-### Comment Payout
-```
-beowulfjs.broadcast.commentPayout(wif, author, permlink, payout, function(err, result) {
-  console.log(err, result);
-});
-```
-### Comment Reward
-```
-beowulfjs.broadcast.commentReward(wif, author, permlink, sbdPayout, vestingPayout, function(err, result) {
   console.log(err, result);
 });
 ```

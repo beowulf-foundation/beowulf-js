@@ -12,7 +12,7 @@ function deterministicGenerateK(curve, hash, d, checkSig, nonce) {
   enforceType(BigInteger, d)
   
   if (nonce) {
-    hash = crypto.sha256(Buffer.concat([hash, Buffer.from(nonce)]))
+    hash = crypto.sha256(Buffer.concat([hash, Buffer.alloc(nonce)]))
   }
 
   // sanity check

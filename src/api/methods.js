@@ -140,5 +140,30 @@ export default [
       "api": "database_api",
       "method": "get_balance",
       "params": ["name", "options"]
+    },
+    {
+      "api": "network_broadcast_api",
+      "method": "broadcast_transaction",
+      "params": ["trx"]
+    },
+    {
+      "api": "network_broadcast_api",
+      "method": "broadcast_transaction_with_callback",
+      "params": ["confirmationCallback", "trx"]
+    },
+    {
+      "api": "network_broadcast_api",
+      "method": "broadcast_transaction_synchronous",
+      "params": ["trx"]
+    },
+    {
+      "api": "network_broadcast_api",
+      "method": "broadcast_block",
+      "params": ["b"]
+    },
+    {
+      "api": "network_broadcast_api",
+      "method": "set_max_block_age",
+      "params": ["maxBlockAge"]
     }
 ];

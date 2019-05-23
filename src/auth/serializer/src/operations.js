@@ -203,6 +203,15 @@ let clear_null_account_balance = new Serializer('clear_null_account_balance', {
   hardfork_id: uint32
 });
 
+let transaction = new Serializer('transaction', {
+  ref_block_num: uint16,
+  ref_block_prefix: uint32,
+  expiration: time_point_sec,
+  operations: array(operation),
+  extensions: set(future_extensions),
+  created_time: uint64
+});
+
 operation.st_operations = [
   transfer,
   transfer_to_vesting,

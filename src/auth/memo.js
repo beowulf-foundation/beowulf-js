@@ -25,7 +25,7 @@ export function decode(private_key, memo) {
     private_key = toPrivateObj(private_key)
 
     memo = base58.decode(memo)
-    memo = encMemo.fromBuffer(new Buffer(memo, 'binary'))
+    memo = encMemo.fromBuffer(Buffer.from(memo, 'binary'))
 
     const {from, to, nonce, check, encrypted} = memo
     const pubkey = private_key.toPublicKey().toString()
@@ -40,7 +40,7 @@ export function decode(private_key, memo) {
     } catch(e) {
         mbuf.reset()
         // Sender did not length-prefix the memo
-        memo = new Buffer(mbuf.toString('binary'), 'binary').toString('utf-8')
+        memo = Buffer.from(mbuf.toString('binary'), 'binary').toString('utf-8')
         return '#' + memo
     }
 }
@@ -68,7 +68,7 @@ export function encode(private_key, public_key, memo, testNonce) {
 
     const mbuf = new ByteBuffer(ByteBuffer.DEFAULT_CAPACITY, ByteBuffer.LITTLE_ENDIAN)
     mbuf.writeVString(memo)
-    memo = new Buffer(mbuf.copy(0, mbuf.offset).toBinary(), 'binary')
+    memo = Buffer.from(mbuf.copy(0, mbuf.offset).toBinary(), 'binary')
 
     const {nonce, message, checksum} = Aes.encrypt(private_key, public_key, memo, testNonce)
     memo = encMemo.fromObject({
@@ -80,7 +80,7 @@ export function encode(private_key, public_key, memo, testNonce) {
     })
     // serialize
     memo = encMemo.toBuffer(memo)
-    return '#' + base58.encode(new Buffer(memo, 'binary'))
+    return '#' + base58.encode(Buffer.from(memo, 'binary'))
 }
 
 let encodeTest = undefined

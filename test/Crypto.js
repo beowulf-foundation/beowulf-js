@@ -18,7 +18,7 @@ describe('beowulf.auth: Crypto', function() {
     return (() => {
       var result = [];
       for (var i = 0; i < 10; i++) {
-        result.push(Signature.signBuffer(new Buffer(i), private_key));
+        result.push(Signature.signBuffer(Buffer.alloc(i), private_key));
       }
       return result;
     })();

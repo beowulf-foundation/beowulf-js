@@ -16,42 +16,6 @@ describe('beowulf.api:', function () {
     });
   });
 
-  describe('getFollowers', () => {
-    describe('getting ned\'s followers', () => {
-      it('works', async () => {
-        const result = await beowulf.api.getFollowersAsync('ned', 0, 'blog', 5);
-        assert(result, 'getFollowersAsync resoved to null?');
-        result.should.have.lengthOf(5);
-      });
-
-      it('the startFollower parameter has an impact on the result', async () => {
-        // Get the first 5
-        const result1 = await beowulf.api.getFollowersAsync('ned', 0, 'blog', 5)
-          result1.should.have.lengthOf(5);
-        const result2 = await beowulf.api.getFollowersAsync('ned', result1[result1.length - 1].follower, 'blog', 5)
-          result2.should.have.lengthOf(5);
-        result1.should.not.be.eql(result2);
-      });
-
-      it('clears listeners', async () => {
-        beowulf.api.listeners('message').should.have.lengthOf(0);
-      });
-    });
-  });
-
-  describe('getContent', () => {
-    describe('getting a random post', () => {
-      it('works', async () => {
-        const result = await beowulf.api.getContentAsync('yamadapc', 'test-1-2-3-4-5-6-7-9');
-        result.should.have.properties(testPost);
-      });
-
-      it('clears listeners', async () => {
-        beowulf.api.listeners('message').should.have.lengthOf(0);
-      });
-    });
-  });
-
   describe('streamBlockNumber', () => {
     it('streams beowulf transactions', (done) => {
       let i = 0;

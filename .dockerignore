@@ -6,7 +6,7 @@ npm-debug.log*
 build/Release
 node_modules
 .tern-port
-dist/steem-tests.min.js*
+dist/beowulf-tests.min.js*
 .tern-port
 .envrc
 dist

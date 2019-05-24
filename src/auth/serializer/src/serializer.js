@@ -188,7 +188,7 @@ class Serializer {
     }
     
     toBuffer(object){
-        return new Buffer(this.toByteBuffer(object).toBinary(), 'binary');
+        return Buffer.from(this.toByteBuffer(object).toBinary(), 'binary');
     }
 }
 

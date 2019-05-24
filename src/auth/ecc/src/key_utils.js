@@ -80,7 +80,7 @@ module.exports = {
             entropyStr += hash.sha256((new Date()).toString())
         }
 
-        const b = new Buffer(entropyStr);
+        const b = Buffer.from(entropyStr);
         entropyStr += b.toString('binary') + " " + (new Date()).toString();
         return entropyStr;
     },

@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beowulf/beowulf-js.git"
+    "url": "git+https://github.com/beowulf-foundation/beowulf-js.git"
   },
   "keywords": [
     "beowulf",
@@ -26,12 +26,12 @@
     "blockchain",
     "beowulfjs"
   ],
-  "author": "Fabien (https://github.com/bonustrack)",
+  "author": "Beowulf Foundation (https://github.com/beowulf-foundation)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/beowulf/beowulf-js/issues"
+    "url": "https://github.com/beowulf-foundation/beowulf-js/issues"
   },
-  "homepage": "https://github.com/beowulf/beowulf-js#readme",
+  "homepage": "https://github.com/beowulf-foundation/beowulf-js#readme",
   "dependencies": {
     "@steemit/rpc-auth": "^1.1.1",
     "bigi": "^1.4.2",
@@ -73,9 +73,5 @@
     "webpack-visualizer-plugin": "^0.1.5"
   },
   "contributors": [
-    "Fabien (https://github.com/bonustrack)",
-    "James Calfee (https://github.com/jcalfee)",
-    "Nilesh Suthar (https://github.com/nil1511)",
-    "Pedro Tacla Yamada (https://github.com/yamadapc)"
   ]
 }

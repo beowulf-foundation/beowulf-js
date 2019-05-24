@@ -73,15 +73,6 @@ const Serializer = function(operation_name, serilization_types_object) {
   return (module.exports[operation_name] = s);
 };
 
-const beneficiaries = new Serializer('beneficiaries', {
-  account: string,
-  weight: uint16
-});
-
-const comment_payout_beneficiaries = new Serializer(0, {
-  beneficiaries: set(beneficiaries)
-});
-
 // Custom-types after Generated code
 
 // ##  Generated code follows
@@ -116,56 +107,6 @@ let signed_transaction = new Serializer('signed_transaction', {
   signatures: array(bytes(65))
 });
 
-let signed_block = new Serializer('signed_block', {
-  previous: bytes(20),
-  timestamp: time_point_sec,
-  supernode: string,
-  transaction_merkle_root: bytes(20),
-  extensions: set(
-    static_variant([future_extensions, version, hardfork_version_vote])
-  ),
-  supernode_signature: bytes(65),
-  transactions: array(signed_transaction)
-});
-
-let block_header = new Serializer('block_header', {
-  previous: bytes(20),
-  timestamp: time_point_sec,
-  supernode: string,
-  transaction_merkle_root: bytes(20),
-  extensions: set(
-    static_variant([future_extensions, version, hardfork_version_vote])
-  )
-});
-
-let signed_block_header = new Serializer('signed_block_header', {
-  previous: bytes(20),
-  timestamp: time_point_sec,
-  supernode: string,
-  transaction_merkle_root: bytes(20),
-  extensions: set(
-    static_variant([future_extensions, version, hardfork_version_vote])
-  ),
-  supernode_signature: bytes(65)
-});
-
-let vote = new Serializer('vote', {
-  voter: string,
-  author: string,
-  permlink: string,
-  weight: int16
-});
-
-let comment = new Serializer('comment', {
-  parent_author: string,
-  parent_permlink: string,
-  author: string,
-  permlink: string,
-  title: string,
-  body: string,
-  json_metadata: string
-});
-
 let transfer = new Serializer('transfer', {
   from: string,
   to: string,
@@ -185,40 +126,10 @@ let withdraw_vesting = new Serializer('withdraw_vesting', {
   vesting_shares: asset
 });
 
-let limit_order_create = new Serializer('limit_order_create', {
-  owner: string,
-  orderid: uint32,
-  amount_to_sell: asset,
-  min_to_receive: asset,
-  fill_or_kill: bool,
-  expiration: time_point_sec
-});
-
-let limit_order_cancel = new Serializer('limit_order_cancel', {
-  owner: string,
-  orderid: uint32
-});
-
-let price = new Serializer('price', {
-  base: asset,
-  quote: asset
-});
-
 // let asset_symbol = new Serializer('asset_symbol', {
 //   decimals: unit8,
 //   name: string
 // });
-
-let feed_publish = new Serializer('feed_publish', {
-  publisher: string,
-  exchange_rate: price
-});
-
-let convert = new Serializer('convert', {
-  owner: string,
-  requestid: uint32,
-  amount: asset
-});
 
 var authority = new Serializer('authority', {
   weight_threshold: uint32,
@@ -251,14 +162,6 @@ let smt_create = new Serializer('smt_create', {
   extensions: set(future_extensions)
 });
 
-let smt_setup = new Serializer('smt_setup', {
-  control_account: string,
-  symbol: asset_symbol,
-  decimal_places: uint8,
-  max_supply: uint64,
-  extensions: set(future_extensions)
-});
-
 let chain_properties = new Serializer('chain_properties', {
   account_creation_fee: asset,
   maximum_block_size: uint32,
@@ -277,68 +180,6 @@ let account_supernode_vote = new Serializer('account_supernode_vote', {
   account: string,
   supernode: string,
   approve: bool
-});
-
-let account_supernode_proxy = new Serializer('account_supernode_proxy', {
-  account: string,
-  proxy: string
-});
-
-let pow = new Serializer('pow', {
-  worker: public_key,
-  input: bytes(32),
-  signature: bytes(65),
-  work: bytes(32)
-});
-
-let custom = new Serializer('custom', {
-  required_auths: set(string),
-  id: uint16,
-  data: bytes()
-});
-
-let report_over_production = new Serializer('report_over_production', {
-  reporter: string,
-  first_block: signed_block_header,
-  second_block: signed_block_header
-});
-
-let delete_comment = new Serializer('delete_comment', {
-  author: string,
-  permlink: string
-});
-
-let custom_json = new Serializer('custom_json', {
-  required_auths: set(string),
-  required_posting_auths: set(string),
-  id: string,
-  json: string
-});
-
-let comment_options = new Serializer('comment_options', {
-  author: string,
-  permlink: string,
-  max_accepted_payout: asset,
-  percent_beowulf_dollars: uint16,
-  allow_votes: bool,
-  allow_curation_rewards: bool,
-  extensions: set(static_variant([comment_payout_beneficiaries]))
-});
-
-let set_withdraw_vesting_route = new Serializer('set_withdraw_vesting_route', {
-  from_account: string,
-  to_account: string,
-  percent: uint16,
-  auto_vest: bool
-});
-
-let limit_order_create2 = new Serializer('limit_order_create2', {
-  owner: string,
-  orderid: uint32,
-  amount_to_sell: asset,
-  exchange_rate: price,
-  fill_or_kill: bool,
-  expiration: time_point_sec
 });
 
 let fill_vesting_withdraw = new Serializer('fill_vesting_withdraw', {
@@ -362,6 +203,15 @@ let clear_null_account_balance = new Serializer('clear_null_account_balance', {
   hardfork_id: uint32
 });
 
+let transaction = new Serializer('transaction', {
+  ref_block_num: uint16,
+  ref_block_prefix: uint32,
+  expiration: time_point_sec,
+  operations: array(operation),
+  extensions: set(future_extensions),
+  created_time: uint64
+});
+
 operation.st_operations = [
   transfer,
   transfer_to_vesting,
@@ -377,33 +227,3 @@ operation.st_operations = [
   producer_reward,
   clear_null_account_balance
 ];
-
-let transaction = new Serializer('transaction', {
-  ref_block_num: uint16,
-  ref_block_prefix: uint32,
-  expiration: time_point_sec,
-  operations: array(operation),
-  extensions: set(future_extensions),
-  created_time: uint64
-});
-
-//# -------------------------------
-//#  Generated code end  S T O P
-//# -------------------------------
-
-// Custom Types (do not over-write)
-
-const encrypted_memo = new Serializer('encrypted_memo', {
-  from: public_key,
-  to: public_key,
-  nonce: uint64,
-  check: uint32,
-  encrypted: string_binary
-});
-/*
-
-// Make sure all tests pass
-
-npm test
-
-*/

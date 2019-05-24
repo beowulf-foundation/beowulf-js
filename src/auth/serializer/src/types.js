@@ -31,7 +31,7 @@ Types.asset = {
         let amount = b.readInt64()
         let precision = b.readUint8()
         let b_copy = b.copy(b.offset, b.offset + 7)
-        let symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
+        let symbol = Buffer.from(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
         b.skip(7);
         // "1.000 BWF" always written with full precision
         let amount_string = fromImpliedDecimal(amount, precision)
@@ -78,7 +78,7 @@ Types.asset = {
 Types.asset_symbol = {
     fromByteBuffer(b){
         let decimals = b.readUint32()
-        let name = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
+        let name = Buffer.from(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "")
         b.skip(8);
         var asset_symbol = {decimals: decimals, name: name};
         return JSON.stringify(asset_symbol)
@@ -260,7 +260,7 @@ Types.uint64 =
 
 Types.string =
     {fromByteBuffer(b){
-        return new Buffer(b.readVString(), 'utf8');
+        return Buffer.from(b.readVString(), 'utf8');
     },
     appendByteBuffer(b, object){
         v.required(object);
@@ -269,7 +269,7 @@ Types.string =
     },
     fromObject(object){
         v.required(object);
-        return new Buffer(object, 'utf8');
+        return Buffer.from(object, 'utf8');
     },
     toObject(object, debug = {}){
         if (debug.use_default && object === undefined) { return ""; }
@@ -282,7 +282,7 @@ Types.string_binary =
         var b_copy;
         var len = b.readVarint32();
         b_copy = b.copy(b.offset, b.offset + len), b.skip(len);
-        return new Buffer(b_copy.toBinary(), 'binary');
+        return Buffer.from(b_copy.toBinary(), 'binary');
 
     },
     appendByteBuffer(b, object){
@@ -292,7 +292,7 @@ Types.string_binary =
     },
     fromObject(object){
         v.required(object);
-        return new Buffer(object);
+        return Buffer.from(object);
     },
     toObject(object, debug = {}){
         if (debug.use_default && object === undefined) { return ""; }
@@ -306,16 +306,16 @@ Types.bytes = function(size){
             var b_copy;
             var len = b.readVarint32();
             b_copy = b.copy(b.offset, b.offset + len), b.skip(len);
-            return new Buffer(b_copy.toBinary(), 'binary');
+            return Buffer.from(b_copy.toBinary(), 'binary');
         } else {
             b_copy = b.copy(b.offset, b.offset + size), b.skip(size);
-            return new Buffer(b_copy.toBinary(), 'binary');
+            return Buffer.from(b_copy.toBinary(), 'binary');
         }
     },
     appendByteBuffer(b, object){
         v.required(object);
         if(typeof object === "string")
-            object = new Buffer(object, "hex")
+            object = Buffer.from(object, "hex")
 
         if (size === undefined) {
             b.writeVarint32(object.length);
@@ -328,7 +328,7 @@ Types.bytes = function(size){
         if( Buffer.isBuffer(object) )
             return object
 
-        return new Buffer(object, 'hex');
+        return Buffer.from(object, 'hex');
     },
     toObject(object, debug = {}){
         if (debug.use_default && object === undefined) {

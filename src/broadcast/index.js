@@ -58,7 +58,7 @@ beowulfBroadcast._prepareTransaction = function beowulfBroadcast$_prepareTransac
         const headBlockId = block.previous;
         return Object.assign({
           ref_block_num: refBlockNum,
-          ref_block_prefix: new Buffer(headBlockId, 'hex').readUInt32LE(4),
+          ref_block_prefix: Buffer.from(headBlockId, 'hex').readUInt32LE(4),
           created_time: +(new Date()),
           expiration: new Date(
             chainDate.getTime() +

@@ -1,4 +1,4 @@
-#beowulf-js
+# beowulf-js
 
 beowulf-js is the official Beowulf library for Javascript.  
 

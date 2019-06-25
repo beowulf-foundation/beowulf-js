@@ -35,6 +35,16 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.tern-port
+
+dist/beowulf-tests.min.js*
+# node-dist
+.tern-port
+.envrc
+.idea
+.save
+lib
+dist
 
 # TypeScript v1 declaration files
 typings/

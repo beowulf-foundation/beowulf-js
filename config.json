@@ -1,0 +1,10 @@
+{
+  "transport": "http",
+  "websocket": "https://testnet-bw.beowulfchain.com/rpc",
+  "uri": "https://testnet-bw.beowulfchain.com/rpc",
+  "url": "",
+  "dev_uri": "https://testnet-bw.beowulfchain.com/rpc",
+  "stage_uri": "https://testnet-bw.beowulfchain.com/rpc",
+  "address_prefix": "BEO",
+  "chain_id": "430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7"
+}

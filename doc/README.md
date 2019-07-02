@@ -541,13 +541,13 @@ beowulfjs.api.broadcastBlock(b, function(err, result) {
 
 ### Account Create
 ```
-beowulfjs.broadcast.accountCreate(wif, fee, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
+beowulfjs.broadcast.accountCreate(wif, fee, creator, newAccountName, owner, jsonMetadata, function(err, result) {
   console.log(err, result);
 });
 ```
 ### Account Create With Delegation
 ```
-beowulfjs.broadcast.accountCreateWithDelegation(wif, fee, delegation, creator, newAccountName, owner, active, posting, memoKey, jsonMetadata, extensions, function(err, result) {
+beowulfjs.broadcast.accountCreateWithDelegation(wif, fee, delegation, creator, newAccountName, owner, jsonMetadata, extensions, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -559,7 +559,7 @@ beowulfjs.broadcast.delegateVestingShares(wif, delegator, delegatee, vesting_sha
 ```
 ### Account Update
 ```
-beowulfjs.broadcast.accountUpdate(wif, account, owner, active, posting, memoKey, jsonMetadata, function(err, result) {
+beowulfjs.broadcast.accountUpdate(wif, account, owner, jsonMetadata, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -613,7 +613,7 @@ beowulfjs.broadcast.customBinary(wif, id, data, function(err, result) {
 ```
 ### Custom Json
 ```
-beowulfjs.broadcast.customJson(wif, requiredAuths, requiredPostingAuths, id, json, function(err, result) {
+beowulfjs.broadcast.customJson(wif, requiredAuths, id, json, function(err, result) {
   console.log(err, result);
 });
 ```
@@ -828,7 +828,7 @@ beowulfjs.broadcast.send({
       permlink: 'test',
       weight: 1000
     }]
-  ]}, [privPostingWif1, privPostingWif2], (err, result) => {
+  ]}, [privWif1, privWif2], (err, result) => {
   console.log(err, result);
 });
 ```

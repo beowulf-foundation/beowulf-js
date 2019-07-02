@@ -148,8 +148,6 @@ let account_create = new Serializer('account_create', {
 let account_update = new Serializer('account_update', {
   account: string,
   owner: optional(authority),
-  active: optional(authority),
-  posting: optional(authority),
   memo_key: public_key,
   json_metadata: string
 });

@@ -4,8 +4,8 @@ import beowulf from '../src';
 
 const username = process.env.STEEM_USERNAME || 'guest123';
 const password = process.env.STEEM_PASSWORD;
-const postingWif = password
-  ? beowulf.auth.toWif(username, password, 'posting')
+const onwerWif = password
+  ? beowulf.auth.toWif(username, password, 'owner')
   : '5JRaypasxMx1L97ZUX7YuC5Psb5EAbF821kkAGtBj7xCJFQcbLg';
 
 describe('beowulf.broadcast:', () => {
@@ -53,7 +53,7 @@ describe('beowulf.broadcast:', () => {
   describe('downvoting', () => {
     it('works', async () => {
       const tx = await beowulf.broadcast.voteAsync(
-        postingWif,
+        onwerWif,
         username,
         'yamadapc',
         'test-1-2-3-4-5-6-7-9',
@@ -77,7 +77,7 @@ describe('beowulf.broadcast:', () => {
 
     it('works', async () => {
       const tx = await beowulf.broadcast.voteAsync(
-        postingWif,
+        ownerWif,
         username,
         'yamadapc',
         'test-1-2-3-4-5-6-7-9',
@@ -96,7 +96,7 @@ describe('beowulf.broadcast:', () => {
 
     it('works with callbacks', (done) => {
       beowulf.broadcast.vote(
-        postingWif,
+        ownerWif,
         username,
         'yamadapc',
         'test-1-2-3-4-5-6-7-9',
@@ -124,7 +124,7 @@ describe('beowulf.broadcast:', () => {
 
     it('works', async () => {
       const tx = await beowulf.broadcast.customJsonAsync(
-        postingWif,
+        ownerWif,
         [],
         [username],
         'follow',
@@ -151,7 +151,7 @@ describe('beowulf.broadcast:', () => {
   
   describe('writeOperations', () => {
     it('receives a properly formatted error response', () => {
-      const wif = beowulf.auth.toWif('username', 'password', 'posting');
+      const wif = beowulf.auth.toWif('username', 'password', 'owner');
       return beowulf.broadcast.voteAsync(wif, 'voter', 'author', 'permlink', 0).
       then(() => {
         throw new Error('writeOperation should have failed but it didn\'t');

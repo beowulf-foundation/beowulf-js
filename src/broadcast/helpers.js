@@ -1,7 +1,7 @@
 import api from '../api';
 
 exports = module.exports = beowulfBroadcast => {
-  beowulfBroadcast.addAccountAuth = ({ signingKey, username, authorizedUsername, role = 'posting', weight }, cb) => {
+  beowulfBroadcast.addAccountAuth = ({ signingKey, username, authorizedUsername, role = 'owner', weight }, cb) => {
     api.getAccounts([username], (err, [userAccount]) => {
       if (err) { return cb(new Error(err), null); }
       if (!userAccount) { return cb(new Error('Invalid account name'), null); }
@@ -19,24 +19,19 @@ exports = module.exports = beowulfBroadcast => {
       weight = weight || userAccount[role].weight_threshold;
       updatedAuthority.account_auths.push([authorizedUsername, weight]);
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       /** Add authority on user account */
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
     });
   };
 
-  beowulfBroadcast.removeAccountAuth = ({ signingKey, username, authorizedUsername, role = 'posting' }, cb) => {
+  beowulfBroadcast.removeAccountAuth = ({ signingKey, username, authorizedUsername, role = 'owner' }, cb) => {
     api.getAccounts([username], (err, [userAccount]) => {
       if (err) { return cb(new Error(err), null); }
       if (!userAccount) { return cb(new Error('Invalid account name'), null); }
@@ -57,23 +52,18 @@ exports = module.exports = beowulfBroadcast => {
       }
 
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
     });
   };
 
-  beowulfBroadcast.addKeyAuth = ({ signingKey, username, authorizedKey, role = 'posting', weight }, cb) => {
+  beowulfBroadcast.addKeyAuth = ({ signingKey, username, authorizedKey, role = 'owner', weight }, cb) => {
     api.getAccounts([username], (err, [userAccount]) => {
       if (err) { return cb(new Error(err), null); }
       if (!userAccount) { return cb(new Error('Invalid account name'), null); }
@@ -91,24 +81,19 @@ exports = module.exports = beowulfBroadcast => {
       weight = weight || userAccount[role].weight_threshold;
       updatedAuthority.key_auths.push([authorizedKey, weight]);
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       /** Add authority on user account */
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
     });
   };
 
-  beowulfBroadcast.removeKeyAuth = ({ signingKey, username, authorizedKey, role = 'posting' }, cb) => {
+  beowulfBroadcast.removeKeyAuth = ({ signingKey, username, authorizedKey, role = 'owner' }, cb) => {
     api.getAccounts([username], (err, [userAccount]) => {
       if (err) { return cb(new Error(err), null); }
       if (!userAccount) { return cb(new Error('Invalid account name'), null); }
@@ -129,16 +114,11 @@ exports = module.exports = beowulfBroadcast => {
       }
 
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );

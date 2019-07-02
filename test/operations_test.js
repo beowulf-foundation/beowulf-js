@@ -32,22 +32,6 @@ describe('beowulf.auth: operation test', () => {
                 ['STM7DTS62msowgpAZJBNRMStMUt5bfRA4hc9j5wjwU4vKhi3KFkKb', 1],
               ],
             },
-            active: {
-              weight_threshold: 1,
-              account_auths: [],
-              key_auths: [
-                ['STM8k1f8fvHxLrCTqMdRUJcK2rCE3y7SQBb8PremyadWvVWMeedZy', 1],
-              ],
-            },
-            posting: {
-              weight_threshold: 1,
-              account_auths: [],
-              key_auths: [
-                ['STM6DgpKJqoVGg7o6J1jdiP45xxbgoUg5VGzs96YBxX42NZu2bZea', 1],
-              ],
-            },
-            memo_key: 'STM6ppNVEFmvBW4jEkzxXnGKuKuwYjMUrhz2WX1kHeGSchGdWJEDQ',
-            json_metadata: '',
           },
         ],
       ],

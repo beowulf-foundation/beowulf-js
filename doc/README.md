@@ -905,7 +905,7 @@ console.log(reputation);
 // => 56
 ```
 
-### Vest To Steem
+### Vest To Beowulf
 ```
 var beowulfjsPower = beowulfjs.formatter.vestToBeowulf(vestingShares, totalVestingShares, totalVestingFundBeowulf);
 console.log(beowulfjsPower);

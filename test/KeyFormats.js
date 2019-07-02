@@ -102,7 +102,7 @@ test({
   Compressed_BTC: 'STMANNTSEaUviJgWLzJBersPmyFZBY4jJETY',
   Uncompressed_PTS: 'STMEgj7RM6FBwSoccGaESJLC3Mi18785bM3T',
   Compressed_PTS: 'STMD5rYtofD6D4UHJH6mo953P5wpBfMhdMEi',
-  // https://github.com/steemit/steem-js/issues/267
+  // https://github.com/Beowulf/beowulf-js/issues/267
   null_hex:
     '000000000000000000000000000000000000000000000000000000000000000000',
   null_address: 'STM1111111111111111111111111111111114T1Anm',

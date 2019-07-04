@@ -73,5 +73,7 @@
     "webpack-visualizer-plugin": "^0.1.5"
   },
   "contributors": [
+    "phanmn (https://github.com/phanmn)",
+    "nghiatc (https://github.com/congnghia0609)"
   ]
 }

@@ -8,7 +8,7 @@ var bigi = require('bigi'),
 	Signature = require('./ecc/src/signature'),
 	KeyPrivate = require('./ecc/src/key_private'),
 	PublicKey = require('./ecc/src/key_public'),
-  hash = require('./ecc/src/hash');
+    hash = require('./ecc/src/hash');
 
 var Auth = {};
 var transaction = operations.transaction;
@@ -51,13 +51,27 @@ Auth.generateKeys = function (name, password, roles) {
 	@arg {string} password - very strong password typically no shorter than a private key
 	@arg {array} roles - defaults to standard Beowulf blockchain-level roles
 */
-Auth.getPrivateKeys = function (name, password, roles = ['owner']) {
+Auth.getPrivateKeys = function (name, password, keys = ['owner']) {
 	var privKeys = {};
-	roles.forEach(function (role) {
-		privKeys[role] = this.toWif(name, password, role);
-		privKeys[role + 'Pubkey'] = this.wifToPublic(privKeys[role]);
+	keys.forEach(function (key) {
+		privKeys[key] = this.toWif(name, password, key);
+		privKeys[key + 'Pubkey'] = this.wifToPublic(privKeys[key]);
 	}.bind(this));
 	return privKeys;
+};
+// Generate a lot of keys form one name
+Auth.getMulPrivateKeys = function (name, password, amount) {	
+	var keys = [];
+	for(var i = 1; i <= amount; i++){
+		keys.push(i)
+	};
+	return keys.map(key => {
+		let privKey =  Auth.toWif(name, password, key)
+		return[
+			key =  Auth.wifToPublic(privKey),
+			1
+		]
+	});
 };
 
 Auth.isWif = function (privWif) {
@@ -76,8 +90,8 @@ Auth.isWif = function (privWif) {
 	return isWif;
 };
 
-Auth.toWif = function (name, password, role) {
-	var seed = name + role + password;
+Auth.toWif = function (name, password, key) {
+	var seed = name + key + password;
 	var brainKey = seed.trim().split(/[\t\n\v\f\r ]+/).join(' ');
 	var hashSha256 = hash.sha256(brainKey);
 	var privKey = Buffer.concat([Buffer.from([0x80]), hashSha256]);
@@ -112,8 +126,15 @@ Auth.signTransaction = function (trx, keys) {
 	var buf = transaction.toBuffer(trx);
 
 	for (var key in keys) {
-		var sig = Signature.signBuffer(Buffer.concat([cid, buf]), keys[key]);
-		signatures.push(sig.toBuffer())
+		let wifs = keys[key];
+		if (!Array.isArray(wifs)) {
+			wifs = [wifs];
+		}
+
+		wifs.forEach((wif) => {
+			let sig = Signature.signBuffer(Buffer.concat([cid, buf]), wif);
+			signatures.push(sig.toBuffer());
+		});
 	}
 
 	return signed_transaction.toObject(Object.assign(trx, { signatures: signatures }))

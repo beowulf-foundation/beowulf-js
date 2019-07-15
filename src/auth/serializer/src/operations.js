@@ -115,6 +115,15 @@ let transfer = new Serializer('transfer', {
   memo: string
 });
 
+let transferMul = new Serializer('transferMul', {
+  from: string,
+  to: string,
+  amount: asset,
+  fee: asset,
+  memo: string,
+  wif: array
+});
+
 let transfer_to_vesting = new Serializer('transfer_to_vesting', {
   from: string,
   to: string,
@@ -148,7 +157,6 @@ let account_create = new Serializer('account_create', {
 let account_update = new Serializer('account_update', {
   account: string,
   owner: optional(authority),
-  memo_key: public_key,
   json_metadata: string
 });
 
@@ -212,6 +220,8 @@ let transaction = new Serializer('transaction', {
 
 operation.st_operations = [
   transfer,
+  transferMul,
+  signed_transaction,
   transfer_to_vesting,
   withdraw_vesting,
   account_create,

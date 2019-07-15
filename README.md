@@ -36,7 +36,7 @@ beowulfjs.api.setOptions({ url: url, useAppbaseApi: true });
 #### Example Usage
 ##### Get a block
 ```js
-let blockNum = 232967;
+let blockNum = xxxxxx;
 beowulfjs.api.getBlock(blockNum, function(err, result) {
   console.log(err, result);
 });
@@ -44,7 +44,7 @@ beowulfjs.api.getBlock(blockNum, function(err, result) {
 
 ##### Get Transaction
 ```js
-let trxId = '60207c8e17f47bf2790c927701792d95d42e3f46';
+let trxId = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 beowulfjs.api.getTransaction(trxId, function(err, result) {
   console.log(err, result);
 });
@@ -60,8 +60,8 @@ let wallet = beowulfjs.wallet.generateWallet();
 Response Example
 ```js
 {
-  "owner": "5JY3sGqkfoN7U6kee9HibnG6etQgLNCMqjhPqsVDRXRjGwFNKeA",
-  "ownerPubkey": "BEO7GXMArUCaxq1kPNP4JkcnshVDyfpVTfEwL8e8FVAN6BgpU8Y1k"
+  "owner": "5Jxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "ownerPubkey": "BEOxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 ```
 
@@ -87,25 +87,6 @@ fee: string // Fee for creating wallet
 creator: string // Wallet Name of father of account
 creatorWif: string // Private key of father account
 ```
-
-```js
-let ownerPubkey = 'BEO7GXMArUCaxq1kPNP4JkcnshVDyfpVTfEwL8e8FVAN6BgpU8Y1k';
-let account = 'newwallet';
-let creator = 'creatorwallet';
-let creatorWif = '5K3dVVqEcTw1kBnXVr2uDW77894PFUVPfWR9jQvbs26nkzQLaNH';
-let fee = '0.00100 W';
-
-beowulfjs.wallet.submitWallet({
-  ownerPubkey,
-  account,
-  creator,
-  creatorWif,
-  fee
-}, (err, result) => {
-
-})
-```
-
 ##### Submit Transaction
 API
 ```js
@@ -122,17 +103,4 @@ to: string // Wallet name of receiver
 amount: string
 memo: string
 fee: string // Fee for submiting transaction
-```
-
-```js
-let from = 'examplewallet';
-let wif = '5JqLaFqBXtzhm1uDrtycCfJwP35YE98SjbrGyjtyqjCN1uke3PP';
-let to = 'examplewallet2';
-let amount = '4.00000 BWF';
-let memo = 'example';
-let fee = '0.00001 W';
-
-beowulfjs.broadcast.transfer(wif, from, to, amount, fee, memo, (err, result) => {
-  console.log(err, result);
-});
 ```

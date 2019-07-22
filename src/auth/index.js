@@ -8,7 +8,7 @@ var bigi = require('bigi'),
 	Signature = require('./ecc/src/signature'),
 	KeyPrivate = require('./ecc/src/key_private'),
 	PublicKey = require('./ecc/src/key_public'),
-    hash = require('./ecc/src/hash');
+	hash = require('./ecc/src/hash');
 
 var Auth = {};
 var transaction = operations.transaction;
@@ -60,15 +60,15 @@ Auth.getPrivateKeys = function (name, password, keys = ['owner']) {
 	return privKeys;
 };
 // Generate a lot of keys form one name
-Auth.getMulPrivateKeys = function (name, password, amount) {	
+Auth.getMulPrivateKeys = function (name, password, amount) {
 	var keys = [];
-	for(var i = 1; i <= amount; i++){
+	for (var i = 1; i <= amount; i++) {
 		keys.push(i)
 	};
 	return keys.map(key => {
-		let privKey =  Auth.toWif(name, password, key)
-		return[
-			key =  Auth.wifToPublic(privKey),
+		let privKey = Auth.toWif(name, password, key)
+		return [
+			key = Auth.wifToPublic(privKey),
 			1
 		]
 	});
@@ -112,7 +112,7 @@ Auth.wifToPublic = function (privWif) {
 	return pubWif;
 };
 
-Auth.isPubkey = function(pubkey, address_prefix) {
+Auth.isPubkey = function (pubkey, address_prefix) {
 	return PublicKey.fromString(pubkey, address_prefix) != null
 }
 

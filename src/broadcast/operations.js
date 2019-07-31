@@ -12,6 +12,18 @@ module.exports = [
   },
   {
     "roles": ["owner"],
+    "operation": "transferMul",
+    "params": [
+      "from",
+      "to",
+      "amount",
+      "fee",
+      "memo",
+      "wif"
+    ]
+  },
+  {
+    "roles": ["owner"],
     "operation": "transfer_to_vesting",
     "params": [
       "from",
@@ -44,9 +56,6 @@ module.exports = [
     "params": [
       "account",
       "owner",
-      "active",
-      "posting",
-      "memo_key",
       "json_metadata"
     ]
   },
@@ -102,7 +111,7 @@ module.exports = [
     "operation": "custom_json",
     "params": [
       "required_auths",
-      "required_posting_auths",
+      "required_owner_auths",
       "id",
       "json"
     ]
@@ -115,18 +124,6 @@ module.exports = [
       "to_account",
       "percent",
       "auto_vest"
-    ]
-  },
-  {
-    "roles": ["owner"],
-    "operation": "limit_order_create2",
-    "params": [
-      "owner",
-      "orderid",
-      "amount_to_sell",
-      "exchange_rate",
-      "fill_or_kill",
-      "expiration"
     ]
   },
   {
@@ -145,9 +142,6 @@ module.exports = [
       "creator",
       "new_account_name",
       "owner",
-      "active",
-      "posting",
-      "memo_key",
       "json_metadata",
       "extensions"
     ]
@@ -293,9 +287,6 @@ module.exports = [
       "creator",
       "new_account_name",
       "owner",
-      "active",
-      "posting",
-      "memo_key",
       "json_metadata",
       "extensions"
     ]
@@ -336,18 +327,7 @@ module.exports = [
       "deposited"
     ]
   },
-  {
-    "roles": ["owner"],
-    "operation": "fill_order",
-    "params": [
-      "current_owner",
-      "current_orderid",
-      "current_pays",
-      "open_owner",
-      "open_orderid",
-      "open_pays"
-    ]
-  },
+
   {
     "roles": ["owner"],
     "operation": "fill_transfer_from_savings",

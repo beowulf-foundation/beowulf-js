@@ -218,10 +218,9 @@ let transaction = new Serializer('transaction', {
   created_time: uint64
 });
 
+// must check ordef F:\BLOCKCHAIN\beowulf-js\src\auth\serializer\src\ChainTypes.js
 operation.st_operations = [
   transfer,
-  transferMul,
-  signed_transaction,
   transfer_to_vesting,
   withdraw_vesting,
   account_create,
@@ -233,5 +232,7 @@ operation.st_operations = [
   shutdown_supernode,
   hardfork,
   producer_reward,
-  clear_null_account_balance
+  clear_null_account_balance,
+  // transferMul// not work
+
 ];

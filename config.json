@@ -2,6 +2,7 @@
   "transport": "http",
   "websocket": "https://testnet-bw.beowulfchain.com/rpc",
   "uri": "https://bw.beowulfchain.com",
+  "url":"",
   "dev_uri": "https://testnet-bw.beowulfchain.com/rpc",
   "stage_uri": "https://testnet-bw.beowulfchain.com/rpc",
   "address_prefix": "BEO",

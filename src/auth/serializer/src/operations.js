@@ -115,14 +115,14 @@ let transfer = new Serializer('transfer', {
   memo: string
 });
 
-let transferMul = new Serializer('transferMul', {
-  from: string,
-  to: string,
-  amount: asset,
-  fee: asset,
-  memo: string,
-  wif: array
-});
+// let transferMul = new Serializer('transferMul', {
+//   from: string,
+//   to: string,
+//   amount: asset,
+//   fee: asset,
+//   memo: string,
+//   wif: array
+// });
 
 let transfer_to_vesting = new Serializer('transfer_to_vesting', {
   from: string,

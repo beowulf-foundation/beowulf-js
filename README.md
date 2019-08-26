@@ -29,7 +29,7 @@ npm i beowulf-js
 
 ```javascript
 const beowulfjs = require('beowulf-js');
-let url = beowulfjs.config.get('url');
+let url = beowulfjs.config.get('uri');
 beowulfjs.api.setOptions({ url: url, useAppbaseApi: true });
 ```
 

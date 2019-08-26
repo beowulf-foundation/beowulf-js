@@ -14,9 +14,8 @@ describe('beowulf.broadcast:', () => {
   });
 
   it('has generated methods', () => {
-    should.exist(beowulf.broadcast.vote);
-    should.exist(beowulf.broadcast.voteWith);
-    should.exist(beowulf.broadcast.transfer);
+    should.exist(beowulf.broadcast._prepareTransaction);
+
   });
 
   it('has backing methods', () => {

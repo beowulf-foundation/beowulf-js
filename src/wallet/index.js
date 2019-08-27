@@ -15,11 +15,11 @@ beowulfWallet.generateWallet = function() {
 };
 
 beowulfWallet.generateMulWallet = function (amount) {
-  var keygenPassw = keygen.default.getKey('ci_key');
-  var account = keygen.default.getKey('ci_key');
+  var keygenPassw = keygen.getKey('ci_key');
+  var account = keygen.getKey('ci_key');
   var amount = amount;
 
-  var wallet = beowulfAuth.default.getMulPrivateKeys(account, keygenPassw, amount);
+  var wallet = beowulfAuth.getMulPrivateKeys(account, keygenPassw, amount);
 
   return wallet;
 };

@@ -1,7 +1,7 @@
 var assert = require('assert').strict;
 var ops = require('../src/auth/serializer/src/operations')
 
-describe('beowulf.test: tranfer test', ()=>{
+describe('beowulf.test: operaton transfer', ()=>{
     it('check wif', function(){
         assert.equal(Math.pow(2,3), 8);
     });

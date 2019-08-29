@@ -78,6 +78,7 @@ module.exports = [
       "supernode",
       "account",
       "approve",
+      "votes",
       "fee"
     ]
   },

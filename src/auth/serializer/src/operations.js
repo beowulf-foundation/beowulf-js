@@ -32,6 +32,7 @@ static_variant [
 
 import types from './types';
 import SerializerImpl from './serializer';
+import { int64 } from '../../../../lib/auth/serializer/src/types';
 
 const {
   //id_type,
@@ -190,6 +191,7 @@ let account_supernode_vote = new Serializer('account_supernode_vote', {
   account: string,
   supernode: string,
   approve: bool,
+  votes: int64,
   fee: asset
 });
 

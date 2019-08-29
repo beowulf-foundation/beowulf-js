@@ -46,6 +46,27 @@ beowulfWallet.submitWallet = function(
   );
 };
 
+beowulfWallet.accountUpdate = function(
+  { ownerPubkey, account, wif, fee = '1.00000 W'},
+  cb
+) {
+  let jsonMetadata = '';
+  let owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[ownerPubkey, 1]]
+  };
+
+  beowulfBroadcast.accountUpdate(
+    wif,
+    fee,
+    account,
+    owner,
+    jsonMetadata,
+    cb
+  );
+};
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '1.00000 W' },
   cb

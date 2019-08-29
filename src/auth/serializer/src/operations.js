@@ -127,12 +127,14 @@ let transfer = new Serializer('transfer', {
 let transfer_to_vesting = new Serializer('transfer_to_vesting', {
   from: string,
   to: string,
-  amount: asset
+  amount: asset,
+  fee: asset
 });
 
 let withdraw_vesting = new Serializer('withdraw_vesting', {
   account: string,
-  vesting_shares: asset
+  vesting_shares: asset,
+  fee: asset
 });
 
 // let asset_symbol = new Serializer('asset_symbol', {
@@ -157,7 +159,8 @@ let account_create = new Serializer('account_create', {
 let account_update = new Serializer('account_update', {
   account: string,
   owner: optional(authority),
-  json_metadata: string
+  json_metadata: string,
+  fee: asset
 });
 
 let smt_create = new Serializer('smt_create', {
@@ -165,7 +168,8 @@ let smt_create = new Serializer('smt_create', {
   symbol: asset_symbol,
   smt_creation_fee: asset,
   precision: uint8,
-  extensions: set(future_extensions)
+  extensions: set(future_extensions),
+  fee: asset
 });
 
 let chain_properties = new Serializer('chain_properties', {
@@ -185,7 +189,8 @@ let supernode_update = new Serializer('supernode_update', {
 let account_supernode_vote = new Serializer('account_supernode_vote', {
   account: string,
   supernode: string,
-  approve: bool
+  approve: bool,
+  fee: asset
 });
 
 let fill_vesting_withdraw = new Serializer('fill_vesting_withdraw', {

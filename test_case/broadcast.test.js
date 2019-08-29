@@ -9,12 +9,12 @@ let wallet = beowulf.wallet.generateWallet();
 console.log(wallet.owner)
 beowulf.wallet.submitWallet({
     ownerPubkey: wallet.ownerPubkey, 
-    account: "kiet290806",
-    creator: 'kietwallet',
+    account: "kiet290808",
+    creator: 'kietwalet',
     creatorWif: wif,
     fee : "1.00000 W"
     }, function(err, result) {
-    console.log(err, result);  
+    console.log(err.cause.data.message, result);  
 });
 
 // beowulf.broadcast.transfer(wif , "kietwallet", "kiet290805", "1.00000 W", "0.01000 W", "ok", function(err, result){
@@ -54,6 +54,6 @@ beowulf.wallet.submitWallet({
 //    [ '201c7a227e75e64a4f36a778f97c0fb0428e5f0a0b755ccff384380d9369a4132a18af185a3fc6e2ea7c9a5cfb9d068d31614dbc7fff062c630545ba71d88afd93' ] }
 
 
-// beowulf.broadcast.accountSupernodeVote(wif, "kietwallet", "kiet290805","true", "0.01000 W", function(err, result){
+// beowulf.broadcast.accountSupernodeVote(wif, "kiet290806", "kietwallet","true", "5", "0.01000 W", function(err, result){
 //     console.log(err, result);
 // });

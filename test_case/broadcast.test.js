@@ -4,33 +4,37 @@ beowulf.api.setOptions({ url: url,useAppbaseApi: true });
 // key kiet
 let wif = '5J9EPDvAHC5bxMz1mVygrrjQeiKW4ayX8HisD7eZ9DW7Qhc8hXR';
 
-// let wif = '5KWMsQBQjJ5YtcrcVxqENYbsymWPQg7gWfw1UoTJ4HNjSJ5WHzH'; 
+// let wif = '5JUo66sWuBJhn3kxqPS1fgJJuJGY2HrWAmXehC7zm7XhdvoMdau'; 
+
+// vấn đề về gen key????
 
 let wallet = beowulf.wallet.generateWallet();
 console.log(wallet.owner)
-// beowulf.wallet.submitMulWallet({
-//     ownerPubkey: wallet.ownerPubkey, 
-//     account: "kiet290808",
-//     creator: 'kietwalet',
-//     creatorWif: wif,
-//     fee : "1.00000 W"
-//     }, function(err, result) {
-//     console.log(err.cause.data.message, result);  
-// });
+beowulf.wallet.submitWallet({
+    ownerPubkey: wallet.ownerPubkey, 
+    account: "--kiet030913",
+    creator: "kietwallet",
+    creatorWif: wif,
+    fee : "1.00000 W"
+    }, function(err, result) {
+    console.log(err, result);  
+});
 
-// beowulf.broadcast.transfer(wif , "kietwallet", "kiet290805", "1.00000 W", "0.01000 W", "ok", function(err, result){
+// beowulf.broadcast.transfer(wif , "kietwallet", "kiet030913", "10.00000 BWF", "0.01000 W", "ok", function(err, result){
+//     console.log(err, result);
+// });
+// beowulf.broadcast.transfer(wif , "kietwallet", "kiet030910", "10.00000 BWF", "0.01000 W", "ok", function(err, result){
 //     console.log(err, result);
 // });
 
-beowulf.wallet.accountUpdate({
-    ownerPubkey: wallet.ownerPubkey, 
-    account: "kiet290805",
-    wif: wif,
-    fee : "1.00000 W"
-    }, function(err, result) {
-    console.log(err, result);
-  
-});
+// beowulf.wallet.accountUpdate({
+//     ownerPubkey: wallet.ownerPubkey, 
+//     account: "kiet030913",
+//     wif: wif,
+//     fee : "1.00000 W"
+//     }, function(err, result) {
+//     console.log(err, result);
+// });
 
 // beowulf.broadcast.transferToVesting(wif, "kietwallet", "kietwallet", "10.00000 BWF", "0.01000 W", function(err, result){
 //     console.log(err, result);

@@ -27,7 +27,7 @@ describe('beowulf.test: operaton create_account ', () => {
         let [err, result] = await new Promise((resolve, reject) => {
             beowulf.wallet.submitWallet({
                 ownerPubkey: wallet.ownerPubkey,
-                account: "kiet29080000000000000000000000000000000000000000000000000000000000000",
+                account: "thisaccountnameistooloooooooong",
                 creator: 'kietwallet',
                 creatorWif: wif,
                 fee: "1.00000 W"
@@ -52,6 +52,22 @@ describe('beowulf.test: operaton create_account ', () => {
             });
         })
         assert.equal(er, err.cause.data.message);
+    });
+    it('name account start with char', async () => {
+        let er = ("is_valid_account_name( name ): Account name ${n} is invalid");
+        let wallet = beowulf.wallet.generateWallet();
+        let [err, result] = await new Promise((resolve, reject) => {
+            beowulf.wallet.submitWallet({
+                ownerPubkey: wallet.ownerPubkey,
+                account: "------kiet290809",
+                creator: 'kietwallet',
+                creatorWif: wif,
+                fee: "1.00000 W"
+            }, function (err, result) {
+                resolve([err, result])
+            });
+        })
+        assert.equal(er, err.cause.data.stack[0].format);
     });
     it('fee is wrong', async () => {
         let er = ("Assert Exception");

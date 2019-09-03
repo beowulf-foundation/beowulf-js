@@ -33,7 +33,7 @@ beowulfWallet.submitWallet = function(
     weight_threshold: 1,
     account_auths: [],
     key_auths: [[ownerPubkey, 1]]
-  };
+  };  
 
   beowulfBroadcast.accountCreate(
     creatorWif,

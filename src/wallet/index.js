@@ -15,17 +15,17 @@ beowulfWallet.generateWallet = function() {
 };
 
 beowulfWallet.generateMulWallet = function (amount) {
-  var keygenPassw = keygen.default.getKey('ci_key');
-  var account = keygen.default.getKey('ci_key');
+  var keygenPassw = keygen.getKey('ci_key');
+  var account = keygen.getKey('ci_key');
   var amount = amount;
 
-  var wallet = beowulfAuth.default.getMulPrivateKeys(account, keygenPassw, amount);
+  var wallet = beowulfAuth.getMulPrivateKeys(account, keygenPassw, amount);
 
   return wallet;
 };
 
 beowulfWallet.submitWallet = function(
-  { ownerPubkey, account, creator, creatorWif, fee = '1.00000 W' },
+  { ownerPubkey, account, creator, creatorWif, fee = '0.10000 W' },
   cb
 ) {
   let jsonMetadata = '';
@@ -47,7 +47,7 @@ beowulfWallet.submitWallet = function(
 };
 
 beowulfWallet.submitMulWallet = function(
-  { wallet, weight_threshold, account, creator, creatorWif, fee = '1.00000 W' },
+  { wallet, weight_threshold, account, creator, creatorWif, fee = '0.10000 W' },
   cb
 ) {
   let jsonMetadata = '';

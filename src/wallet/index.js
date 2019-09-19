@@ -71,6 +71,11 @@ beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '1.00000 W' },
   cb
 ) {
+  if (weight_threshold <= 0) {
+    throw new Error("weight threshold is wrong")
+  } else if (weight_threshold === undefined) {
+    weight_threshold = 1;
+  };
   let jsonMetadata = '';
   let owner = {
     weight_threshold: weight_threshold,

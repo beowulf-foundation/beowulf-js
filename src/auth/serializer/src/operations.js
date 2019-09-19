@@ -97,6 +97,15 @@ let asset = new Serializer(
 Replace: authority.prototype.account_authority_map
 With: map((string), (uint16))
 */
+let encrypted_memo = new Serializer("encrypted_memo", {
+  from: public_key,
+  to: public_key,
+  nonce: uint64,
+  check: uint32,
+  encrypted: string_binary}
+);
+
+
 let signed_transaction = new Serializer('signed_transaction', {
   ref_block_num: uint16,
   ref_block_prefix: uint32,

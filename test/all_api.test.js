@@ -289,19 +289,6 @@ describe('beowulf.test: api', () => {
             assert.strictEqual(1, 0);
         };
     });
-        it('get ops in block', async () => {
-        let [err, result] = await new Promise((resolve, reject) => {
-            beowulf.api.getOpsInBlock(1,false,  function(err, result){
-                resolve([err, result]);
-            });
-        });
-        if (result !== undefined) {
-            assert.strictEqual(1, 1);
-        } else {
-            console.log("Can not find this method get ops in block")
-            assert.strictEqual(1, 0);
-        };
-    });
     it('get supernodes by vote', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
             beowulf.api.getSupernodesByVote(null, 21,  function(err, result){

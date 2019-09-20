@@ -15,11 +15,11 @@ beowulfWallet.generateWallet = function() {
 };
 
 beowulfWallet.generateMulWallet = function (amount) {
-  var keygenPassw = keygen.default.getKey('ci_key');
-  var account = keygen.default.getKey('ci_key');
+  var keygenPassw = keygen.getKey('ci_key');
+  var account = keygen.getKey('ci_key');
   var amount = amount;
 
-  var wallet = beowulfAuth.default.getMulPrivateKeys(account, keygenPassw, amount);
+  var wallet = beowulfAuth.getMulPrivateKeys(account, keygenPassw, amount);
 
   return wallet;
 };
@@ -33,7 +33,7 @@ beowulfWallet.submitWallet = function(
     weight_threshold: 1,
     account_auths: [],
     key_auths: [[ownerPubkey, 1]]
-  };
+  };  
 
   beowulfBroadcast.accountCreate(
     creatorWif,
@@ -46,10 +46,36 @@ beowulfWallet.submitWallet = function(
   );
 };
 
+beowulfWallet.accountUpdate = function(
+  { ownerPubkey, account, wif, fee = '1.00000 W'},
+  cb
+) {
+  let jsonMetadata = '';
+  let owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[ownerPubkey, 1]]
+  };
+
+  beowulfBroadcast.accountUpdate(
+    wif,
+    fee,
+    account,
+    owner,
+    jsonMetadata,
+    cb
+  );
+};
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '1.00000 W' },
   cb
 ) {
+  if (weight_threshold <= 0) {
+    throw new Error("weight threshold is wrong")
+  } else if (weight_threshold === undefined) {
+    weight_threshold = 1;
+  };
   let jsonMetadata = '';
   let owner = {
     weight_threshold: weight_threshold,

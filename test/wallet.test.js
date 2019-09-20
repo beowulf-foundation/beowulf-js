@@ -28,4 +28,3 @@ describe('beowulf.wallet', function() {
     assert.equal(expectedDecyprtedWallet.keys.owner, decryptedWallet.wallet.owner);    
   });
 });
-

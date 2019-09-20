@@ -38,6 +38,7 @@ describe('beowulf.auth: memo', () => {
     const text = '#爱';
 
     const cypertext = encode(private_key, public_key, text, nonce);
+    console.log(cypertext);
     assert.equal(cypertext, base58);
     const plaintext = decode(private_key, cypertext);
     assert.equal(plaintext, text);

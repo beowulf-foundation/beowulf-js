@@ -51,7 +51,7 @@ describe('beowulf.auth: derives', () => {
   it('child from public', () =>
     assert.equal(
       to_public.child(child).toString(),
-      'STM6XA72XARQCain961PCJnXiKYdEMrndNGago2PV5bcUiVyzJ6iL',
+      'BEO6XA72XARQCain961PCJnXiKYdEMrndNGago2PV5bcUiVyzJ6iL',
       'derive child public key',
     ));
 
@@ -62,7 +62,7 @@ describe('beowulf.auth: derives', () => {
         .child(child)
         .toPublicKey()
         .toString(),
-      'STM6XA72XARQCain961PCJnXiKYdEMrndNGago2PV5bcUiVyzJ6iL',
+      'BEO6XA72XARQCain961PCJnXiKYdEMrndNGago2PV5bcUiVyzJ6iL',
       'derive child from private key',
     ));
 

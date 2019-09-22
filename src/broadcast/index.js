@@ -47,6 +47,28 @@ beowulfBroadcast.send = function beowulfBroadcast$send(tx, privKeys, callback) {
   resultP.nodeify(callback || noop);
 };
 
+beowulfBroadcast.create = function beowulfBroadcast$create(tx, privKeys, callback) {
+  const resultP = beowulfBroadcast._prepareTransaction(tx)
+    .then((transaction) => {
+      debug(
+        'Signing transaction (transaction, transaction.operations)',
+        transaction, transaction.operations
+      );
+
+      return beowulfAuth.signTransaction(transaction, privKeys);
+    })
+    .then((signedTransaction) => {
+      return Object.assign({}, signedTransaction);
+    });
+
+  resultP.nodeify(callback || noop);
+};
+
+beowulfBroadcast.sign = function beowulfBroadcast$sign(tx, privKeys) {
+  const signedTransaction = beowulfAuth.signTransaction(tx, privKeys)
+  return Object.assign({}, signedTransaction);
+};
+
 beowulfBroadcast._prepareTransaction = function beowulfBroadcast$_prepareTransaction(tx) {
   const propertiesP = beowulfApi.getDynamicGlobalPropertiesAsync();
   return propertiesP
@@ -62,7 +84,7 @@ beowulfBroadcast._prepareTransaction = function beowulfBroadcast$_prepareTransac
           created_time: parseInt(+(new Date()) / 1000),
           expiration: new Date(
             chainDate.getTime() +
-            600 * 1000
+            3600 * 1000
           ),
         }, tx);
       });
@@ -80,13 +102,22 @@ operations.forEach((operation) => {
     operationParams.indexOf('parent_permlink') !== -1 &&
     operationParams.indexOf('parent_permlink') !== -1;
 
+  const buildKeys = function(wif) {
+    const keys = {};
+    if (operation.roles && operation.roles.length) {
+      keys[operation.roles[0]] = wif; // TODO - Automatically pick a role? Send all?
+    }
+
+    return keys;
+  };
+
+  beowulfBroadcast[`${operationName}Keys`] = buildKeys;
+
   beowulfBroadcast[`${operationName}With`] =
     function beowulfBroadcast$specializedSendWith(wif, options, callback) {
       debug(`Sending operation "${operationName}" with`, {options, callback});
-      const keys = {};
-      if (operation.roles && operation.roles.length) {
-        keys[operation.roles[0]] = wif; // TODO - Automatically pick a role? Send all?
-      }
+      const keys = buildKeys(wif);
+
       return beowulfBroadcast.send({
         extensions: [],
         operations: [[operation.operation, Object.assign(
@@ -112,6 +143,40 @@ operations.forEach((operation) => {
       const callback = args[operationParams.length];
       return beowulfBroadcast[`${operationName}With`](wif, options, callback);
     };
+<<<<<<< HEAD
+=======
+  
+  beowulfBroadcast[`${operationName}Multisig`] =
+    function(wif, ...args) {
+      debug(`Parsing operation "${operationName}" with`, {args});
+      const options = operationParams.reduce((memo, param, i) => {
+        memo[param] = args[i]; // eslint-disable-line no-param-reassign
+        return memo;
+      }, {});
+      const callback = args[operationParams.length];
+      return beowulfBroadcast[`${operationName}MultisigWith`](wif, options, callback);
+    };
+
+  beowulfBroadcast[`${operationName}MultisigWith`] =
+    function(wif, options, callback) {
+      debug(`Sending operation "${operationName}" with`, {options, callback});
+      const keys = buildKeys(wif);
+
+      return beowulfBroadcast.create({
+        extensions: [],
+        operations: [[operation.operation, Object.assign(
+          {},
+          options,
+          options.json_metadata != null ? {
+            json_metadata: toString(options.json_metadata),
+          } : {},
+          useCommentPermlink && options.permlink == null ? {
+            permlink: formatter.commentPermlink(options.parent_author, options.parent_permlink),
+          } : {}
+        )]],
+      }, keys, callback);
+    };
+>>>>>>> 742a174... Add build keys with operation name functions
 });
 
 const toString = obj => typeof obj === 'object' ? JSON.stringify(obj) : obj;

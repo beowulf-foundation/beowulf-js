@@ -69,6 +69,16 @@ beowulfBroadcast.sign = function beowulfBroadcast$sign(tx, privKeys) {
   return Object.assign({}, signedTransaction);
 };
 
+beowulfBroadcast.broadcast = function beowulfBroadcast$broadcast(signedTransaction, callback) {
+  const resultP = beowulfApi.broadcastTransactionSynchronousAsync(
+    signedTransaction
+  ).then((result) => {
+    return Object.assign({}, result);
+  });
+
+  resultP.nodeify(callback || noop);
+};
+
 beowulfBroadcast._prepareTransaction = function beowulfBroadcast$_prepareTransaction(tx) {
   const propertiesP = beowulfApi.getDynamicGlobalPropertiesAsync();
   return propertiesP

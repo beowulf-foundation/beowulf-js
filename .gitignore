@@ -4,6 +4,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
 
 # Runtime data
 pids
@@ -35,6 +36,16 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.tern-port
+
+dist/beowulf-tests.min.js*
+# node-dist
+.tern-port
+.envrc
+.idea
+.save
+lib
+dist
 
 # TypeScript v1 declaration files
 typings/

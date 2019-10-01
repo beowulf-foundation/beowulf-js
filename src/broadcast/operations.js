@@ -1,0 +1,91 @@
+module.exports = [
+  {
+    "roles": ["owner"],
+    "operation": "transfer",
+    "params": [
+      "from",
+      "to",
+      "amount",
+      "fee",
+      "memo"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "transferMul",
+    "params": [
+      "from",
+      "to",
+      "amount",
+      "fee",
+      "memo",
+      "wif"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "transfer_to_vesting",
+    "params": [
+      "from",
+      "to",
+      "amount"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "withdraw_vesting",
+    "params": [
+      "account",
+      "vesting_shares"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "account_create",
+    "params": [
+      "fee",
+      "creator",
+      "new_account_name",
+      "owner",
+      "json_metadata"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "account_update",
+    "params": [
+      "account",
+      "owner",
+      "json_metadata"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "supernode_update",
+    "params": [
+      "signing_key",
+      "fee",
+      "account"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "account_supernode_vote",
+    "params": [
+      "supernode",
+      "account",
+      "approve"
+    ]
+  },
+  {
+    "roles": ["owner"],
+    "operation": "smt_create",
+    "params": [
+      "control_account",
+      "symbol",
+      "smt_creation_fee",
+      "precision",
+      "extensions"
+    ]
+  },
+];

@@ -19,17 +19,12 @@ exports = module.exports = beowulfBroadcast => {
       weight = weight || userAccount[role].weight_threshold;
       updatedAuthority.account_auths.push([authorizedUsername, weight]);
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       /** Add authority on user account */
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
@@ -57,16 +52,11 @@ exports = module.exports = beowulfBroadcast => {
       }
 
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
@@ -91,17 +81,12 @@ exports = module.exports = beowulfBroadcast => {
       weight = weight || userAccount[role].weight_threshold;
       updatedAuthority.key_auths.push([authorizedKey, weight]);
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       /** Add authority on user account */
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );
@@ -129,16 +114,11 @@ exports = module.exports = beowulfBroadcast => {
       }
 
       const owner = role === 'owner' ? updatedAuthority : undefined;
-      const active = role === 'active' ? updatedAuthority : undefined;
-      const posting = role === 'posting' ? updatedAuthority : undefined;
 
       beowulfBroadcast.accountUpdate(
         signingKey,
         userAccount.name,
         owner,
-        active,
-        posting,
-        userAccount.memo_key,
         userAccount.json_metadata,
         cb
       );

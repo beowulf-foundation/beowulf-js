@@ -50,7 +50,7 @@ beowulfjs.config.get('chain_id');
 ## JSON-RPC
 Here is how to activate JSON-RPC transport:
 ```js
-beowulfjs.api.setOptions({ url: 'https://testnet-bw.beowulfchain.com/rpc' });
+beowulfjs.api.setOptions({ url: 'https://bw.beowulfchain.com' });
 ```
 
 # API
@@ -180,12 +180,6 @@ beowulfjs.api.verifyAccountAuthority(nameOrId, signers, function(err, result) {
 
 ## Votes
 
-### Get Active Votes
-```js
-beowulfjs.api.getActiveVotes(author, permlink, function(err, result) {
-  console.log(err, result);
-});
-```
 ### Get Account Votes
 ```js
 beowulfjs.api.getAccountVotes(voter, function(err, result) {

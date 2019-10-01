@@ -32,6 +32,7 @@ static_variant [
 
 import types from './types';
 import SerializerImpl from './serializer';
+import { int64 } from '../../../../lib/auth/serializer/src/types';
 
 const {
   //id_type,
@@ -97,6 +98,15 @@ let asset = new Serializer(
 Replace: authority.prototype.account_authority_map
 With: map((string), (uint16))
 */
+
+let encrypted_memo = new Serializer("encrypted_memo", {
+  from: public_key,
+  to: public_key,
+  nonce: uint64,
+  check: uint32,
+  encrypted: string_binary}
+);
+
 let signed_transaction = new Serializer('signed_transaction', {
   ref_block_num: uint16,
   ref_block_prefix: uint32,
@@ -115,15 +125,26 @@ let transfer = new Serializer('transfer', {
   memo: string
 });
 
+// let transferMul = new Serializer('transferMul', {
+//   from: string,
+//   to: string,
+//   amount: asset,
+//   fee: asset,
+//   memo: string,
+//   wif: array
+// });
+
 let transfer_to_vesting = new Serializer('transfer_to_vesting', {
   from: string,
   to: string,
-  amount: asset
+  amount: asset,
+  fee: asset
 });
 
 let withdraw_vesting = new Serializer('withdraw_vesting', {
   account: string,
-  vesting_shares: asset
+  vesting_shares: asset,
+  fee: asset
 });
 
 // let asset_symbol = new Serializer('asset_symbol', {
@@ -148,10 +169,8 @@ let account_create = new Serializer('account_create', {
 let account_update = new Serializer('account_update', {
   account: string,
   owner: optional(authority),
-  active: optional(authority),
-  posting: optional(authority),
-  memo_key: public_key,
-  json_metadata: string
+  json_metadata: string,
+  fee: asset
 });
 
 let smt_create = new Serializer('smt_create', {
@@ -159,7 +178,8 @@ let smt_create = new Serializer('smt_create', {
   symbol: asset_symbol,
   smt_creation_fee: asset,
   precision: uint8,
-  extensions: set(future_extensions)
+  extensions: set(future_extensions),
+  fee: asset
 });
 
 let chain_properties = new Serializer('chain_properties', {
@@ -179,7 +199,9 @@ let supernode_update = new Serializer('supernode_update', {
 let account_supernode_vote = new Serializer('account_supernode_vote', {
   account: string,
   supernode: string,
-  approve: bool
+  approve: bool,
+  votes: int64,
+  fee: asset
 });
 
 let fill_vesting_withdraw = new Serializer('fill_vesting_withdraw', {
@@ -212,6 +234,7 @@ let transaction = new Serializer('transaction', {
   created_time: uint64
 });
 
+// must check ordef F:\BLOCKCHAIN\beowulf-js\src\auth\serializer\src\ChainTypes.js
 operation.st_operations = [
   transfer,
   transfer_to_vesting,
@@ -225,5 +248,7 @@ operation.st_operations = [
   shutdown_supernode,
   hardfork,
   producer_reward,
-  clear_null_account_balance
+  clear_null_account_balance,
+  // transferMul// not work
+
 ];

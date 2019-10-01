@@ -22,7 +22,11 @@ beowulf-js is the official Beowulf library for Javascript.
 #### Install
 
 ```bash
+// MainNet
 npm i beowulf-js
+
+// TestNet
+npm i beowulf-js-testnet
 ```
 
 #### Configuration

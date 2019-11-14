@@ -46,6 +46,43 @@ beowulfWallet.submitWallet = function(
   );
 };
 
+beowulfWallet.transferEX = function(
+  { creatorWif, from, to, amount, fee, memo, data_extension },
+  cb
+) {
+  beowulfBroadcast.transfer(
+    creatorWif,
+    from,
+    to,
+    amount,
+    fee,
+    memo,
+    data_extension,
+    cb
+  ); 
+};
+
+beowulfWallet.accountUpdate = function(
+  { ownerPubkey, account, wif, fee = '0.10000 W'},
+  cb
+) {
+  let jsonMetadata = '';
+  let owner = {
+    weight_threshold: 1,
+    account_auths: [],
+    key_auths: [[ownerPubkey, 1]]
+  };
+
+  beowulfBroadcast.accountUpdate(
+    wif,
+    fee,
+    account,
+    owner,
+    jsonMetadata,
+    cb
+  );
+};
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '0.10000 W' },
   cb

@@ -54,7 +54,10 @@ const {
   time_point_sec,
   optional,
   asset,
-  asset_symbol
+  asset_symbol,
+  extension_json_type,
+  arrayExtension,
+  extensions
 } = types;
 
 const future_extensions = types.void;
@@ -111,7 +114,7 @@ let signed_transaction = new Serializer('signed_transaction', {
   ref_block_prefix: uint32,
   expiration: time_point_sec,
   operations: array(operation),
-  extensions: set(future_extensions),
+  extensions: arrayExtension(extension_json_type),
   created_time: uint64,
   signatures: array(bytes(65))
 });
@@ -223,7 +226,7 @@ let transaction = new Serializer('transaction', {
   ref_block_prefix: uint32,
   expiration: time_point_sec,
   operations: array(operation),
-  extensions: set(future_extensions),
+  extensions: arrayExtension(extension_json_type),
   created_time: uint64
 });
 

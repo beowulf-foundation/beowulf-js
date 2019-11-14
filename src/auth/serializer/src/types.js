@@ -425,6 +425,82 @@ Types.array = function(st_operation){
     };
 };
 
+Types.extension_json_type = {
+    fromByteBuffer(b){
+      let type_id = b.readUint8()
+  
+      let data = Buffer.from(b.toBinary(), "binary")
+      let value = Types.extension_value.fromByteBuffer(data)
+      let extension_json = {type: "extension_json_type",
+                  value: value};
+      return JSON.stringify(extension_json)
+  
+    },
+    appendByteBuffer(b, object){
+      let type_id = chain_types.extensions.extension_json_type
+      b.writeUint8(type_id)
+      let value = object["value"]
+      let data = value["data"]
+      b.writeVString(data)
+      return
+    },
+    fromObject(object){
+      return object
+    },
+    toObject(object, debug = {}){
+        if (debug.use_default && object === undefined) { return "0.000 BWF"; }
+        return object
+    }
+  };
+
+Types.arrayExtension = function(operation){
+    return {fromByteBuffer(b){
+        var size = b.readVarint32();
+        if (HEX_DUMP) {
+            console.log("varint32 size = " + size.toString(16));
+        }
+        var result = [];
+        for (var i = 0; 0 < size ? i < size : i > size; 0 < size ? i++ : i++) {
+            result.push(operation.fromByteBuffer(b));
+        }
+        return sortOperation(result, operation);
+    },
+    appendByteBuffer(b, object){
+        v.required(object)
+        object = sortOperation(object, operation)
+        b.writeVarint32(object.length);
+        for (var i = 0, o; i < object.length; i++) {
+            o = object[i];
+            operation.appendByteBuffer(b, o);
+        }
+    },
+    fromObject(object){
+        v.required(object)
+        object = sortOperation(object, operation)
+        var result = [];
+        for (var i = 0, o; i < object.length; i++) {
+            o = object[i];
+            result.push(operation.fromObject(o));
+        }
+        return result;
+    },
+    toObject(object, debug = {}){
+        if (debug.use_default && object === undefined) {
+            return [ operation.toObject(object, debug) ];
+        }
+        v.required(object)
+        object = sortOperation(object, operation)
+
+        var result = [];
+        for (var i = 0, o; i < object.length; i++) {
+            o = object[i];
+            result.push(operation.toObject(o, debug));
+        }
+        return result;
+    }
+    };
+};
+
 Types.time_point_sec = {
     fromByteBuffer(b){ return b.readUint32(); },
     appendByteBuffer(b, object){

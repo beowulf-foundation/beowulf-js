@@ -463,11 +463,10 @@ Types.arrayExtension = function(operation){
         for (var i = 0; 0 < size ? i < size : i > size; 0 < size ? i++ : i++) {
             result.push(operation.fromByteBuffer(b));
         }
-        return sortOperation(result, operation);
+        return result;
     },
     appendByteBuffer(b, object){
         v.required(object)
-        object = sortOperation(object, operation)
         b.writeVarint32(object.length);
         for (var i = 0, o; i < object.length; i++) {
             o = object[i];
@@ -476,7 +475,6 @@ Types.arrayExtension = function(operation){
     },
     fromObject(object){
         v.required(object)
-        object = sortOperation(object, operation)
         var result = [];
         for (var i = 0, o; i < object.length; i++) {
             o = object[i];
@@ -489,7 +487,6 @@ Types.arrayExtension = function(operation){
             return [ operation.toObject(object, debug) ];
         }
         v.required(object)
-        object = sortOperation(object, operation)
 
         var result = [];
         for (var i = 0, o; i < object.length; i++) {

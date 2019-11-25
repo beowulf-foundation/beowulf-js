@@ -153,8 +153,6 @@ operations.forEach((operation) => {
       const callback = args[operationParams.length];
       return beowulfBroadcast[`${operationName}With`](wif, options, callback);
     };
-<<<<<<< HEAD
-=======
   
   beowulfBroadcast[`${operationName}Multisig`] =
     function(wif, ...args) {
@@ -186,7 +184,6 @@ operations.forEach((operation) => {
         )]],
       }, keys, callback);
     };
->>>>>>> 742a174... Add build keys with operation name functions
 });
 
 const toString = obj => typeof obj === 'object' ? JSON.stringify(obj) : obj;

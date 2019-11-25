@@ -28,8 +28,7 @@ module.exports = [
     "params": [
       "from",
       "to",
-      "amount",
-      "fee"
+      "amount"
     ]
   },
   {
@@ -37,8 +36,7 @@ module.exports = [
     "operation": "withdraw_vesting",
     "params": [
       "account",
-      "vesting_shares",
-      "fee"
+      "vesting_shares"
     ]
   },
   {
@@ -56,7 +54,6 @@ module.exports = [
     "roles": ["owner"],
     "operation": "account_update",
     "params": [
-      "fee",
       "account",
       "owner",
       "json_metadata"
@@ -77,9 +74,7 @@ module.exports = [
     "params": [
       "supernode",
       "account",
-      "approve",
-      "votes",
-      "fee"
+      "approve"
     ]
   },
   {
@@ -90,8 +85,7 @@ module.exports = [
       "symbol",
       "smt_creation_fee",
       "precision",
-      "extensions",
-      "fee"
+      "extensions"
     ]
   },
 ];

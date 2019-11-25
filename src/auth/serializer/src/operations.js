@@ -32,7 +32,6 @@ static_variant [
 
 import types from './types';
 import SerializerImpl from './serializer';
-import { int64 } from '../../../../lib/auth/serializer/src/types';
 
 const {
   //id_type,
@@ -55,7 +54,10 @@ const {
   time_point_sec,
   optional,
   asset,
-  asset_symbol
+  asset_symbol,
+  extension_json_type,
+  arrayExtension,
+  extensions
 } = types;
 
 const future_extensions = types.void;
@@ -98,7 +100,6 @@ let asset = new Serializer(
 Replace: authority.prototype.account_authority_map
 With: map((string), (uint16))
 */
-
 let encrypted_memo = new Serializer("encrypted_memo", {
   from: public_key,
   to: public_key,
@@ -112,7 +113,7 @@ let signed_transaction = new Serializer('signed_transaction', {
   ref_block_prefix: uint32,
   expiration: time_point_sec,
   operations: array(operation),
-  extensions: set(future_extensions),
+  extensions: arrayExtension(extension_json_type),
   created_time: uint64,
   signatures: array(bytes(65))
 });
@@ -137,14 +138,12 @@ let transfer = new Serializer('transfer', {
 let transfer_to_vesting = new Serializer('transfer_to_vesting', {
   from: string,
   to: string,
-  amount: asset,
-  fee: asset
+  amount: asset
 });
 
 let withdraw_vesting = new Serializer('withdraw_vesting', {
   account: string,
-  vesting_shares: asset,
-  fee: asset
+  vesting_shares: asset
 });
 
 // let asset_symbol = new Serializer('asset_symbol', {
@@ -169,8 +168,7 @@ let account_create = new Serializer('account_create', {
 let account_update = new Serializer('account_update', {
   account: string,
   owner: optional(authority),
-  json_metadata: string,
-  fee: asset
+  json_metadata: string
 });
 
 let smt_create = new Serializer('smt_create', {
@@ -178,8 +176,7 @@ let smt_create = new Serializer('smt_create', {
   symbol: asset_symbol,
   smt_creation_fee: asset,
   precision: uint8,
-  extensions: set(future_extensions),
-  fee: asset
+  extensions: set(future_extensions)
 });
 
 let chain_properties = new Serializer('chain_properties', {
@@ -199,9 +196,7 @@ let supernode_update = new Serializer('supernode_update', {
 let account_supernode_vote = new Serializer('account_supernode_vote', {
   account: string,
   supernode: string,
-  approve: bool,
-  votes: int64,
-  fee: asset
+  approve: bool
 });
 
 let fill_vesting_withdraw = new Serializer('fill_vesting_withdraw', {
@@ -230,7 +225,7 @@ let transaction = new Serializer('transaction', {
   ref_block_prefix: uint32,
   expiration: time_point_sec,
   operations: array(operation),
-  extensions: set(future_extensions),
+  extensions: arrayExtension(extension_json_type),
   created_time: uint64
 });
 

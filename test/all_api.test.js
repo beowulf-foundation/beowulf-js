@@ -235,7 +235,25 @@ describe('beowulf.test: api', () => {
     });
     it('get transaction hex', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
-            beowulf.api.getTransactionHex({"ref_block_num": 4002,"ref_block_prefix": 2487571678,"expiration": "2019-05-08T09:08:25","operations": [["account_create",{"fee":"0.01000 W","creator": "beowulf","new_account_name": "alice","owner": {"weight_threshold": 1,"account_auths": [],"key_auths": [["BEO8GVwodYr2tUzE6eUjJEEiDqUpzCmab6V3ZHyszdhidQUbLK25t",1]]},"json_metadata": ""}]],"extensions": [],"created_time": 1557306475,"signatures": ["1f620e37b168c7f7e1a9822c3614fd4b2eb6251c776a3c4aabce136a333ff031cc56ebcfffe21a8be9f50a207070248181262433c88017e874f70f4d95b982b54d"]},  function(err, result){
+            beowulf.api.getTransactionHex({  "ref_block_num": 17251,
+            "ref_block_prefix": 2242256486,
+            "expiration": "2019-09-19T07:00:40",
+            "operations": [
+                [
+                    "transfer",
+                    {
+                        "from": "kietwallet",
+                        "to": "haimaster",
+                        "amount": "1.00000 BWF",
+                        "fee": "0.01000 W",
+                        "memo": "hi"
+                    }
+                ]
+            ],
+            "extensions": [],
+            "signatures": [
+                "1f5d670e94f37a45c06f9a6d72da6356ff753238699e78713d654b37f37b214243250053f9a588715f063f4e1906c7e3c9ad0896c0130c70c5479172fd34c35b43"
+            ]   },  function(err, result){
                 resolve([err, result]);
             });            
         });
@@ -247,7 +265,7 @@ describe('beowulf.test: api', () => {
     });
     it('get transaction', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
-            beowulf.api.getTransaction('ea6a55d87e4d8cb1a529135d9ec87b7a2920065e',  function(err, result){
+            beowulf.api.getTransaction('e6bb0068ea4fa58cf857eac5b9cb26ad3e305320',  function(err, result){
                 resolve([err, result])
             });
         });
@@ -260,16 +278,16 @@ describe('beowulf.test: api', () => {
     it('get potential signatures', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
             beowulf.api.getPotentialSignatures({
-                "ref_block_num": 35268,
-                "ref_block_prefix": 2450539490,
-                "expiration": "2019-09-03T11:46:10",
+                "ref_block_num": 17251,
+                "ref_block_prefix": 2242256486,
+                "expiration": "2019-09-19T07:00:40",
                 "operations": [
                     [
                         "transfer",
                         {
                             "from": "kietwallet",
-                            "to": "kietmul",
-                            "amount": "10.00000 W",
+                            "to": "haimaster",
+                            "amount": "1.00000 BWF",
                             "fee": "0.01000 W",
                             "memo": "hi"
                         }
@@ -277,7 +295,7 @@ describe('beowulf.test: api', () => {
                 ],
                 "extensions": [],
                 "signatures": [
-                    "202b3def508c05753cc1428c15a63ee266d50e32874e7799a27f5846683dff52ac6aa5c99b1baa6c0513fcf9c48d4d3bc3348f90fc13e3f0422edf8435a1def5ec"
+                    "1f5d670e94f37a45c06f9a6d72da6356ff753238699e78713d654b37f37b214243250053f9a588715f063f4e1906c7e3c9ad0896c0130c70c5479172fd34c35b43"
                 ]
             },  function(err, result){
                 resolve([err, result])
@@ -304,25 +322,25 @@ describe('beowulf.test: api', () => {
     it('verify authority', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
             beowulf.api.verifyAuthority( {
-                "ref_block_num": 35268,
-                "ref_block_prefix": 2450539490,
-                "expiration": "2019-09-03T11:46:10",
+                "ref_block_num": 17251,
+                "ref_block_prefix": 2242256486,
+                "expiration": "2019-09-19T07:00:40",
                 "operations": [
                     [
                         "transfer",
                         {
                             "from": "kietwallet",
-                            "to": "kietmul",
-                            "amount": "10.00000 W",
+                            "to": "haimaster",
+                            "amount": "1.00000 BWF",
                             "fee": "0.01000 W",
                             "memo": "hi"
                         }
                     ]
                 ],
                 "extensions": [],
-                "created_time": 1567510574,
+                "created_time": "1568875843",
                 "signatures": [
-                    "202b3def508c05753cc1428c15a63ee266d50e32874e7799a27f5846683dff52ac6aa5c99b1baa6c0513fcf9c48d4d3bc3348f90fc13e3f0422edf8435a1def5ec"
+                    "1f5d670e94f37a45c06f9a6d72da6356ff753238699e78713d654b37f37b214243250053f9a588715f063f4e1906c7e3c9ad0896c0130c70c5479172fd34c35b43"
                 ]
              },  function(err, result){
                 resolve([err, result]);
@@ -365,31 +383,30 @@ describe('beowulf.test: api', () => {
     it('get required signatures', async () => {
         let [err, result] = await new Promise((resolve, reject) => {
             beowulf.api.getRequiredSignatures( {
-                "ref_block_num": 35268,
-           "ref_block_prefix": 2450539490,
-           "expiration": "2019-09-03T11:46:10",
-           "operations": [
-               [
-                   "transfer",
-                   {
-                       "from": "kietwallet",
-                       "to": "kietmul",
-                       "amount": "10.00000 W",
-                       "fee": "0.01000 W",
-                       "memo": "hi"
-                   }
-               ]
-           ],
-           "extensions": [],
-           "created_time": 1567510574,
-           "signatures": [
-               "202b3def508c05753cc1428c15a63ee266d50e32874e7799a27f5846683dff52ac6aa5c99b1baa6c0513fcf9c48d4d3bc3348f90fc13e3f0422edf8435a1def5ec"
-           ]
-           },
-           [
-               "BEO5pL6xw5rZ84iAW2BxCCDcD6vDMC83BKJXycbSV3ThLJ5SPkuM2"
-           ],  function(err, result){
-                resolve([err, result]);
+                "ref_block_num": 17251,
+                "ref_block_prefix": 2242256486,
+                "expiration": "2019-09-19T07:00:40",
+                "operations": [
+                    [
+                        "transfer",
+                        {
+                            "from": "kietwallet",
+                            "to": "haimaster",
+                            "amount": "1.00000 BWF",
+                            "fee": "0.01000 W",
+                            "memo": "hi"
+                        }
+                    ]
+                ],
+                "extensions": [],
+                "signatures": [
+                    "1f5d670e94f37a45c06f9a6d72da6356ff753238699e78713d654b37f37b214243250053f9a588715f063f4e1906c7e3c9ad0896c0130c70c5479172fd34c35b43"
+                ]
+                },
+                [
+                    "BEO7UNqe9mas3H24AJnXcqanW2qo1EF3Ei89r2GyNHuomgEes68un"
+                ],  function(err, result){
+                      resolve([err, result]);
             });
         });
         if (result !== undefined) {

@@ -55,7 +55,7 @@ beowulfWallet.accountUpdate = function(
     weight_threshold: 1,
     account_auths: [],
     key_auths: [[ownerPubkey, 1]]
-  };  
+  };
 
   beowulfBroadcast.accountCreate(
     creatorWif,
@@ -68,8 +68,24 @@ beowulfWallet.accountUpdate = function(
   );
 };
 
+beowulfWallet.transferEX = function(
+  { creatorWif, from, to, amount, fee, memo, data_extension },
+  cb
+) {
+  beowulfBroadcast.transfer(
+    creatorWif,
+    from,
+    to,
+    amount,
+    fee,
+    memo,
+    data_extension,
+    cb
+  ); 
+};
+
 beowulfWallet.accountUpdate = function(
-  { ownerPubkey, account, wif, fee = '0.01000 W'},
+  { ownerPubkey, account, wif, fee = '0.10000 W'},
   cb
 ) {
   let jsonMetadata = '';
@@ -101,8 +117,8 @@ beowulfWallet.submitMulWallet = function(
   let jsonMetadata = '';
   let owner = {
     weight_threshold: weight_threshold,
-    account_auths: [],
-    key_auths: wallet
+    account_auths: wallet,
+    key_auths: []
   };
 
   beowulfBroadcast.accountUpdate(

@@ -30,7 +30,7 @@ ChainTypes.object_type = {
   base: 1,
 };
 
-ChainTypes.extensions = {
+ChainTypes.extensions= {
   void: 0,
   extension_json_type: 1
 }

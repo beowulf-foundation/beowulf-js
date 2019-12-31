@@ -1,3 +1,4 @@
+
 const PrivateKey = require('./key_private');
 const hash = require('./hash');
 const secureRandom = require('secure-random');

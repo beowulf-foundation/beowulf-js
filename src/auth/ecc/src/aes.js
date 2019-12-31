@@ -9,6 +9,7 @@ import hash from './hash';
 const Long = ByteBuffer.Long;
 
 /**
+    Spec: http://localhost:3002/beowulf/@dantheman/how-to-encrypt-a-memo-when-transferring-beowulf
     @throws {Error|TypeError} - "Invalid Key, ..."
     @arg {PrivateKey} private_key - required and used for decryption
     @arg {PublicKey} public_key - required and used to calcualte the shared secret
@@ -24,6 +25,7 @@ export function encrypt(private_key, public_key, message, nonce = uniqueNonce())
 }
 
 /**
+    Spec: http://localhost:3002/beowulf/@dantheman/how-to-encrypt-a-memo-when-transferring-beowulf
     @arg {PrivateKey} private_key - required and used for decryption
     @arg {PublicKey} public_key - required and used to calcualte the shared secret
     @arg {string} nonce - random or unique uint64, provides entropy when re-using the same private/public keys.

@@ -5,6 +5,7 @@ var assert = require('assert');
 var BigInteger = require('bigi');
 var PublicKey = require('./key_public');
 var PrivateKey = require('./key_private');
+const secureRandom = require('secure-random');
 
 class Signature {
 
@@ -77,7 +78,9 @@ class Signature {
 
         var der, e, ecsignature, i, lenR, lenS, nonce;
         i = null;
-        nonce = 0;
+        let buf = secureRandom(4, {type: 'Buffer'});
+        nonce = parseInt(buf.toString('hex'), 16);
+        nonce = nonce >>> 1;
         e = BigInteger.fromBuffer(buf_sha256);
         while (true) {
           ecsignature = ecdsa.sign(curve, buf_sha256, private_key.d, nonce++);

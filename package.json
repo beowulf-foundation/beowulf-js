@@ -1,6 +1,6 @@
 {
   "name": "beowulf-js-testnet",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Beowulf the JavaScript API for Beowulf blockchain",
   "main": "lib/index.js",
   "scripts": {

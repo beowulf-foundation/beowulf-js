@@ -78,7 +78,7 @@ class Signature {
 
         var der, e, ecsignature, i, lenR, lenS, nonce;
         i = null;
-        let buf = secureRandom(4, {type: 'Buffer'});
+        let buf = secureRandom(2, {type: 'Buffer'});
         nonce = parseInt(buf.toString('hex'), 16);
         nonce = nonce >>> 1;
         e = BigInteger.fromBuffer(buf_sha256);

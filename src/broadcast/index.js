@@ -40,7 +40,7 @@ beowulfBroadcast.send = function beowulfBroadcast$send(tx, privKeys, callback) {
       return beowulfApi.broadcastTransactionSynchronousAsync(
         signedTransaction
       ).then((result) => {
-        return Object.assign({}, result, signedTransaction);
+         return Object.assign({}, result, signedTransaction);        
       });
     });
 
@@ -124,12 +124,22 @@ operations.forEach((operation) => {
   beowulfBroadcast[`${operationName}Keys`] = buildKeys;
 
   beowulfBroadcast[`${operationName}With`] =
-    function beowulfBroadcast$specializedSendWith(wif, options, callback) {
+    function beowulfBroadcast$specializedSendWith(wif, options, data_extension, callback) {
       debug(`Sending operation "${operationName}" with`, {options, callback});
       const keys = buildKeys(wif);
-
+      let extensions;
+      if (data_extension != null){
+        extensions = [{
+         "type":"extension_json_type",
+         "value":{
+             "data": data_extension
+          }
+        }]
+      } else {
+        extensions = [];
+      };
       return beowulfBroadcast.send({
-        extensions: [],
+        extensions,
         operations: [[operation.operation, Object.assign(
           {},
           options,
@@ -146,14 +156,19 @@ operations.forEach((operation) => {
   beowulfBroadcast[operationName] =
     function beowulfBroadcast$specializedSend(wif, ...args) {
       debug(`Parsing operation "${operationName}" with`, {args});
+      if (args.length == 6){
+        var data_extension = null;
+      } else {
+        var data_extension = args[args.length - 2] ;
+      }
       const options = operationParams.reduce((memo, param, i) => {
         memo[param] = args[i]; // eslint-disable-line no-param-reassign
         return memo;
       }, {});
-      const callback = args[operationParams.length];
-      return beowulfBroadcast[`${operationName}With`](wif, options, callback);
+      const callback = args[args.length - 1];
+      return beowulfBroadcast[`${operationName}With`](wif, options, data_extension, callback);
     };
-  
+
   beowulfBroadcast[`${operationName}Multisig`] =
     function(wif, ...args) {
       debug(`Parsing operation "${operationName}" with`, {args});

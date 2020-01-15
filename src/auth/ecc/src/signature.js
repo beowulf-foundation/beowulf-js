@@ -94,7 +94,7 @@ class Signature {
             break;
           }
           if (nonce % 10 === 0) {
-            console.log("WARN: " + nonce + " attempts to find canonical signature");
+            console.log("WARN: attempts to find canonical signature");
           }
         }
         return new Signature(ecsignature.r, ecsignature.s, i);

@@ -110,7 +110,6 @@ let encrypted_memo = new Serializer("encrypted_memo", {
   encrypted: string_binary}
 );
 
-
 let signed_transaction = new Serializer('signed_transaction', {
   ref_block_num: uint16,
   ref_block_prefix: uint32,

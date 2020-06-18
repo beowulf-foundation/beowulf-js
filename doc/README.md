@@ -36,7 +36,7 @@ Default config should work with beowulfjs, however you can change it to work wit
 ```js
 beowulfjs.api.setOptions({ url: 'wss://ws.yourdomain.com' }); // assuming websocket is work at ws.yourdomain.com
 beowulfjs.config.set('address_prefix','BEO');
-beowulfjs.config.set('chain_id','e2222eeabcf9224632c82ec86ba3d77b359e3b5cb8a089ddd45090c31c98e3f2');
+beowulfjs.config.set('chain_id','430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7');
 ```
 ### set
 ```js

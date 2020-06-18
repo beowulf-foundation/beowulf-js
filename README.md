@@ -22,14 +22,17 @@ beowulf-js is the official Beowulf library for Javascript.
 #### Install
 
 ```bash
-// MainNet
 npm i beowulf-js
-
-// TestNet
-npm i beowulf-js-testnet
 ```
 
-#### Configuration
+#### For running on Testnet
+```js
+const beowulfjs = require('beowulf-js');
+beowulfjs.config.set('chain_id', '430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7');
+beowulfjs.config.set('uri', 'https://testnet-bw.beowulfchain.com');
+```
+
+#### Init
 
 ```js
 const beowulfjs = require('beowulf-js');
@@ -97,7 +100,7 @@ let ownerPubkey = 'BEO7GXMArUCaxq1kPNP4JkcnshVDyfpVTfEwL8e8FVAN6BgpU8Y1k';
 let account = 'newwallet';
 let creator = 'creatorwallet';
 let creatorWif = '5Kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // replace by your wif
-let fee = '0.00100 W';
+let fee = '0.10000 W'; // Minimum account creation fee
 
 beowulfjs.wallet.submitWallet({
   ownerPubkey,
@@ -134,7 +137,7 @@ let wif = '5Jxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // replace by y
 let to = 'examplewallet2';
 let amount = '4.00000 BWF';
 let memo = 'example';
-let fee = '0.00001 W';
+let fee = '0.01000 W'; // Minimum transfer fee
 
 beowulfjs.broadcast.transfer(wif, from, to, amount, fee, memo, (err, result) => {
   console.log(err, result);

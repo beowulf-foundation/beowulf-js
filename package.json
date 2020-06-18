@@ -1,6 +1,6 @@
 {
   "name": "beowulf-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Beowulf the JavaScript API for Beowulf blockchain",
   "main": "lib/index.js",
   "scripts": {

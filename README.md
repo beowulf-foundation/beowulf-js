@@ -1,10 +1,6 @@
-# beowulf-js
+# Official JS BEOWULF Library
 
-beowulf-js is the official Beowulf library for Javascript.  
-
-## Full Documentation
-- Please have a look at the [Wiki](https://github.com/beowulf-foundation/beowulf-javascript/wiki) for full documentation, examples, operational details and other information.  
-- The api documentation can be found in the official beowulf developers portal: https://beowulfchain.com/developer-guide/javascript  
+`beowulf-js` is the official Beowulf library for Javascript.  
 
 ## Main Functions Supported
 1. CHAIN  
@@ -15,32 +11,16 @@ beowulf-js is the official Beowulf library for Javascript.
 - create transaction transfer
 - create account
 
-#### Requirements
-* npm minimum version 6.9.0
+## Requirements
+* `beowulf-js` requires npm 6.9.0 or higher. 
 
-
-#### Install
+## Installation
 
 ```bash
 npm i beowulf-js
 ```
 
-#### For running on Testnet
-```js
-const beowulfjs = require('beowulf-js');
-beowulfjs.config.set('chain_id', '430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7');
-beowulfjs.config.set('uri', 'https://testnet-bw.beowulfchain.com');
-```
-
-#### Init
-
-```js
-const beowulfjs = require('beowulf-js');
-let url = beowulfjs.config.get('uri');
-beowulfjs.api.setOptions({ url: url, useAppbaseApi: true });
-```
-
-#### Example Usage
+## Example Usage
 ##### Get a block
 ```js
 let blockNum = 232967;

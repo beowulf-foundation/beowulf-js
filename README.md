@@ -20,6 +20,22 @@
 npm i beowulf-js
 ```
 
+## Configuration
+#### For running on Testnet
+```js
+const beowulfjs = require('beowulf-js');
+beowulfjs.config.set('chain_id', '430b37f23cf146d42f15376f341d7f8f5a1ad6f4e63affdeb5dc61d55d8c95a7');
+beowulfjs.config.set('uri', 'https://testnet-bw.beowulfchain.com');
+```
+
+#### Init
+
+```js
+const beowulfjs = require('beowulf-js');
+let url = beowulfjs.config.get('uri');
+beowulfjs.api.setOptions({ url: url, useAppbaseApi: true });
+```
+
 ## Example Usage
 ##### Get a block
 ```js

@@ -21,6 +21,12 @@ npm i beowulf-js
 ```
 
 ## Configuration
+#### For running on Mainnet
+```js
+const beowulfjs = require('beowulf-js');
+beowulfjs.config.set('chain_id', 'e2222eeabcf9224632c82ec86ba3d77b359e3b5cb8a089ddd45090c31c98e3f2');
+beowulfjs.config.set('uri', 'https://bw.beowulfchain.com');
+
 #### For running on Testnet
 ```js
 const beowulfjs = require('beowulf-js');

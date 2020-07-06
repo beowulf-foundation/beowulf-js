@@ -193,9 +193,7 @@ let chain_properties = new Serializer('chain_properties', {
 
 let supernode_update = new Serializer('supernode_update', {
   owner: string,
-  url: string,
   block_signing_key: public_key,
-  props: chain_properties,
   fee: asset
 });
 

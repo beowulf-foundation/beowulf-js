@@ -66,9 +66,9 @@ module.exports = [
     "roles": ["owner"],
     "operation": "supernode_update",
     "params": [
-      "signing_key",
-      "fee",
-      "account"
+      "owner",
+      "block_signing_key",
+      "fee"
     ]
   },
   {

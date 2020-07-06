@@ -83,6 +83,19 @@ beowulfWallet.accountUpdate = function(
   );
 };
 
+beowulfWallet.supernodeUpdate = function(
+  {  wif, owner, block_signing_key, fee = '0.01000 W'},
+  cb
+) {
+  beowulfBroadcast.supernodeUpdate(
+    wif,
+    owner,
+    block_signing_key,
+    fee,
+    cb
+  );
+};
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '0.10000 W' },
   cb
@@ -95,8 +108,8 @@ beowulfWallet.submitMulWallet = function(
   let jsonMetadata = '';
   let owner = {
     weight_threshold: weight_threshold,
-    account_auths: wallet,
-    key_auths: []
+    account_auths: [],
+    key_auths: wallet
   };
 
   beowulfBroadcast.accountCreate(

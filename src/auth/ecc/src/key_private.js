@@ -62,7 +62,7 @@ class PrivateKey {
         var new_checksum = hash.sha256(private_key);
         new_checksum = hash.sha256(new_checksum);
         new_checksum = new_checksum.slice(0, 4);
-        if (checksum.toString() !== new_checksum.toString())
+        if (checksum.toString('hex') !== new_checksum.toString('hex'))
             throw new Error('Invalid WIF key (checksum miss-match)')
 
         private_key = private_key.slice(1);

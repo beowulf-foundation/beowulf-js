@@ -3,6 +3,7 @@ const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numbers = '1234567890';
 const special = '`~!@#$%^&*()-=_+[]{}|;\':",./<>?';
 const hex = '123456789ABCDEF';
+const secureRandom = require("secure-random")
 
 function keyGen(
   length,
@@ -22,10 +23,22 @@ function keyGen(
   if (useHex) chars += hex;
 
   for (let i = 0; i < length; i++) {
-    key += chars[Math.floor(Math.random() * chars.length)];
+    key += chars[Math.floor(cryptoRandom() * chars.length)];
   }
 
   return key;
+}
+
+function cryptoRandom() {
+  var cryptoRandoms, cryptoRandomSlices = [], cryptoRandom;
+    while((cryptoRandom = "." + cryptoRandomSlices.join("")).length < 10){
+        cryptoRandoms = secureRandom(16, {type: 'Uint8Array'});
+        for(var i = 0; i < cryptoRandoms.length; i++){
+            var cryptoRandomSlice = cryptoRandoms[i].toString().slice(1, -1);
+            if(cryptoRandomSlice.length > 0) cryptoRandomSlices[cryptoRandomSlices.length] = cryptoRandomSlice;
+        }
+    }
+    return cryptoRandom;
 }
 
 function getKey(strength) {

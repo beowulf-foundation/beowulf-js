@@ -76,7 +76,7 @@ module.exports._internal = _internal =
         
         if (sign === "-" && !/[1-9]/.test(int_part + decimal_part)) { sign = ""; }
         if (int_part === "") { int_part = "0"; }
-        for (var i = 0; 0 < zero_pad_count ? i < zero_pad_count : i > zero_pad_count; 0 < zero_pad_count ? i++ : i++) {
+        for (var i = 0; 0 < zero_pad_count ? i < zero_pad_count : i > zero_pad_count; i++) {
             decimal_part += "0";
         }
         

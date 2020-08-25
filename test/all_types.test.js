@@ -1,4 +1,4 @@
-import { PrivateKey, PublicKey, Address } from '../src/auth/ecc';
+import { PrivateKey, Address } from '../src/auth/ecc';
 var assert = require('assert');
 var Serilizer = require('../src/auth/serializer/src/serializer');
 var types = require('../src/auth/serializer/src/types');
@@ -105,10 +105,10 @@ let allTypes = {
 describe('beowulf.auth: all types', () => {
   let { toObject, fromObject, toBuffer, fromBuffer } = AllTypes;
 
-  toObject = toObject.bind(AllTypes);
-  fromObject = fromObject.bind(AllTypes);
-  toBuffer = toBuffer.bind(AllTypes);
-  fromBuffer = fromBuffer.bind(AllTypes);
+  // toObject = toObject.bind(AllTypes);
+  // fromObject = fromObject.bind(AllTypes);
+  // toBuffer = toBuffer.bind(AllTypes);
+  // fromBuffer = fromBuffer.bind(AllTypes);
 
   it('from object', () => {
     assert(1, 1);

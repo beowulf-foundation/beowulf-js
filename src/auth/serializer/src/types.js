@@ -281,7 +281,8 @@ Types.string_binary =
     {fromByteBuffer(b){
         var b_copy;
         var len = b.readVarint32();
-        b_copy = b.copy(b.offset, b.offset + len), b.skip(len);
+        b_copy = b.copy(b.offset, b.offset + len);
+        b.skip(len);
         return Buffer.from(b_copy.toBinary(), 'binary');
 
     },
@@ -305,10 +306,12 @@ Types.bytes = function(size){
         if (size === undefined) {
             var b_copy;
             var len = b.readVarint32();
-            b_copy = b.copy(b.offset, b.offset + len), b.skip(len);
+            b_copy = b.copy(b.offset, b.offset + len);
+            b.skip(len);
             return Buffer.from(b_copy.toBinary(), 'binary');
         } else {
-            b_copy = b.copy(b.offset, b.offset + size), b.skip(size);
+            b_copy = b.copy(b.offset, b.offset + size); 
+            b.skip(size);
             return Buffer.from(b_copy.toBinary(), 'binary');
         }
     },
@@ -384,7 +387,7 @@ Types.array = function(st_operation){
             console.log("varint32 size = " + size.toString(16));
         }
         var result = [];
-        for (var i = 0; 0 < size ? i < size : i > size; 0 < size ? i++ : i++) {
+        for (var i = 0; 0 < size ? i < size : i > size; i++) {
             result.push(st_operation.fromByteBuffer(b));
         }
         return sortOperation(result, st_operation);
@@ -460,7 +463,7 @@ Types.arrayExtension = function(operation){
             console.log("varint32 size = " + size.toString(16));
         }
         var result = [];
-        for (var i = 0; 0 < size ? i < size : i > size; 0 < size ? i++ : i++) {
+        for (var i = 0; 0 < size ? i < size : i > size; i++) {
             result.push(operation.fromByteBuffer(b));
         }
         return result;
@@ -564,7 +567,7 @@ Types.set = function(st_operation){
         }
         return this.validate(((() => {
             var result = [];
-            for (var i = 0; 0 < size ? i < size : i > size; 0 < size ? i++ : i++) {
+            for (var i = 0; 0 < size ? i < size : i > size; i++) {
                 result.push(st_operation.fromByteBuffer(b));
             }
             return result;
@@ -926,7 +929,7 @@ Types.map = function(key_st_operation, value_st_operation){
     fromByteBuffer(b){
         var result = [];
         var end = b.readVarint32();
-        for (var i = 0; 0 < end ? i < end : i > end; 0 < end ? i++ : i++) {
+        for (var i = 0; 0 < end ? i < end : i > end; i++) {
             result.push([
                 key_st_operation.fromByteBuffer(b),
                 value_st_operation.fromByteBuffer(b)

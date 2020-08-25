@@ -108,9 +108,7 @@ operations.forEach((operation) => {
   const operationName = camelCase(operation.operation);
   const operationParams = operation.params || [];
 
-  const useCommentPermlink =
-    operationParams.indexOf('parent_permlink') !== -1 &&
-    operationParams.indexOf('parent_permlink') !== -1;
+  const useCommentPermlink = operationParams.indexOf('parent_permlink') !== -1;
 
   const buildKeys = function(wif) {
     const keys = {};

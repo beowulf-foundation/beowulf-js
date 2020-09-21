@@ -96,6 +96,33 @@ beowulfWallet.supernodeUpdate = function(
   );
 };
 
+beowulfWallet.transferToVesting = function(
+  {  wif, from, to, amount, fee = '0.01000 W'},
+  cb
+) {
+  beowulfBroadcast.transferToVesting(
+    wif,
+    from,
+    to,
+    amount,
+    fee,
+    cb
+  );
+};
+
+beowulfWallet.withdrawVesting = function(
+  {  wif, account, vesting_shares, fee = '0.01000 W'},
+  cb
+) {
+  beowulfBroadcast.withdrawVesting(
+    wif,
+    account,
+    vesting_shares,
+    fee,
+    cb
+  );
+};
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '0.10000 W' },
   cb

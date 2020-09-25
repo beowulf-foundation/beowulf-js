@@ -83,6 +83,22 @@ beowulfWallet.accountUpdate = function(
   );
 };
 
+
+beowulfWallet.accountSupernodeVote = function(
+  {  wif, supernode, account, approve, votes, fee = '0.01000 W'},
+  cb
+) {
+  beowulfBroadcast.accountSupernodeVote(
+    wif,
+    supernode,
+    account,
+    approve,
+    votes,
+    fee,
+    cb
+  );
+};
+
 beowulfWallet.supernodeUpdate = function(
   {  wif, owner, block_signing_key, fee = '0.01000 W'},
   cb

@@ -123,6 +123,33 @@ beowulfWallet.withdrawVesting = function(
   );
 };
 
+beowulfWallet.accountUpdateMul = function(
+  { wallet, weight_threshold, account, wif, fee = '0.10000 W'},
+  cb
+) {
+  if (weight_threshold <= 0) {
+    throw new Error("weight threshold is wrong")
+  } else if (weight_threshold === undefined) {
+    weight_threshold = 1;
+  };
+  let jsonMetadata = '';
+  let owner = {
+    weight_threshold: weight_threshold,
+    account_auths: wallet,
+    key_auths: []
+  };
+
+  beowulfBroadcast.accountUpdate(
+    wif,
+    fee,
+    account,
+    owner,
+    jsonMetadata,
+    cb
+  );
+};
+
+
 beowulfWallet.submitMulWallet = function(
   { wallet, weight_threshold, account, creator, creatorWif, fee = '0.10000 W' },
   cb

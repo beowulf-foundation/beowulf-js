@@ -178,8 +178,8 @@ beowulfWallet.submitMulWallet = function(
   let jsonMetadata = '';
   let owner = {
     weight_threshold: weight_threshold,
-    account_auths: [],
-    key_auths: wallet
+    account_auths: wallet,
+    key_auths: []
   };
 
   beowulfBroadcast.accountCreate(

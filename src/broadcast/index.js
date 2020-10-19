@@ -94,7 +94,7 @@ beowulfBroadcast._prepareTransaction = function beowulfBroadcast$_prepareTransac
           created_time: parseInt(+(new Date()) / 1000),
           expiration: new Date(
             chainDate.getTime() +
-            600 * 1000
+            3600 * 1000
           ),
         }, tx);
       });

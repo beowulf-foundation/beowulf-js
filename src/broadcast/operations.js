@@ -87,11 +87,12 @@ module.exports = [
     "operation": "smt_create",
     "params": [
       "control_account",
+      "creator",
       "symbol",
       "smt_creation_fee",
       "precision",
       "extensions",
-      "fee"
+      "max_supply"
     ]
   },
 ];

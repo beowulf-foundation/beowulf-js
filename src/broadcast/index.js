@@ -154,7 +154,7 @@ operations.forEach((operation) => {
   beowulfBroadcast[operationName] =
     function beowulfBroadcast$specializedSend(wif, ...args) {
       debug(`Parsing operation "${operationName}" with`, {args});
-      if (args.length == 6){
+      if (args.length != 7){
         var data_extension = null;
       } else {
         var data_extension = args[args.length - 2] ;

@@ -178,11 +178,12 @@ let account_update = new Serializer('account_update', {
 
 let smt_create = new Serializer('smt_create', {
   control_account: string,
+  creator: string,
   symbol: asset_symbol,
   smt_creation_fee: asset,
   precision: uint8,
   extensions: set(future_extensions),
-  fee: asset
+  max_supply: int64
 });
 
 let chain_properties = new Serializer('chain_properties', {

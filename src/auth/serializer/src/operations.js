@@ -181,7 +181,7 @@ let smt_create = new Serializer('smt_create', {
   creator: string,
   symbol: asset_symbol,
   smt_creation_fee: asset,
-  precision: uint8,
+  precision: uint32,
   extensions: set(future_extensions),
   max_supply: int64
 });

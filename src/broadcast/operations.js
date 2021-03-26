@@ -87,8 +87,8 @@ module.exports = [
     "operation": "smt_create",
     "params": [
       "control_account",
-      "creator",
       "symbol",
+      "creator",
       "smt_creation_fee",
       "precision",
       "extensions",

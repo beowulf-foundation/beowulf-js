@@ -92,7 +92,7 @@ Types.asset_symbol = {
 
         b.writeUint32(decimals)
         b.append(name.toUpperCase(), 'binary')
-        for(let i = 0; i < 8 - name.length; i++)
+        for(let i = 0; i < 9 - name.length; i++)
             b.writeUint8(0)
         return
     },

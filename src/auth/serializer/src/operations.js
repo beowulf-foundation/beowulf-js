@@ -236,6 +236,14 @@ let transaction = new Serializer('transaction', {
   created_time: uint64
 });
 
+
+let smart_contract = new Serializer('smart_contract', {
+  required_owners: array(string),
+  scid: string,
+  sc_operation: string,
+  fee: asset
+});
+
 // must check ordef F:\BLOCKCHAIN\beowulf-js\src\auth\serializer\src\ChainTypes.js
 operation.st_operations = [
   transfer,
@@ -246,6 +254,7 @@ operation.st_operations = [
   supernode_update,
   account_supernode_vote,
   smt_create,
+  smart_contract,
   fill_vesting_withdraw,
   shutdown_supernode,
   hardfork,

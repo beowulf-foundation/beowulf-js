@@ -17,11 +17,12 @@ ChainTypes.operations= {
     supernode_update: 5,
     account_supernode_vote: 6,
     smt_create: 7,
-    fill_vesting_withdraw: 8,
-    shutdown_supernode: 9,
-    hardfork: 10,
-    producer_reward: 11,
-    clear_null_account_balance: 12,
+    smart_contract: 8,
+    fill_vesting_withdraw: 9,
+    shutdown_supernode: 10,
+    hardfork: 11,
+    producer_reward: 12,
+    clear_null_account_balance: 13,
 };
 
 //types.hpp

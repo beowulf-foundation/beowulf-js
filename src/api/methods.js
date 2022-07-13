@@ -168,5 +168,29 @@ export default [
       "api": "condenser_api",
       "method": "set_max_block_age",
       "params": ["maxBlockAge"]
+    },
+    {
+      "method": "get_latest_block_info",
+      "params": ["scid"]
+    },
+    {
+      "method": "get_block_info",
+      "params": ["scid", "blockNumber"]
+    },
+    {
+      "method": "get_transaction_info",
+      "params": ["scid", "txid"]
+    },
+    {
+      "method": "get_status",
+      "params": ["scid"]
+    },
+    {
+      "method": "find_one",
+      "params": ["scid", "contract", "table", "query"]
+    },
+    {
+      "method": "find",
+      "params": ["scid", "contract", "table", "query", "limit", "offset", "indexes"]
     }
 ];

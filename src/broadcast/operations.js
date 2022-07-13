@@ -95,4 +95,14 @@ module.exports = [
       "max_supply"
     ]
   },
+  {
+    "roles": ["owner"],
+    "operation": "smart_contract",
+    "params": [
+      "required_owners",
+      "scid",
+      "sc_operation",
+      "fee"
+    ]
+  }
 ];

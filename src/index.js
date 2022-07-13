@@ -6,6 +6,7 @@ const formatter = require('./formatter')(api);
 const memo = require('./auth/memo');
 const config = require('./config');
 const utils = require('./utils');
+const nft = require('./nft');
 
 module.exports = {
   api,
@@ -15,5 +16,6 @@ module.exports = {
   memo,
   config,
   utils,
-  wallet
+  wallet,
+  nft
 };

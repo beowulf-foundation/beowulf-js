@@ -2,7 +2,8 @@ import fetch from 'cross-fetch';
 import newDebug from 'debug';
 import retry from 'retry';
 import Transport from './base';
-
+import { camelCase } from '../../utils';
+import methods from '../../api/methods';
 const debug = newDebug('beowulf:http');
 
 class RPCError extends Error {
@@ -25,8 +26,29 @@ class RPCError extends Error {
  * signature as `fetch`, which can be used to make the network request, or for
  * stubbing in tests.
  */
-export function jsonRpc(uri, {method, id, params, fetchMethod=fetch}) {
-  const payload = {id, jsonrpc: '2.0', method, params};
+export function jsonRpc(uri, { method, id, params, fetchMethod = fetch }) {
+  let payload = '';
+  let _scid = params[2][0];
+  if (!!_scid && params[0] === undefined) { // scid != null && api undefined
+    const methodStr = params[1];
+    const _method = methods.find(m => m.method == methodStr);
+    const jsonParams = _method.params.reduce((memo, param, i) => {
+      memo[param] = params[2][i]; // eslint-disable-line no-param-reassign
+      return memo;
+    }, {});
+    delete jsonParams.scid;
+
+    if (jsonParams.length <= 0) {
+      payload = { id, jsonrpc: '2.0', method: camelCase(methodStr) };
+    }
+    else {
+      payload = { id, jsonrpc: '2.0', method: camelCase(methodStr), params: jsonParams };
+    }
+  }
+  else {
+    payload = { id, jsonrpc: '2.0', method, params };
+    _scid = '';
+  }
 
   return fetchMethod(uri, {
     body: JSON.stringify(payload),
@@ -35,15 +57,16 @@ export function jsonRpc(uri, {method, id, params, fetchMethod=fetch}) {
     headers: {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/json',
+      scid: _scid
     },
   }).then(res => {
     if (!res.ok) {
-      throw new Error(`HTTP ${ res.status }: ${ res.statusText }`);
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     }
     return res.json();
   }).then(rpcRes => {
     if (rpcRes.id !== id) {
-      throw new Error(`Invalid response id: ${ rpcRes.id }`);
+      throw new Error(`Invalid response id: ${rpcRes.id}`);
     }
     if (rpcRes.error) {
       throw new RPCError(rpcRes.error);

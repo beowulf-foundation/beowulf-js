@@ -60,7 +60,7 @@ const validateOptions = (actionName, options, callback) => {
         callback(new Error("Name is not valid"));
         return false;
     }
-    if (options.orgName != undefined && !options.name.match(orgNamePattern)) {
+    if (options.orgName != undefined && !options.orgName.match(orgNamePattern)) {
         callback(new Error("Organization name of NFT is not valid"));
         return false;
     }

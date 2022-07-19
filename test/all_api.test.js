@@ -398,4 +398,77 @@ describe('beowulf.test: api', () => {
             assert.strictEqual(1, 0);
         }
     });
+    it('get latest block info', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.getLatestBlockInfo('s01',  function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
+    it('get block info by block number', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.getBlockInfo('s01', 123,  function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
+    it('get transaction info by transaction id', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.getTransactionInfo('s01', '065db549a00f43490781c83c75cfa7b36451dc61',  function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
+    it('get status of the BSC node', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.getStatus('s01',  function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
+    it('find one', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.findOne('s01', 'CONTRACT_NAME', 'TABLE_NAME', {},  function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
+    it('find', async () => {
+        let [result] = await new Promise((resolve, reject) => {
+            beowulf.api.find('s01', 'CONTRACT_NAME','TABLE_NAME', {}, 20, 20, [], function(result){
+                resolve([result]);
+            });
+        });
+        if ([result] !== undefined) {
+            assert.strictEqual(1, 1);
+        } else {
+            assert.strictEqual(1, 0);
+        }
+    });
 });
+

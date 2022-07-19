@@ -2,7 +2,7 @@
 
 const wif = "5JHTf7dkpVxQNcb5NWc7URTrHDgAFEyxn2BEnMjuJ6fJrCAniCQ" // beowulf
 
-const beowulfNft = require('../lib/nft');
+const beowulfNft = require('../../lib/nft');
 
 // beowulfjs.api.getConfig(function(err, result) {
 //   console.log(err, result);
@@ -78,7 +78,7 @@ beowulfNft.create(wif, "beowulf", "s01", "GONFT", "GONFT", "10000000", "0.01000 
 //   console.log(err, JSON.stringify(result));
 // });
 
-///----------------------------------------------------------------------------------------
+///---------------------------------------------------------------------------------------
 
 // beowulfjs.nft.createNft(wif, "beowulf", "s01", "GONFT", "GONFT", "10000000", "0.01000 W", [], (err, result) => {
 //   console.log(err, JSON.stringify(result));
@@ -198,4 +198,4 @@ beowulfNft.create(wif, "beowulf", "s01", "GONFT", "GONFT", "10000000", "0.01000 
 
 // beowulfjs.api.getAccounts(["beowulf", "beowulfsdfjhdskl"], function(err, result) {
 //   console.log(result[0].owner);
-// });
+// });-

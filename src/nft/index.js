@@ -29,7 +29,7 @@ const validateFee = (_fee, minFee) => {
 };
 
 const validateOptions = (actionName, options, callback) => {
-    const symbolPattern = /\b[A-Z]{1,10}\b/;
+    const symbolPattern = /\b[a-zA-Z0-9]{1,100}\b/;
     const namePattern = /\b[a-zA-Z 0-9]{1,25}\b/; // NFT name: number, character, space, max length 25
     const orgNamePattern = /\b[a-zA-Z 0-9]{1,50}\b/; // NFT organization name: number, character, space, max length 50
 
@@ -52,6 +52,9 @@ const validateOptions = (actionName, options, callback) => {
             delete options.properties;
         }
     }
+    if (!options.authorizedIssuingAccounts) {
+        delete options.authorizedIssuingAccounts;
+    }
     if (options.symbol != undefined && !options.symbol.match(symbolPattern)) {
         callback(new Error("Symbol is not valid"));
         return false;
@@ -71,6 +74,10 @@ const validateOptions = (actionName, options, callback) => {
     }
     if (options.instances != undefined && options.instances.length > 10) {
         callback(new Error("Maximum of instances should be 10"));
+        return false;
+    }
+    if (options.maxSupply != undefined && parseInt(options.maxSupply) <= 0) {
+        callback(new Error("Max supply is not valid"));
         return false;
     }
     return true;

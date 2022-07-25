@@ -37,13 +37,6 @@ const validateOptions = (actionName, options, callback) => {
         callback(new Error('Fee is not valid'));
         return false;
     }
-    if (options.fromName !== 'beowulf' && options.fromName !== 'beowulfnft') {
-        const actionList = ['create', 'update_metadata', 'add_property'];
-        if (actionList.includes(actionName)) {
-            callback(new Error('Permission denied'));
-            return false;
-        }
-    }
     if (!options.scid) {
         options.scid = 's01';
     }    

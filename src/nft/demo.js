@@ -1,16 +1,68 @@
 // import beowulfNft from '../lib/';
-
+// const wif = '5HujQZ8Fko8WU5V5puvdVDnTTd2VAXmHxZ8XMa64qCS3oBwuM2f'; // harriss
 const wif = "5JHTf7dkpVxQNcb5NWc7URTrHDgAFEyxn2BEnMjuJ6fJrCAniCQ" // beowulf
+// const wif = "5KY5Tqb6inoWG7xjtobL6DFnzWgHY555ZCP4Q3MV2zC5bkUmeR3" // beowulf
 
 const beowulfNft = require('../../lib/nft');
+const beowulfjs = require('../../lib');
+
+const amount = 50;
+const wallets = beowulfjs.wallet.generateMultipleWallet(amount);
+for (let i = 120; i < 170; i++) {
+  wallets[i - 120].name = "testtest" + i;
+  wallets[i - 120].fee = "0.01000 W"  
+}
+beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
+  console.log(err, res);
+});
+
+
+
+
+// const wallets = beowulfjs.wallet.generateWallet();
+// console.log(wallets)
+// beowulfjs.wallet.submitWallet({
+//   ownerPubkey: wallets.ownerPubkey,
+//   account: "harriss",
+//   creator: "beowulf",
+//   creatorWif: wif,
+//   fee: "0.01000 W"
+// }, (err, result) => {
+//   console.log(err, result);
+// })
+
+
+
+
+// beowulfjs.broadcast.smtCreate(wif, "beowulf", {decimals: 5, name: "TEST263"}, "cbay111958", "10.00000 W", 5, [], "1000000000", async (err, result) => {
+//   console.log(err, result)
+// });
+
+// beowulfjs.api.getAccounts(['harriss'], function(err, result) {
+//   console.log(err, result);
+// });
+// const wallet = beowulfjs.wallet.generateMultipleWallet(10);
+// console.log(wallet)
+
+// async function someFunc() {
+//   const wallet = await beowulfjs.wallet.generateWallet();
+
+
+
+
+// }
+// someFunc();
+// beowulfjs.broadcast.transfer(wif, "beowulf", "harriss", "0.10000 W", "0.01000 W", "Chuyen tien test operation", (err, result) => {
+//   console.log(err, result);
+// });
 
 // beowulfjs.api.getConfig(function(err, result) {
 //   console.log(err, result);
 // });
 
-beowulfNft.create(wif, "beowulf", "s01", "GONFT", "GONFT", "10000000", "0.01000 W", ['hibiki'], (err, result) => {
-  console.log(err, JSON.stringify(result));
-})
+// beowulfNft.create(wif, "harris", "s01", "GONFT", "GONFT", "10000000", "0.01000 W", null, (err, result) => {
+//   console.log(err, JSON.stringify(result));
+// })
 
 
 // beowulfNft.issue(wif, "beowulf", "s01", "GONFT", "beowulf", "user", "BEE", "0.01000 W", {}, (err, result) => {
@@ -157,7 +209,7 @@ beowulfNft.create(wif, "beowulf", "s01", "GONFT", "GONFT", "10000000", "0.01000 
 //   console.log(err, res)
 // })
 
-// beowulfjs.api.getTransactionInfo('s01', '065db549a00f43490781c83c75cfa7b36451dc61', function(err, result) {
+// beowulfjs.api.getTransactionInfo('s01', 'd76e7dcb238a389ad52138c531d90cf7b93ba9e8', function(err, result) {
 //   console.log(err, result);
 // });
 

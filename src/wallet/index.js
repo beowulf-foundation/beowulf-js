@@ -5,7 +5,7 @@ import { Aes, hash } from '../auth/ecc';
 
 const beowulfWallet = {};
 
-beowulfWallet.generateWallet = function() {
+beowulfWallet.generateWallet = function () {
   let keygenPassw = keygen.getKey('ci_key');
   let account = keygen.getKey('ci_key');
 
@@ -24,7 +24,55 @@ beowulfWallet.generateMulWallet = function (amount) {
   return wallet;
 };
 
-beowulfWallet.submitWallet = function(
+beowulfWallet.generateMultipleWallet = function (amount) {
+  const wallets = [];
+  for (let i = 0; i < amount; i++) {
+    wallets.push(this.generateWallet());
+  }
+  return wallets;
+}
+beowulfWallet.submitMultipleWallet = function (wallets, creator, creatorWif, cb) {
+  // wallets = {
+  //   ownerPubkey: "",
+  //   name: "",
+  //   fee: "",
+  // }
+  if (wallets.length > 50) {
+    cb(new Error("Maximum amount of accounts is 50"), null);
+    return;
+  }
+  const operations = [];
+  for (let i = 0; i < wallets.length; i++) {
+    const owner = {
+      weight_threshold: 1,
+      account_auths: [],
+      key_auths: [[wallets[i].ownerPubkey, 1]]
+    };
+    const options = {
+      fee: wallets[i].fee,
+      creator: creator,
+      new_account_name: wallets[i].name,
+      owner: owner,
+      json_metadata: ""
+    }
+    const operation = ["account_create"];
+    operation.push(Object.assign(
+      // {}, // extension
+      options, // options
+      // {} // permlink
+    ))
+    operations.push(operation);
+  }
+
+  const keys = beowulfBroadcast.accountCreateKeys(creatorWif);
+
+  return beowulfBroadcast.send({
+    extensions: [],
+    operations: operations,
+  }, keys, cb);
+}
+
+beowulfWallet.submitWallet = function (
   { ownerPubkey, account, creator, creatorWif, fee = '0.01000 W' },
   cb
 ) {
@@ -33,7 +81,7 @@ beowulfWallet.submitWallet = function(
     weight_threshold: 1,
     account_auths: [],
     key_auths: [[ownerPubkey, 1]]
-  };  
+  };
 
   beowulfBroadcast.accountCreate(
     creatorWif,
@@ -46,7 +94,7 @@ beowulfWallet.submitWallet = function(
   );
 };
 
-beowulfWallet.transferEX = function(
+beowulfWallet.transferEX = function (
   { creatorWif, from, to, amount, fee, memo, data_extension },
   cb
 ) {
@@ -59,11 +107,11 @@ beowulfWallet.transferEX = function(
     memo,
     data_extension,
     cb
-  ); 
+  );
 };
 
-beowulfWallet.accountUpdate = function(
-  { ownerPubkey, account, wif, fee = '0.01000 W'},
+beowulfWallet.accountUpdate = function (
+  { ownerPubkey, account, wif, fee = '0.01000 W' },
   cb
 ) {
   let jsonMetadata = '';
@@ -84,8 +132,8 @@ beowulfWallet.accountUpdate = function(
 };
 
 
-beowulfWallet.accountSupernodeVote = function(
-  {  wif, supernode, account, approve, votes, fee = '0.01000 W'},
+beowulfWallet.accountSupernodeVote = function (
+  { wif, supernode, account, approve, votes, fee = '0.01000 W' },
   cb
 ) {
   beowulfBroadcast.accountSupernodeVote(
@@ -99,8 +147,8 @@ beowulfWallet.accountSupernodeVote = function(
   );
 };
 
-beowulfWallet.supernodeUpdate = function(
-  {  wif, owner, block_signing_key, fee = '0.01000 W'},
+beowulfWallet.supernodeUpdate = function (
+  { wif, owner, block_signing_key, fee = '0.01000 W' },
   cb
 ) {
   beowulfBroadcast.supernodeUpdate(
@@ -112,8 +160,8 @@ beowulfWallet.supernodeUpdate = function(
   );
 };
 
-beowulfWallet.transferToVesting = function(
-  {  wif, from, to, amount, fee = '0.01000 W'},
+beowulfWallet.transferToVesting = function (
+  { wif, from, to, amount, fee = '0.01000 W' },
   cb
 ) {
   beowulfBroadcast.transferToVesting(
@@ -126,8 +174,8 @@ beowulfWallet.transferToVesting = function(
   );
 };
 
-beowulfWallet.withdrawVesting = function(
-  {  wif, account, vesting_shares, fee = '0.01000 W'},
+beowulfWallet.withdrawVesting = function (
+  { wif, account, vesting_shares, fee = '0.01000 W' },
   cb
 ) {
   beowulfBroadcast.withdrawVesting(
@@ -139,8 +187,8 @@ beowulfWallet.withdrawVesting = function(
   );
 };
 
-beowulfWallet.accountUpdateMul = function(
-  { wallet, weight_threshold, account, wif, fee = '0.01000 W'},
+beowulfWallet.accountUpdateMul = function (
+  { wallet, weight_threshold, account, wif, fee = '0.01000 W' },
   cb
 ) {
   if (weight_threshold <= 0) {
@@ -166,7 +214,7 @@ beowulfWallet.accountUpdateMul = function(
 };
 
 
-beowulfWallet.submitMulWallet = function(
+beowulfWallet.submitMulWallet = function (
   { wallet, weight_threshold, account, creator, creatorWif, fee = '0.01000 W' },
   cb
 ) {

@@ -43,8 +43,8 @@ Types.asset = {
             throw new Error("Expecting amount like '99.000 SYMBOL', instead got '" + object + "'")
 
         let [ amount, symbol ] = object.split(" ")
-        if(symbol.length > 6)
-            throw new Error("Symbols are not longer than 6 characters " + symbol + "-"+ symbol.length)
+        if(symbol.length > 8)
+            throw new Error("Symbols are not longer than 8 characters " + symbol + "-"+ symbol.length)
 
         b.writeInt64(v.to_long(amount.replace(".", "")))
         let dot = amount.indexOf(".") // 0.000

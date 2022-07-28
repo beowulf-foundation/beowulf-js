@@ -6,15 +6,15 @@ const wif = "5JHTf7dkpVxQNcb5NWc7URTrHDgAFEyxn2BEnMjuJ6fJrCAniCQ" // beowulf
 const beowulfNft = require('../../lib/nft');
 const beowulfjs = require('../../lib');
 
-const amount = 50;
-const wallets = beowulfjs.wallet.generateMultipleWallet(amount);
-for (let i = 120; i < 170; i++) {
-  wallets[i - 120].name = "testtest" + i;
-  wallets[i - 120].fee = "0.01000 W"  
-}
-beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
-  console.log(err, res);
-});
+// const amount = 100;
+// const wallets = beowulfjs.wallet.generateMultipleWallet(amount);
+// for (let i = 0; i < amount; i++) {
+//   wallets[i].name = "testtesttest" + i;
+//   wallets[i].fee = "0.01000 W"  
+// }
+// beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
+//   console.log(err, res);
+// });
 
 
 
@@ -38,7 +38,7 @@ beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
 //   console.log(err, result)
 // });
 
-// beowulfjs.api.getAccounts(['harriss'], function(err, result) {
+// beowulfjs.api.getAccounts(['cbay095217'], function(err, result) {
 //   console.log(err, result);
 // });
 // const wallet = beowulfjs.wallet.generateMultipleWallet(10);
@@ -46,8 +46,6 @@ beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
 
 // async function someFunc() {
 //   const wallet = await beowulfjs.wallet.generateWallet();
-
-
 
 
 // }
@@ -60,7 +58,7 @@ beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
 //   console.log(err, result);
 // });
 
-// beowulfNft.create(wif, "harris", "s01", "GONFT", "GONFT", "10000000", "0.01000 W", null, (err, result) => {
+// beowulfNft.create(wif, "beowulf", "s01", "testname", "TEST28073", "", "0.01000 W", null, (err, result) => {
 //   console.log(err, JSON.stringify(result));
 // })
 
@@ -209,9 +207,9 @@ beowulfjs.wallet.submitMultipleWallet(wallets, "beowulf", wif, (err, res) => {
 //   console.log(err, res)
 // })
 
-// beowulfjs.api.getTransactionInfo('s01', 'd76e7dcb238a389ad52138c531d90cf7b93ba9e8', function(err, result) {
-//   console.log(err, result);
-// });
+beowulfjs.api.getTransactionInfo('s01', '2d184694d613c84e0b89544916d529ce71482ca3', function(err, result) {
+  console.log(err, result);
+});
 
 // beowulfjs.api.getStatus('s01', function(err, result) {
 //   console.log(err, result);

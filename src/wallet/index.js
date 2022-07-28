@@ -37,8 +37,9 @@ beowulfWallet.submitMultipleWallet = function (wallets, creator, creatorWif, cb)
   //   name: "",
   //   fee: "",
   // }
-  if (wallets.length > 50) {
-    cb(new Error("Maximum amount of accounts is 50"), null);
+  const maxAccountsPerTrx = 100;
+  if (wallets.length > 100) {
+    cb(new Error(`Maximum amount of accounts is ${maxAccountsPerTrx}`), null);
     return;
   }
   const operations = [];

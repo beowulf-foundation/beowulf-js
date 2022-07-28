@@ -39,14 +39,11 @@ const validateOptions = (actionName, options, callback) => {
     }
     if (!options.scid) {
         options.scid = 's01';
-    }    
-    if (options.properties != undefined) {
-        if (!JSON.stringify(options.properties).replace('{', '').replace('}', '')) {
-            delete options.properties;
-        }
     }
-    if (!options.authorizedIssuingAccounts) {
-        delete options.authorizedIssuingAccounts;
+    for (const prop in options) {
+        if (!options[prop]) {
+            delete options[prop];
+        }
     }
     if (options.symbol != undefined && !options.symbol.match(symbolPattern)) {
         callback(new Error("Symbol is not valid"));
